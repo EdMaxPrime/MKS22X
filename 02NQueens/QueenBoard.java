@@ -10,9 +10,38 @@ public class QueenBoard {
 	removeQueen(4);
     }
 
-    public void solve() {}
+    public void solve() {
+	clear();
+	solveHelper(0, 0);
+    }
     public void countSolutions() {}
     public int getCount() {return solutionCount;}
+
+    public boolean solveHelper(int row, int col) {
+	if(row >= board.length || col >= board[row].length) return false;
+	int r = row;
+	while(r < board.length) {
+	    if(board[r][col] != 0) r++;
+	    else break;
+	}
+	if(r == board.length) { //can't place queen in column
+	    return false;
+	} else {
+	    if(col == board.length - 1) { //last queen, we're done
+		addQueen(r, col);
+		return true;
+	    } else {
+		addQueen(r, col);
+		boolean advance = solveHelper(0, col+1);
+		if(!advance) {
+		    removeQueen(col + 1);
+		    return solveHelper(row+1, col);
+		}
+	    }
+	}
+	return true;
+    }
+
     public String toString() {
         String result = "";
 	for(int r = 0; r < board.length; r++) {
@@ -62,6 +91,8 @@ public class QueenBoard {
 
     public static void main(String[] args) {
 	QueenBoard a = new QueenBoard(4);
+	System.out.println(a);
+	a.solve();
 	System.out.println(a);
     }
 }
