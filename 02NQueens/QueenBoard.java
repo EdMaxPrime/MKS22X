@@ -17,7 +17,7 @@ public class QueenBoard {
 	for(int r = 0; r < board.length; r++) {
 	    for(int c = 0; c < board[r].length; c++) {
 		if(board[r][c] == 0) result += ".";
-		else if(board[r][c] == -1) result += "x";
+		else if(board[r][c] > 0) result += "x";
 		else result += "Q";
 		if(c < board[r].length - 1) result += " ";
 		else result += "\n";
@@ -27,14 +27,14 @@ public class QueenBoard {
     }
 
     private void addQueen(int row, int col) {
-	board[row][col] = 1;
+	board[row][col] = -1;
 	for(int i = 0; i < board.length; i++) {
 	    if(i != col) {
-		board[row][i] = -1;
-		if(validIndex(i - col + row)) board[i - col + row][i] = -1;
-		if(validIndex(col - i + row)) board[col - i + row][i] = -1;
+		board[row][i] = col + 1;
+		if(validIndex(i - col + row)) board[i - col + row][i] = col + 1;;
+		if(validIndex(col - i + row)) board[col - i + row][i] = col + 1;
 	    }
-	    if(i != row) {board[i][col] = -1;}
+	    if(i != row) {board[i][col] = col + 1;}
 	}
     }
 
