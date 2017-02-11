@@ -6,12 +6,25 @@ public class QueenBoard {
 	board = new int[size][size];
 	clear();
 	solutionCount = 0;
+	addQueen(1, 1);
     }
 
     public void solve() {}
     public void countSolutions() {}
     public int getCount() {return solutionCount;}
-    public String toString() {return "";}
+    public String toString() {
+        String result = "";
+	for(int r = 0; r < board.length; r++) {
+	    for(int c = 0; c < board[r].length; c++) {
+		if(board[r][c] == 0) result += ".";
+		else if(board[r][c] == -1) result += "x";
+		else result += "Q";
+		if(c < board[r].length - 1) result += " ";
+		else result += "\n";
+	    }
+	}
+	return result;
+    }
 
     private void addQueen(int row, int col) {
 	board[row][col] = 1;
@@ -31,5 +44,6 @@ public class QueenBoard {
 
     public static void main(String[] args) {
 	QueenBoard a = new QueenBoard(4);
+	System.out.println(a);
     }
 }
