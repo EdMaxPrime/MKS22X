@@ -7,7 +7,7 @@ public class QueenBoard {
 	clear();
 	solutionCount = 0;
 	addQueen(0, 3);
-	removeQueen(4);
+	removeQueen(3);
     }
 
     public void solve() {
@@ -34,7 +34,7 @@ public class QueenBoard {
 		addQueen(r, col);
 		boolean advance = solveHelper(0, col+1);
 		if(!advance) {
-		    removeQueen(col + 1);
+		    removeQueen(col);
 		    return solveHelper(row+1, col);
 		}
 	    }
@@ -72,11 +72,11 @@ public class QueenBoard {
 	return (index >= 0 && index < board.length);
     }
 
-    private void removeQueen(int id) {
+    private void removeQueen(int col) {
 	for(int r = 0; r < board.length; r++) {
 	    for(int c = 0; c < board[r].length; c++) {
-		if(board[r][c] == -1 && c == id - 1) board[r][c] = 0;
-		if(board[r][c] == id) board[r][c] = 0;
+		if(board[r][c] == -1 && c == col) board[r][c] = 0;
+		if(board[r][c] == col+1) board[r][c] = 0;
 	    }
 	}
     }
