@@ -10,16 +10,14 @@ public class QueenBoard {
 
     public void solve() {}
     public void countSolutions() {}
-    public String getCount() {return "";}
+    public int getCount() {return solutionCount;}
     public String toString() {return "";}
 
-    private void placeQueen(int row, int col) {
+    private void addQueen(int row, int col) {
 	board[row][col] = 1;
-	for(int c = 0; c < board.length; c++) {
-	    if(c != col) {board[row][c] = -1;}
-	}
-	for(int r = 0; r < board.length; r++) {
-	    if(r != row) {board[r][col] = -1;}
+	for(int i = 0; i < board.length; i++) {
+	    if(i != col) {board[row][i] = -1;}
+	    if(i != row) {board[i][col] = -1;}
 	}
     }
 
