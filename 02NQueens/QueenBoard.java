@@ -24,16 +24,17 @@ public class QueenBoard {
 	    if(board[r][col] != 0) r++;
 	    else break;
 	}
+	System.out.println("Col:"+col+"\tinit:"+row+"  now:"+r);
 	if(r == board.length) { //can't place queen in column
 	    return false;
 	} else {
+	    addQueen(r, col);
 	    if(col == board.length - 1) { //last queen, we're done
-		addQueen(r, col);
 		return true;
 	    } else {
-		addQueen(r, col);
 		boolean advance = solveHelper(0, col+1);
 		if(!advance) {
+		    System.out.println("Backtrack to "+col);
 		    removeQueen(col);
 		    return solveHelper(row+1, col);
 		}
@@ -57,14 +58,15 @@ public class QueenBoard {
     }
 
     private void addQueen(int row, int col) {
+	System.out.println("  placin queen @"+row+","+col+"  safe:"+(board[row][col]));
 	board[row][col] = -1;
 	for(int i = 0; i < board.length; i++) {
 	    if(i != col) {
-		board[row][i] = col + 1;
-		if(validIndex(i - col + row)) board[i - col + row][i] = col + 1;;
-		if(validIndex(col - i + row)) board[col - i + row][i] = col + 1;
+		if(board[row][i] == 0) board[row][i] = col + 1;
+		if(validIndex(i - col + row) && board[i-col+row][i] == 0) board[i-col+row][i] = col + 1;
+		if(validIndex(col - i + row) && board[col-i+row][i] == 0) board[col-i+row][i] = col + 1;
 	    }
-	    if(i != row) {board[i][col] = col + 1;}
+	    if(i != row && board[i][col] == 0) {board[i][col] = col + 1;}
 	}
     }
 
@@ -73,6 +75,7 @@ public class QueenBoard {
     }
 
     private void removeQueen(int col) {
+	System.out.println("  Removing Queen#"+col);
 	for(int r = 0; r < board.length; r++) {
 	    for(int c = 0; c < board[r].length; c++) {
 		if(board[r][c] == -1 && c == col) board[r][c] = 0;
