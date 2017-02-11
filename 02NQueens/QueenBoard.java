@@ -11,11 +11,20 @@ public class QueenBoard {
     }
 
     public void solve() {
-	clear();
-	solveHelper(0, 0);
+	solve(0);
     }
-    public void countSolutions() {}
+    public void countSolutions() {
+	solutionCount = 0;
+	for(int attempt = 0; attempt < board.length; attempt++) {
+	    if(solve(attempt)) solutionCount++;
+	}
+    }
     public int getCount() {return solutionCount;}
+
+    private boolean solve(int row) {
+	clear();
+	return solveHelper(row, 0);
+    }
 
     public boolean solveHelper(int row, int col) {
 	if(row >= board.length || col >= board[row].length) return false;
@@ -97,5 +106,7 @@ public class QueenBoard {
 	System.out.println(a);
 	a.solve();
 	System.out.println(a);
+	a.countSolutions();
+	System.out.println(a.getCount());
     }
 }
