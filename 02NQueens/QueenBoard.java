@@ -7,6 +7,7 @@ public class QueenBoard {
 	clear();
 	solutionCount = 0;
 	addQueen(0, 3);
+	removeQueen(4);
     }
 
     public void solve() {}
@@ -40,6 +41,15 @@ public class QueenBoard {
 
     private boolean validIndex(int index) {
 	return (index >= 0 && index < board.length);
+    }
+
+    private void removeQueen(int id) {
+	for(int r = 0; r < board.length; r++) {
+	    for(int c = 0; c < board[r].length; c++) {
+		if(board[r][c] == -1 && c == id - 1) board[r][c] = 0;
+		if(board[r][c] == id) board[r][c] = 0;
+	    }
+	}
     }
 
     private void clear() {
