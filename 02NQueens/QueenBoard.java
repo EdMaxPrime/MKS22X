@@ -6,7 +6,7 @@ public class QueenBoard {
 	board = new int[size][size];
 	clear();
 	solutionCount = 0;
-	addQueen(1, 1);
+	addQueen(0, 3);
     }
 
     public void solve() {}
@@ -29,9 +29,17 @@ public class QueenBoard {
     private void addQueen(int row, int col) {
 	board[row][col] = 1;
 	for(int i = 0; i < board.length; i++) {
-	    if(i != col) {board[row][i] = -1;}
+	    if(i != col) {
+		board[row][i] = -1;
+		if(validIndex(i - col + row)) board[i - col + row][i] = -1;
+		if(validIndex(col - i + row)) board[col - i + row][i] = -1;
+	    }
 	    if(i != row) {board[i][col] = -1;}
 	}
+    }
+
+    private boolean validIndex(int index) {
+	return (index >= 0 && index < board.length);
     }
 
     private void clear() {
