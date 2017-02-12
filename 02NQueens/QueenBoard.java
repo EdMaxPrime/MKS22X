@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class QueenBoard {
     private int[][] board;
     private int solutionCount;
@@ -5,7 +7,7 @@ public class QueenBoard {
     public QueenBoard(int size) {
 	board = new int[size][size];
 	clear();
-	solutionCount = 0;
+	solutionCount = -1;
 	addQueen(0, 3);
 	removeQueen(3);
     }
@@ -15,11 +17,42 @@ public class QueenBoard {
     }
     public void countSolutions() {
 	solutionCount = 0;
+	ArrayList<String> unique = new ArrayList<String>();
 	for(int attempt = 0; attempt < board.length; attempt++) {
-	    if(solve(attempt)) solutionCount++;
+	    if(solve(attempt)) {
+		System.out.println(this);
+		if(unique.indexOf(this.toString()) == -1) {
+		    solutionCount++;
+		    unique.add(this.toString());
+		}
+	    }
 	}
     }
     public int getCount() {return solutionCount;}
+
+    public void count2() {
+	solutionCount = 0;
+	clear();
+	countHelper();
+    }
+
+    public int countHelper(int row, int col) {
+	if(row >= board.length || col >= board[row].length) return 0;
+	for(int r = row; r < board.length; r++) {
+	    if(board[r][col] == 0) {
+		addQueen(r, col);
+		if(col == board.length - 1) {//last queen
+		    solutionCount++;
+		    return 1;
+		} else {
+		    int advance = countHelper(0, col+1);
+		    removeQueen(col);
+		    return advance + countHelper(r+1, col);
+		}
+	    }
+	}
+	return -100;
+    }
 
     private boolean solve(int row) {
 	clear();
@@ -33,7 +66,7 @@ public class QueenBoard {
 	    if(board[r][col] != 0) r++;
 	    else break;
 	}
-	System.out.println("Col:"+col+"\tinit:"+row+"  now:"+r);
+	//System.out.println("Col:"+col+"\tinit:"+row+"  now:"+r);
 	if(r == board.length) { //can't place queen in column
 	    return false;
 	} else {
@@ -43,7 +76,7 @@ public class QueenBoard {
 	    } else {
 		boolean advance = solveHelper(0, col+1);
 		if(!advance) {
-		    System.out.println("Backtrack to "+col);
+		    //System.out.println("Backtrack to "+col);
 		    removeQueen(col);
 		    return solveHelper(row+1, col);
 		}
@@ -67,7 +100,7 @@ public class QueenBoard {
     }
 
     private void addQueen(int row, int col) {
-	System.out.println("  placin queen @"+row+","+col+"  safe:"+(board[row][col]));
+	//System.out.println("  placin queen @"+row+","+col+"  safe:"+(board[row][col]));
 	board[row][col] = -1;
 	for(int i = 0; i < board.length; i++) {
 	    if(i != col) {
@@ -84,7 +117,7 @@ public class QueenBoard {
     }
 
     private void removeQueen(int col) {
-	System.out.println("  Removing Queen#"+col);
+	//System.out.println("  Removing Queen#"+col);
 	for(int r = 0; r < board.length; r++) {
 	    for(int c = 0; c < board[r].length; c++) {
 		if(board[r][c] == -1 && c == col) board[r][c] = 0;
@@ -93,7 +126,7 @@ public class QueenBoard {
 	}
     }
 
-    private void clear() {
+    public void clear() {
 	for(int i = 0; i < board.length; i++) {
 	    for(int j = 0; j < board[i].length; j++) {
 		board[i][j] = 0;
@@ -102,11 +135,13 @@ public class QueenBoard {
     }
 
     public static void main(String[] args) {
-	QueenBoard a = new QueenBoard(4);
+	QueenBoard a = new QueenBoard(9);
 	System.out.println(a);
 	a.solve();
-	System.out.println(a);
-	a.countSolutions();
+	//System.out.println(a);
+	//a.countSolutions();
+	//System.out.println(a.getCount());
+	a.count2();
 	System.out.println(a.getCount());
     }
 }
