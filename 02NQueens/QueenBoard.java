@@ -17,24 +17,10 @@ public class QueenBoard {
     }
     public void countSolutions() {
 	solutionCount = 0;
-	ArrayList<String> unique = new ArrayList<String>();
-	for(int attempt = 0; attempt < board.length; attempt++) {
-	    if(solve(attempt)) {
-		System.out.println(this);
-		if(unique.indexOf(this.toString()) == -1) {
-		    solutionCount++;
-		    unique.add(this.toString());
-		}
-	    }
-	}
-    }
-    public int getCount() {return solutionCount;}
-
-    public void count2() {
-	solutionCount = 0;
 	clear();
 	countHelper(0, 0);
     }
+    public int getCount() {return solutionCount;}
 
     public void countHelper(int row, int col) {
 	if(row >= board.length || col >= board[row].length) return;
@@ -133,13 +119,11 @@ public class QueenBoard {
     }
 
     public static void main(String[] args) {
-	QueenBoard a = new QueenBoard(4);
+	QueenBoard a = new QueenBoard(5);
 	//System.out.println(a);
 	a.solve();
 	System.out.println(a);
-	//a.countSolutions();
-	//System.out.println(a.getCount());
-	a.count2();
+	a.countSolutions();
 	System.out.println(a.getCount());
     }
 }
