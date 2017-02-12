@@ -234,7 +234,7 @@ public class QueenBoard {
      * The main.
      */
     public static void main(String[] args) {
-	QueenBoard a = new QueenBoard(6);
+	QueenBoard a = new QueenBoard(4);
 	//System.out.println(a);
 	a.solve();
 	System.out.println(a);
