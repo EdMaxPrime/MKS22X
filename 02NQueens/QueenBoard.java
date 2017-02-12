@@ -110,7 +110,7 @@ public class QueenBoard {
 	}
     }
 
-    public void clear() {
+    private void clear() {
 	for(int i = 0; i < board.length; i++) {
 	    for(int j = 0; j < board[i].length; j++) {
 		board[i][j] = 0;
@@ -118,12 +118,44 @@ public class QueenBoard {
 	}
     }
 
+    public void animate() {
+	clear();
+	animateHelper(0, 0);
+    }
+
+    private boolean animateHelper(int row, int col) {
+	if(row >= board.length || col >= board[row].length) return false;
+	int r = row;
+	while(r < board.length && board[r][col] != 0) {r++;}
+	if(r == board.length) {
+	    System.out.println("No available spaces:\n" + this.toString());
+	    return false;
+	} else {
+	    System.out.println("Trying:\n" + this.toString());
+	    addQueen(r, col);
+	    if(col == board.length - 1) {
+		System.out.println("Done:\n" + this.toString());
+		return true;
+	    } else {
+		boolean advance = animateHelper(0, col+1);
+		if(!advance) {
+		    removeQueen(col);
+		    System.out.println("Backtracking:\n" + this.toString());
+		    return animateHelper(r+1, col);
+		}
+	    }
+	}
+	return true;
+    }
+
     public static void main(String[] args) {
-	QueenBoard a = new QueenBoard(5);
+	QueenBoard a = new QueenBoard(6);
 	//System.out.println(a);
 	a.solve();
 	System.out.println(a);
 	a.countSolutions();
 	System.out.println(a.getCount());
+	System.out.println("\n\t\t##ANIMATION##\n");
+	a.animate();
     }
 }
