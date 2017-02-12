@@ -76,7 +76,7 @@ public class QueenBoard {
 		if(!advance) {
 		    //System.out.println("Backtrack to "+col);
 		    removeQueen(col);
-		    return solveHelper(row+1, col);
+		    return solveHelper(r+1, col);
 		}
 	    }
 	}
@@ -136,7 +136,7 @@ public class QueenBoard {
 	QueenBoard a = new QueenBoard(4);
 	//System.out.println(a);
 	a.solve();
-	//System.out.println(a);
+	System.out.println(a);
 	//a.countSolutions();
 	//System.out.println(a.getCount());
 	a.count2();
