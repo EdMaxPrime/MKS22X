@@ -33,25 +33,23 @@ public class QueenBoard {
     public void count2() {
 	solutionCount = 0;
 	clear();
-	countHelper();
+	countHelper(0, 0);
     }
 
-    public int countHelper(int row, int col) {
-	if(row >= board.length || col >= board[row].length) return 0;
+    public void countHelper(int row, int col) {
+	if(row >= board.length || col >= board[row].length) return;
 	for(int r = row; r < board.length; r++) {
 	    if(board[r][col] == 0) {
 		addQueen(r, col);
 		if(col == board.length - 1) {//last queen
 		    solutionCount++;
-		    return 1;
 		} else {
-		    int advance = countHelper(0, col+1);
-		    removeQueen(col);
-		    return advance + countHelper(r+1, col);
+		    countHelper(0, col+1);
+		    //countHelper(r+1, col);
 		}
+		removeQueen(col);
 	    }
-	}
-	return -100;
+	};
     }
 
     private boolean solve(int row) {
@@ -135,8 +133,8 @@ public class QueenBoard {
     }
 
     public static void main(String[] args) {
-	QueenBoard a = new QueenBoard(9);
-	System.out.println(a);
+	QueenBoard a = new QueenBoard(4);
+	//System.out.println(a);
 	a.solve();
 	//System.out.println(a);
 	//a.countSolutions();
