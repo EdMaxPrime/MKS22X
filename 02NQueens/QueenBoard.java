@@ -37,7 +37,7 @@ public class QueenBoard {
      * this will return -1.
      * @return the number of solutions for this puzzle
      */
-    public int getCount() {return solutionCount;}
+    public int getSolutionCount() {return solutionCount;}
 
     /**
      * A recursive backtracking solution to the N-Queens
@@ -237,7 +237,7 @@ public class QueenBoard {
 	a.solve();
 	System.out.println(a);
 	a.countSolutions();
-	System.out.println(a.getCount());
+	System.out.println(a.getSolutionCount());
 	System.out.println("\n\t\t##ANIMATION##\n");
 	a.animate();
     }
