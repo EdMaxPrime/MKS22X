@@ -3,7 +3,7 @@ public class KnightBoard {
     private int rows, cols;
 
     public KnightBoard(int startingRows, int startingCols) {
-	board = new int[startRows][startingCols];
+	board = new int[startingRows][startingCols];
 	rows = startingRows;
 	cols = startingCols;
     }
@@ -20,11 +20,26 @@ public class KnightBoard {
      */
     public void solve() {}
 
+    private String pad(String original, char what, int length) {
+	while(original.length() < length) {
+	    original = what + original;
+	}
+	return original;
+    }
+
     public String toString() {
-	return "";
+	String str = "";
+	for(int r = 0; r < rows; r++) {
+	    for(int c = 0; c < cols; c++) {
+		str += pad(""+board[r][c], ' ', 3);
+	    }
+	    str += "\n";
+	}
+	return str;
     }
 
     public static void main(String[] args) {
-	//
+	KnightBoard a = new KnightBoard(5, 5);
+	System.out.println(a);
     }
 }
