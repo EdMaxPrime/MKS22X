@@ -28,7 +28,13 @@ public class KnightBoard {
     }
 
     private boolean solveHelper(int row, int col, int move) {
+	stamp(row, col, move);
+	if(move == rows*cols) return true;
 	return false;
+    }
+
+    private void stamp(int row, int col, int move) {
+	board[row][col] = move;
     }
 
     private String pad(String original, char what, int length) {
