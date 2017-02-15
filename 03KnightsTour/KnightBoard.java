@@ -1,6 +1,11 @@
 public class KnightBoard {
+    private int[][] board;
+    private int rows, cols;
+
     public KnightBoard(int startingRows, int startingCols) {
-	
+	board = new int[startRows][startingCols];
+	rows = startingRows;
+	cols = startingCols;
     }
     
     /* Plan:
