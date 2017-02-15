@@ -37,6 +37,10 @@ public class KnightBoard {
 	board[row][col] = move;
     }
 
+    private int[][] getMoves(int row, int col) {
+	return null;
+    }
+
     private String pad(String original, char what, int length) {
 	while(original.length() < length) {
 	    original = what + original;
