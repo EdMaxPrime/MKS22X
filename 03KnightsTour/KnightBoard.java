@@ -59,6 +59,29 @@ public class KnightBoard {
 	return str;
     }
 
+    private class PList {
+	private int[][] stuff;
+	private int length;
+	public PList() {this(8);}
+	public PList(int init) {
+	    stuff = new int[init][];
+	    length = 0;
+	}
+	public void add(int[] arr) {
+	    if(length >= stuff.length) {grow();}
+	    stuff[length] = arr;
+	    length++;
+	}
+	public int length() {return length;}
+	public int[] get(int index) {
+	    return stuff[index];
+	}
+	private void grow() {
+	    int[][] newStuff = new int[2 * stuff.length][];
+	    for(int i = 0; i < length; i++) {newStuff[i] = stuff[i];}
+	}
+    }
+
     public static void main(String[] args) {
 	KnightBoard a = new KnightBoard(5, 5);
 	System.out.println(a);
