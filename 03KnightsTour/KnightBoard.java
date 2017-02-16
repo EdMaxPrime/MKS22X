@@ -8,6 +8,15 @@ public class KnightBoard {
 	cols = startingCols;
     }
     
+    public void solve() {
+	for(int r = 0; r < rows/2 + 1; r++) {
+	    for(int c = 0; c < cols/2 + 1; c++) {
+		boolean didItWork = solveHelper(r, c, 1);
+		if(didItWork) return;
+	    }
+	}
+    }
+
     /* Plan:
        given row, col, move
        if move == last --> true
@@ -18,18 +27,16 @@ public class KnightBoard {
 	 if it works --> true
        return false
      */
-    public void solve() {
-	for(int r = 0; r < rows/2 + 1; r++) {
-	    for(int c = 0; c < cols/2 + 1; c++) {
-		boolean didItWork = solveHelper(r, c, 1);
-		if(didItWork) return;
-	    }
-	}
-    }
-
     private boolean solveHelper(int row, int col, int move) {
 	stamp(row, col, move);
 	if(move == rows*cols) return true;
+	int[][] moves = getMoves(row, col);
+	//dont sort them
+	for(int m = 0; m < moves.length; m++) {
+	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
+	    if(success) return true;
+	}
+	stamp(row, col, 0);
 	return false;
     }
 
@@ -44,6 +51,7 @@ public class KnightBoard {
 	    {row+1, col+2}, {row+2, col+1}, {row+2, col-1}, {row-1, col-2}
 	};
 	for(int[] possibility : inTheory) {
+	    //System.out.println(arr2str(possibility) + " for "+row+","+col+"  " + validSpot(possibility[0], possibility[1]));
 	    if(validSpot(possibility[0], possibility[1]) &&
 	       board[possibility[0]][possibility[1]] == 0) {
 		moves.add(possibility);
@@ -53,7 +61,7 @@ public class KnightBoard {
     }
 
     private boolean validSpot(int row, int col) {
-	return (row >= 0 && row < rows) && (col >= 0 && col <= cols);
+	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
 
     private String pad(String original, char what, int length) {
@@ -125,8 +133,10 @@ public class KnightBoard {
     }
 
     public static void main(String[] args) {
-	KnightBoard a = new KnightBoard(5, 5);
+	KnightBoard a = new KnightBoard(5, 6);
 	System.out.println(a);
-	//System.out.println(arr2str(a.getMoves(0, 0)));
+	//System.out.println(arr2str(a.getMoves(2, 2)));
+	a.solve();
+	System.out.println(a);
     }
 }
