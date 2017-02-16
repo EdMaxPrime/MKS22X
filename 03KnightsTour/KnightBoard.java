@@ -76,9 +76,19 @@ public class KnightBoard {
 	public int[] get(int index) {
 	    return stuff[index];
 	}
+	public int[][] toArray() {
+	    int[][] view = new int[length][];
+	    for(int i = 0; i < length; i++) {view[i] = stuff[i];}
+	    return view;
+	}
 	private void grow() {
 	    int[][] newStuff = new int[2 * stuff.length][];
-	    for(int i = 0; i < length; i++) {newStuff[i] = stuff[i];}
+	    for(int i = 0; i < length; i++) {newStuff[i] = copy(stuff[i]);}
+	}
+	private int[] copy(int[] orig) {
+	    int[] cp = new int[orig.length];
+	    for(int i = 0; i < orig.length; i++) {cp[i] = orig[i];}
+	    return cp;
 	}
     }
 
