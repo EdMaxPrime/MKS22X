@@ -37,7 +37,7 @@ public class KnightBoard {
 	board[row][col] = move;
     }
 
-    private int[][] getMoves(int row, int col) {
+    public int[][] getMoves(int row, int col) {
         PList moves = new PList(8);
 	int[][] inTheory = {
 	    {row-1, col-2}, {row-2, col-1}, {row-2, col+1}, {row-1, col+2},
@@ -110,5 +110,6 @@ public class KnightBoard {
     public static void main(String[] args) {
 	KnightBoard a = new KnightBoard(5, 5);
 	System.out.println(a);
+	
     }
 }
