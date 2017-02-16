@@ -38,7 +38,22 @@ public class KnightBoard {
     }
 
     private int[][] getMoves(int row, int col) {
-	return null;
+        PList moves = new PList(8);
+	int[][] inTheory = {
+	    {row-1, col-2}, {row-2, col-1}, {row-2, col+1}, {row-1, col+2},
+	    {row+1, col+2}, {row+2, col+1}, {row+2, col-1}, {row-1, col-2}
+	};
+	for(int[] possibility : inTheory) {
+	    if(validSpot(possibility[0], possibility[1]) &&
+	       board[possibility[0]][possibility[1]] == 0) {
+		moves.add(possibility);
+	    }
+	}
+	return moves.toArray();
+    }
+
+    private boolean validSpot(int row, int col) {
+	return (row >= 0 && row < rows) && (col >= 0 && col <= cols);
     }
 
     private String pad(String original, char what, int length) {
