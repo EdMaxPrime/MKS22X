@@ -107,9 +107,26 @@ public class KnightBoard {
 	}
     }
 
+    public static String arr2str(int[][] arr) {
+	String str = "[\n";
+	for(int[] i : arr) {
+	    str += "  " + arr2str(i) + "\n";
+	}
+	return str + "]";
+    }
+
+    public static String arr2str(int[] arr) {
+	String str = "[";
+	if(arr.length == 0) return "[]";
+	for(int i : arr) {
+	    str += i + ", ";
+	}
+	return str.substring(0, str.length()-2) + "]";
+    }
+
     public static void main(String[] args) {
 	KnightBoard a = new KnightBoard(5, 5);
 	System.out.println(a);
-	
+	//System.out.println(arr2str(a.getMoves(0, 0)));
     }
 }
