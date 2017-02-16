@@ -64,6 +64,8 @@ public class KnightBoard {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
 
+    private boolean closerToEdge(int[] a, int[] b) {return false;}
+
     private String pad(String original, char what, int length) {
 	while(original.length() < length) {
 	    original = what + original;
@@ -133,7 +135,7 @@ public class KnightBoard {
     }
 
     public static void main(String[] args) {
-	KnightBoard a = new KnightBoard(5, 6);
+	KnightBoard a = new KnightBoard(7, 7);
 	System.out.println(a);
 	//System.out.println(arr2str(a.getMoves(2, 2)));
 	a.solve();
