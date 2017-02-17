@@ -64,6 +64,14 @@ public class KnightBoard {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
 
+    /**
+       Compares two spots on the chessboard in terms of which is
+       closer to a corner or the edge of the board.
+       @param a  an array [row, col]
+       @param b  an array [row, col]
+       @return   true if a is closer than b, or if they are the same
+                 distance. False if b is closer than a.
+     */
     private boolean closerToEdge(int[] a, int[] b) {return false;}
 
     private String pad(String original, char what, int length) {
