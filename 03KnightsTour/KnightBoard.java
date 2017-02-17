@@ -138,7 +138,10 @@ public class KnightBoard {
 	KnightBoard a = new KnightBoard(7, 7);
 	System.out.println(a);
 	//System.out.println(arr2str(a.getMoves(2, 2)));
+	long timeA = System.currentTimeMillis();
 	a.solve();
+	timeA = System.currentTimeMillis() - timeA;
 	System.out.println(a);
+	System.out.println("Took: " + timeA + " ms");
     }
 }
