@@ -60,6 +60,10 @@ public class KnightBoard {
 	return moves.toArray();
     }
 
+    public int[][] getMoves(int[] spot) {
+	return getMoves(spot[0], spot[1]);
+    }
+
     private boolean validSpot(int row, int col) {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
