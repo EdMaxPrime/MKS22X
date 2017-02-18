@@ -11,7 +11,7 @@ public class KnightBoard {
     public void solve() {
 	for(int r = 0; r < rows/2 + 1; r++) {
 	    for(int c = 0; c < cols/2 + 1; c++) {
-		boolean didItWork = solveHelper(r, c, 1);
+		boolean didItWork = solveBetter(r, c, 1);
 		if(didItWork) return;
 	    }
 	}
@@ -32,6 +32,19 @@ public class KnightBoard {
 	if(move == rows*cols) return true;
 	int[][] moves = getMoves(row, col);
 	//dont sort them
+	for(int m = 0; m < moves.length; m++) {
+	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
+	    if(success) return true;
+	}
+	stamp(row, col, 0);
+	return false;
+    }
+
+    private boolean solveBetter(int row, int col, int move) {
+	stamp(row, col, move);
+	if(move == rows*col) return true;
+	int[][] moves = getMoves(row, col);
+	sortByOutgoing(moves);
 	for(int m = 0; m < moves.length; m++) {
 	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
 	    if(success) return true;
@@ -188,15 +201,14 @@ public class KnightBoard {
     public static void main(String[] args) {
 	KnightBoard a = new KnightBoard(7, 7);
 	System.out.println(a);
-	//System.out.println(arr2str(a.getMoves(2, 2)));
 	long timeA = System.currentTimeMillis();
-	/*a.solve();
+	a.solve();
 	timeA = System.currentTimeMillis() - timeA;
 	System.out.println(a);
-	System.out.println("Took: " + timeA + " ms");*/
-	int[][] b = a.getMoves(0, 2);
+	System.out.println("Took: " + timeA + " ms");
+	/*int[][] b = a.getMoves(0, 2);
 	System.out.println(arr2str(b));
 	a.sortByOutgoing(b);
-	System.out.println(arr2str(b));
+	System.out.println(arr2str(b));*/
     }
 }
