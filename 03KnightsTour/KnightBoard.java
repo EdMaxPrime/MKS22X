@@ -48,7 +48,7 @@ public class KnightBoard {
         PList moves = new PList(8);
 	int[][] inTheory = {
 	    {row-1, col-2}, {row-2, col-1}, {row-2, col+1}, {row-1, col+2},
-	    {row+1, col+2}, {row+2, col+1}, {row+2, col-1}, {row-1, col-2}
+	    {row+1, col+2}, {row+2, col+1}, {row+2, col-1}, {row+1, col-2}
 	};
 	for(int[] possibility : inTheory) {
 	    //System.out.println(arr2str(possibility) + " for "+row+","+col+"  " + validSpot(possibility[0], possibility[1]));
@@ -68,6 +68,23 @@ public class KnightBoard {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
 
+    public void sortByOutgoing(int[][] moves) {
+	for(int m = 0; m < moves.length; m++) {
+	    //find smallest number of outgoing moves
+	    int minIndex = m;
+	    for(int i = m+1; i < moves.length; i++) {
+		if(compareMoves(moves[i], moves[minIndex]) < 0) {
+		    minIndex = i;
+		}
+	    }
+	    if(minIndex != m) { //if the two are diff, then swap
+		int[] temp = moves[m];
+		moves[m] = moves[minIndex];
+		moves[minIndex] = temp;
+	    }
+	}
+    }
+    
     /**
        Compares two spots on the chessboard in terms of which is
        closer to a corner or the edge of the board.
@@ -77,6 +94,10 @@ public class KnightBoard {
                  distance. False if b is closer than a.
      */
     private boolean closerToEdge(int[] a, int[] b) {return false;}
+
+    private int compareMoves(int[] a, int[] b) {
+        return getMoves(a).length - getMoves(b).length;
+    }
 
     private String pad(String original, char what, int length) {
 	while(original.length() < length) {
@@ -151,9 +172,13 @@ public class KnightBoard {
 	System.out.println(a);
 	//System.out.println(arr2str(a.getMoves(2, 2)));
 	long timeA = System.currentTimeMillis();
-	a.solve();
+	/*a.solve();
 	timeA = System.currentTimeMillis() - timeA;
 	System.out.println(a);
-	System.out.println("Took: " + timeA + " ms");
+	System.out.println("Took: " + timeA + " ms");*/
+	int[][] b = a.getMoves(0, 2);
+	System.out.println(arr2str(b));
+	a.sortByOutgoing(b);
+	System.out.println(arr2str(b));
     }
 }
