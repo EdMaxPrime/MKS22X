@@ -139,6 +139,10 @@ public class KnightBoard {
         return getMoves(a).length - getMoves(b).length;
     }
 
+    public void clear() {
+	board = new int[rows][cols];
+    }
+
     private String pad(String original, char what, int length) {
 	while(original.length() < length) {
 	    original = what + original;
@@ -217,12 +221,13 @@ public class KnightBoard {
 	System.out.println("Took: " + timeA + " ms");*/
 	KnightBoard a;
 	long timeReg, timeOpt;
-	for(int rows = 4; rows < 8; rows++) {
-	    for(int cols = 4; cols < 8; cols++) {
+	for(int rows = 4; rows < 9; rows++) {
+	    for(int cols = 4; cols < 9; cols++) {
 		a = new KnightBoard(rows, cols);
 		timeReg = System.currentTimeMillis();
 		a.solve();
 		timeReg = System.currentTimeMillis() - timeReg;
+		a.clear();
 		timeOpt = System.currentTimeMillis();
 		a.solve2();
 		timeOpt = System.currentTimeMillis() - timeOpt;
