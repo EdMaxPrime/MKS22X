@@ -68,6 +68,14 @@ public class KnightBoard {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
     }
 
+    /**
+       Sorts an array of spots on the board by how many
+       outgoing moves each of them has. Uses selection
+       sort to go through the array,
+       @param moves  an array of spots on the board to
+                     sort, where each spot is an array
+		     of length two [row, col].
+     */
     public void sortByOutgoing(int[][] moves) {
 	for(int m = 0; m < moves.length; m++) {
 	    //find smallest number of outgoing moves
@@ -95,6 +103,16 @@ public class KnightBoard {
      */
     private boolean closerToEdge(int[] a, int[] b) {return false;}
 
+    /**
+       Compares two spots on the board by the number of possible
+       moves that can be made from each.
+       @param a  a spot [row, col]
+       @param b  a spot [row, col[
+       @return   a negative number if a has less possible moves
+                 than b, zero if they have the same number of
+		 possible moves, and a positive number if a has
+		 more possible moves than b.
+     */
     private int compareMoves(int[] a, int[] b) {
         return getMoves(a).length - getMoves(b).length;
     }
