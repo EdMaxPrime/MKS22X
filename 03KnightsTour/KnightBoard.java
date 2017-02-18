@@ -11,6 +11,15 @@ public class KnightBoard {
     public void solve() {
 	for(int r = 0; r < rows/2 + 1; r++) {
 	    for(int c = 0; c < cols/2 + 1; c++) {
+		boolean didItWork = solveHelper(r, c, 1);
+		if(didItWork) return;
+	    }
+	}
+    }
+
+    public void solve2() {
+	for(int r = 0; r <= rows/2; r++) {
+	    for(int c = 0; c <= rows/2; c++) {
 		boolean didItWork = solveBetter(r, c, 1);
 		if(didItWork) return;
 	    }
@@ -199,7 +208,7 @@ public class KnightBoard {
     }
 
     public static void main(String[] args) {
-	KnightBoard a = new KnightBoard(7, 7);
+	KnightBoard a = new KnightBoard(8, 9);
 	System.out.println(a);
 	long timeA = System.currentTimeMillis();
 	a.solve();
