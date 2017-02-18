@@ -208,13 +208,27 @@ public class KnightBoard {
     }
 
     public static void main(String[] args) {
-	KnightBoard a = new KnightBoard(8, 9);
+	/*KnightBoard a = new KnightBoard(8, 9);
 	System.out.println(a);
 	long timeA = System.currentTimeMillis();
 	a.solve();
 	timeA = System.currentTimeMillis() - timeA;
 	System.out.println(a);
-	System.out.println("Took: " + timeA + " ms");
+	System.out.println("Took: " + timeA + " ms");*/
+	KnightBoard a;
+	long timeReg, timeOpt;
+	for(int rows = 4; rows < 8; rows++) {
+	    for(int cols = 4; cols < 8; cols++) {
+		a = new KnightBoard(rows, cols);
+		timeReg = System.currentTimeMillis();
+		a.solve();
+		timeReg = System.currentTimeMillis() - timeReg;
+		timeOpt = System.currentTimeMillis();
+		a.solve2();
+		timeOpt = System.currentTimeMillis() - timeOpt;
+		System.out.println(rows+"x"+cols+" board: reg "+timeReg+"ms,\topt "+timeOpt+"ms");
+	    }
+	}
 	/*int[][] b = a.getMoves(0, 2);
 	System.out.println(arr2str(b));
 	a.sortByOutgoing(b);
