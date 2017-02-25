@@ -1,11 +1,14 @@
 public class KnightBoard {
     private int[][] board;
     private int rows, cols;
+    public int regBacktrack, optBacktrack;
 
     public KnightBoard(int startingRows, int startingCols) {
 	board = new int[startingRows][startingCols];
 	rows = startingRows;
 	cols = startingCols;
+	regBacktrack = 0;
+	optBacktrack = 0;
     }
     
     public void solve() {
@@ -46,6 +49,7 @@ public class KnightBoard {
 	    if(success) return true;
 	}
 	stamp(row, col, 0);
+	regBacktrack++;
 	return false;
     }
 
@@ -56,9 +60,10 @@ public class KnightBoard {
 	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
 	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
-	    if(success) return true;
+	    if(success) {optBacktrack++; return true;}
 	}
 	stamp(row, col, 0);
+	//optBacktrack++;
 	return false;
     }
 
@@ -242,7 +247,7 @@ public class KnightBoard {
 		timeOpt = System.currentTimeMillis();
 		a.solve2();
 		timeOpt = System.currentTimeMillis() - timeOpt;
-		System.out.println(rows+"x"+cols+" board: reg "+timeReg+"ms,\topt "+timeOpt+"ms");
+		System.out.println(rows+"x"+cols+" board: reg "+timeReg+"ms, "+a.regBacktrack+"  \t\topt "+timeOpt+"ms, "+a.optBacktrack);
 	    }
 	}
 	/*int[][] b = a.getMoves(0, 2);
