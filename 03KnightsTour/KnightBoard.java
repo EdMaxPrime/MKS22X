@@ -59,7 +59,7 @@ public class KnightBoard {
 	int[][] moves = getMoves(row, col);
 	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
-	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
+	    boolean success = solveBetter(moves[m][0], moves[m][1], move+1);
 	    if(success) {optBacktrack++; return true;}
 	}
 	stamp(row, col, 0);
