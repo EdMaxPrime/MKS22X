@@ -247,7 +247,7 @@ public class KnightBoard {
 		timeOpt = System.currentTimeMillis();
 		a.solve2();
 		timeOpt = System.currentTimeMillis() - timeOpt;
-		System.out.println(rows+"x"+cols+" board: reg "+timeReg+"ms, "+a.regBacktrack+"  \t\topt "+timeOpt+"ms, "+a.optBacktrack);
+		System.out.printf("%dx%d board: reg %-4d,%8d\t\topt %dms, %d%n", rows, cols, timeReg, a.regBacktrack, timeOpt, a.optBacktrack);
 	    }
 	}
 	/*int[][] b = a.getMoves(0, 2);
