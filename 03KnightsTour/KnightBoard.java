@@ -53,7 +53,7 @@ public class KnightBoard {
 	stamp(row, col, move);
 	if(move == rows*col) return true;
 	int[][] moves = getMoves(row, col);
-	sortByOutgoing(moves);
+	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
 	    boolean success = solveHelper(moves[m][0], moves[m][1], move+1);
 	    if(success) return true;
@@ -75,7 +75,7 @@ public class KnightBoard {
 	for(int[] possibility : inTheory) {
 	    //System.out.println(arr2str(possibility) + " for "+row+","+col+"  " + validSpot(possibility[0], possibility[1]));
 	    if(validSpot(possibility[0], possibility[1]) &&
-	       board[possibility[0]][possibility[1]] == 0) {
+	       canGoThere(possibility[0], possibility[1])) {
 		moves.add(possibility);
 	    }
 	}
@@ -88,6 +88,10 @@ public class KnightBoard {
 
     private boolean validSpot(int row, int col) {
 	return (row >= 0 && row < rows) && (col >= 0 && col < cols);
+    }
+
+    private boolean canGoThere(int row, int col) {
+	return validSpot(row, col) && (board[row][col] == 0);
     }
 
     /**
