@@ -74,8 +74,7 @@ public class KnightBoard {
 	};
 	for(int[] possibility : inTheory) {
 	    //System.out.println(arr2str(possibility) + " for "+row+","+col+"  " + validSpot(possibility[0], possibility[1]));
-	    if(validSpot(possibility[0], possibility[1]) &&
-	       canGoThere(possibility[0], possibility[1])) {
+	    if(canGoThere(possibility[0], possibility[1])) {
 		moves.add(possibility);
 	    }
 	}
