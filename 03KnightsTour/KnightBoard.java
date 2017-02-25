@@ -60,10 +60,10 @@ public class KnightBoard {
 	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
 	    boolean success = solveBetter(moves[m][0], moves[m][1], move+1);
-	    if(success) {optBacktrack++; return true;}
+	    if(success) return true;
 	}
 	stamp(row, col, 0);
-	//optBacktrack++;
+	optBacktrack++;
 	return false;
     }
 
