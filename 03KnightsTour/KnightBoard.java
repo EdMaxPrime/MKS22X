@@ -102,11 +102,16 @@ public class KnightBoard {
 		     of length two [row, col].
      */
     public void sortByOutgoing(int[][] moves) {
+	int[] numMoves = new int[moves.length];
+	for(int i = 0; i < moves.length; i++) {
+	    numMoves[i] = getMoves(moves[i]).length;
+	}
 	for(int m = 0; m < moves.length; m++) {
 	    //find smallest number of outgoing moves
 	    int minIndex = m;
 	    for(int i = m+1; i < moves.length; i++) {
-		if(compareMoves(moves[i], moves[minIndex]) < 0) {
+		if(numMoves[i] < numMoves[minIndex]) {
+		    //if(compareMoves(moves[i], moves[minIndex]) < 0) {
 		    minIndex = i;
 		}
 	    }
@@ -114,6 +119,9 @@ public class KnightBoard {
 		int[] temp = moves[m];
 		moves[m] = moves[minIndex];
 		moves[minIndex] = temp;
+		int temp2 = numMoves[m];
+		numMoves[m] = numMoves[minIndex];
+		numMoves[minIndex] = temp2;
 	    }
 	}
     }
