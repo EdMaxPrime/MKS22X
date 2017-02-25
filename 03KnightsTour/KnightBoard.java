@@ -237,11 +237,11 @@ public class KnightBoard {
 	System.out.println("Took: " + timeA + " ms");*/
 	KnightBoard a;
 	long timeReg, timeOpt;
-	for(int rows = 4; rows < 8; rows++) {
-	    for(int cols = 4; cols < 8; cols++) {
+	for(int rows = 10; rows < 11; rows++) {
+	    for(int cols = 4; cols < 12; cols++) {
 		a = new KnightBoard(rows, cols);
 		timeReg = System.currentTimeMillis();
-		a.solve();
+		//if(rows < 8 && cols < 8) a.solve();
 		timeReg = System.currentTimeMillis() - timeReg;
 		a.clear();
 		timeOpt = System.currentTimeMillis();
