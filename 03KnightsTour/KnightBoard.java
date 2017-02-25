@@ -20,7 +20,7 @@ public class KnightBoard {
     public void solve2() {
 	for(int r = 0; r <= rows/2; r++) {
 	    for(int c = 0; c <= rows/2; c++) {
-		boolean didItWork = solveBetter(r, c, 1);
+	        boolean didItWork = solveBetter(r, c, 1);
 		if(didItWork) return;
 	    }
 	}
@@ -221,8 +221,8 @@ public class KnightBoard {
 	System.out.println("Took: " + timeA + " ms");*/
 	KnightBoard a;
 	long timeReg, timeOpt;
-	for(int rows = 4; rows < 9; rows++) {
-	    for(int cols = 4; cols < 9; cols++) {
+	for(int rows = 4; rows < 8; rows++) {
+	    for(int cols = 4; cols < 8; cols++) {
 		a = new KnightBoard(rows, cols);
 		timeReg = System.currentTimeMillis();
 		a.solve();
