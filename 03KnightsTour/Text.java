@@ -83,6 +83,76 @@ public class Text{
 	return in.nextLine();
     }
 
+    public static String print(String markup) {
+	String result = "";
+	Matcher m = Pattern.compile("<[A-Za-z0-9= ]+>").matcher(markup);
+	int start, end, prev = 0;
+	String[] codes;
+	while(m.find()) {
+	    start = m.start();
+	    end = m.end();
+	    result += markup.substring(prev, start);
+	    //could've used m.group(), but we need to get rid of the < >
+	    //and then split by space
+	    codes = markup.substring(start+1, end-1).split(" ");
+	    for(String s : codes) {
+		result += parseMarkup(s);
+	    }
+	    prev = end; //to remember where the previous(current) match ended
+	}
+	result += markup.substring(prev); //get the last stuff out
+	return result.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"); //unescape escaped characters
+    }
+
+    private static String parseMarkup(String code) {
+	if(code.equals("R")) return RESET;
+	if(code.equals("X")) return CLEAR_SCREEN;
+	if(code.equals("u")) return color(UNDERLINE);
+	if(code.equals("i")) return color(ITALICS);
+	if(code.equals("b")) return color(DARK);
+	if(code.equals("l")) return color(BRIGHT);
+	if(code.startsWith("P"))
+	    return up(Integer.parseInt(code.substring(1)));
+	if(code.startsWith("N"))
+	    return down(Integer.parseInt(code.substring(1)));
+	if(code.startsWith("B"))
+	    return left(Integer.parseInt(code.substring(1)));
+	if(code.startsWith("F"))
+	    return right(Integer.parseInt(code.substring(1)));
+	if(code.startsWith("c") || code.startsWith("h")) {
+	    int color = 0;
+	    switch(code.charAt(1)) {
+	    case 'R':
+		color = RED;
+		break;
+	    case 'G':
+		color = GREEN;
+		break;
+	    case 'Y':
+		color = YELLOW;
+		break;
+	    case 'B':
+		color = BLUE;
+		break;
+	    case 'M':
+		color = MAGENTA;
+		break;
+	    case 'C':
+		color = CYAN;
+		break;
+	    case 'W':
+		color = WHITE;
+		break;
+	    default:
+		color = BLACK;
+		break;
+	    }
+	    if(code.startsWith("h")) color = background(color);
+	    return color(color);
+	}
+	return "";
+    }
+
 
     public static void main(String[]args){
 	/*System.out.println(CLEAR_SCREEN);
@@ -105,8 +175,6 @@ public class Text{
 	System.out.printf("%n%n%n%n%n" + color(GREEN, 4) + "HIIII");
 	System.out.print(left(2) + color(GREEN, DARK, 4) + " who are you?");
 	System.out.println();
-	String ans = ask(color(BLUE, 0) + "How are you today?");
-	System.out.print('"' + ans + '"');
 	System.out.println(RESET);
     }
 }
