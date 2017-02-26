@@ -83,6 +83,25 @@ public class Text{
 	return in.nextLine();
     }
 
+    /**
+       Returns a string with the escape sequences inside of it. To
+       add attributes to the text, put codes inside of angle brackets.
+       Here are some of the supported ones:
+       <ul><li>R - resets everything</li>
+       <li>X - clears the screen</li>
+       <li>b - bold</li>
+       <li>u - underline</li>
+       <li>l - undoes bold</li>
+       <li>P# - goes up # lines</li>
+       <li>N# - goes down # lines</li>
+       <li>B# - goes back # spaces</li>
+       <li>F# - goes forward # lines</li>
+       <li>c$ - the text turns $ color, where $ is R:red, G:green, B:blue, Y:yellow, M:magenta, C:cyan, W:white, and anythign else is black</li>
+       <li>h$ - same as c$, but this affects the highlight color</li>
+       </ul>
+       @param markup  the string to encode
+       @return        the encoded ansii escape sequence
+     */
     public static String print(String markup) {
 	String result = "";
 	Matcher m = Pattern.compile("<[A-Za-z0-9= ]+>").matcher(markup);
