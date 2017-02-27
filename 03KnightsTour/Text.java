@@ -83,7 +83,7 @@ public class Text{
 	return in.nextLine();
     }
 
-    public void print(String markup) {
+    public static void print(String markup) {
 	System.out.printf(markup);
     }
 
