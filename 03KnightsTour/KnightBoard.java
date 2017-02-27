@@ -274,6 +274,37 @@ public class KnightBoard {
 	return str.substring(0, str.length()-2) + "]";
     }
 
+    /**
+       Parses the arguments given to the program. Works even if none are
+       specified, in that case it just runs a speed test of
+       <code>KnightBoard 4-5</code><br>
+       Here is the full spec of the arguments:<br>
+       KnightBoard [flags] [dimensions]<br>
+       Althought those can be in any order. The flags you can pass are:<br>
+       -anim     animates each board, otherwise a speed test is run
+       -square   makes it so that only square boards are run
+       -print    if you are doing speed tests, prints the board for each
+       -both     does a speed test of both the regular and opt approach
+       The dimensions can be specified together or separately. Columns
+       go after rows. Each dimension can be a single number, indicating
+       only one board of that dimension needs to be run, or a range.
+       Ranges are specified by putting a minus(-) between two numbers,
+       one of which is the lower and the other the upper bound. Order
+       does not matter for ranges(ie min-max and max-min both work).
+       Here are some examples:
+       KnightBoard 4
+         does a speed test of the knightboard, optimized method only.
+       KnightBoard 4-8 -square
+         speed test of 4x4, 5x5, 6x6, 7x7, 8x8 optimized boards
+       KnightBoard 4-6 -both
+         speed test of 4x4, 4x5, 4x6, 5x4, 5x5, 5x6, 6x4, 6x5, 6x6 both
+       KnightBoard 5 6 -anim
+         animation of 5x6 board
+       KnightBoard 8-10 4 -print
+         speed text of 8x4, 9x4, 10x4 and prints the board
+       KnightBoard 4-8 7-8
+         you get the idea
+     */
     private static void doArgs(String[] args) {
 	boolean anim = false, print = false, regular = false, square = false;
 	int rowMin = 4, rowMax = 5, colMin = 4, colMax = 5;
