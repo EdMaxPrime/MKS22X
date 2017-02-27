@@ -16,6 +16,7 @@ public class KnightBoard {
 	    for(int c = 0; c < cols/2 + 1; c++) {
 		boolean didItWork = solveHelper(r, c, 1);
 		if(didItWork) return;
+		this.clear(); //reset if it didnt work
 	    }
 	}
     }
@@ -25,6 +26,7 @@ public class KnightBoard {
 	    for(int c = 0; c <= rows/2; c++) {
 	        boolean didItWork = solveBetter(r, c, 1);
 		if(didItWork) return;
+		this.clear(); //reset if it didnt work
 	    }
 	}
     }
