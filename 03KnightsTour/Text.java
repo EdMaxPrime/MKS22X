@@ -83,6 +83,10 @@ public class Text{
 	return in.nextLine();
     }
 
+    public void print(String markup) {
+	System.out.printf(markup);
+    }
+
     /**
        Returns a string with the escape sequences inside of it. To
        add attributes to the text, put codes inside of angle brackets.
@@ -102,7 +106,7 @@ public class Text{
        @param markup  the string to encode
        @return        the encoded ansii escape sequence
      */
-    public static String print(String markup) {
+    public static String esc(String markup) {
 	String result = "";
 	Matcher m = Pattern.compile("<[A-Za-z0-9= ]+>").matcher(markup);
 	int start, end, prev = 0;
