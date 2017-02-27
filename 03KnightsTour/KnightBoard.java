@@ -275,7 +275,7 @@ public class KnightBoard {
     private static void doArgs(String[] args) {
 	boolean anim = false, print = false, regular = false, square = false;
 	int rowMin = 4, rowMax = 5, colMin = 4, colMax = 5;
-	boolean doneRows = false;
+	boolean doneRows = false, doneCols = false;
 	for(String s : args) {
 	    if(s.equals("-anim")) anim = true;
 	    else if(s.equals("-print")) print = true;
@@ -292,6 +292,7 @@ public class KnightBoard {
 		    colMin = dim[0];
 		    if(dim.length > 1) colMax = dim[1];
 		    else colMax = colMin+1;
+		    doneCols = true;
 		} else {
 		    rowMin = dim[0];
 		    if(dim.length > 1) rowMax = dim[1];
@@ -311,6 +312,10 @@ public class KnightBoard {
 	    int temp = colMin;
 	    colMin = colMax;
 	    colMax = temp;
+	}
+	if(!doneCols) {
+	    colMin = rowMin;
+	    colMax = rowMax;
 	}
 	for(int rows = rowMin; rows <= rowMax; rows++) {
 	    for(int cols = colMin; cols <= colMax; cols++) {
