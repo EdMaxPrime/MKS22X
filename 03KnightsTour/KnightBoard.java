@@ -301,6 +301,16 @@ public class KnightBoard {
 	}
 	KnightBoard a;
 	long timeReg, timeOpt;
+	if(rowMin > rowMax) {
+	    int temp = rowMin;
+	    rowMin = rowMax;
+	    rowMax = temp;
+	}
+	if(colMin > colMax) {
+	    int temp = colMin;
+	    colMin = colMax;
+	    colMax = temp;
+	}
 	for(int rows = rowMin; rows <= rowMax; rows++) {
 	    for(int cols = colMin; cols <= colMax; cols++) {
 		a = new KnightBoard(rows, cols);
