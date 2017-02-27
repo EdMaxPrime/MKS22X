@@ -36,10 +36,10 @@ public class KnightBoard {
     public void animate() {
 	for(int r = 0; r <= rows/2; r++) {
 	    for(int c = 0; c <= cols/2; c++) {
-		System.out.print(Text.print("<X>\033[2J" + this.toString() + "<P"+(rows-r)+" B"+(4*(cols-c))+">"));
+		Text.print("<X>\033[2J" + this.toString() + "<P"+(rows-r)+" B"+(4*(cols-c))+">");
 		boolean didItWork = animateHelper(r, c, 1);
 		if(didItWork) {
-		    System.out.print(Text.print("<N30 B30>\n===\n"));
+		    Text.print("<N30 B30>\n===\n");
 		    System.out.println(this);
 		    return;
 		}
@@ -88,28 +88,28 @@ public class KnightBoard {
 
     private boolean animateHelper(int row, int col, int move) {
 	stamp(row, col, move);
-	System.out.print(Text.print("---<B3>" + pad(move+"", ' ', 3) + "<B3>"));
+	Text.print("---<B3>" + pad(move+"", ' ', 3) + "<B3>");
 	Text.wait(1000);
 	if(move == rows*cols) return true;
 	int[][] moves = getMoves(row, col);
 	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
 	    int x = 3 * (moves[m][1] - col);
-	    if(x < 0) System.out.print(Text.print("<B"+(-x)+">"));
-	    else System.out.print(Text.print("<F"+x+">"));
+	    if(x < 0)   Text.print("<B"+(-x)+">");
+	    else   Text.print("<F"+x+">");
 	    int y = moves[m][0] - row;
-	    if(y < 0) System.out.print(Text.print("<P"+(-y)+">"));
-	    else System.out.print(Text.print("<N"+y+">"));
+	    if(y < 0)    Text.print("<P"+(-y)+">");
+	    else    Text.print("<N"+y+">");
 	    boolean success = animateHelper(moves[m][0], moves[m][1], move+1);
 	    if(success) return true;
 	    x = -x; y = -y;
-	    if(x < 0) System.out.print(Text.print("<B"+(-x)+">"));
-	    else System.out.print(Text.print("<F"+x+">"));
-	    if(y < 0) System.out.print(Text.print("<P"+(-y)+">"));
-	    else System.out.print(Text.print("<N"+y+">"));
+	    if(x < 0)    Text.print("<B"+(-x)+">");
+	    else    Text.print("<F"+x+">");
+	    if(y < 0)    Text.print("<P"+(-y)+">");
+	    else    Text.print("<N"+y+">");
 	}
 	stamp(row, col, 0);
-	System.out.print(Text.print("   <B3>"));
+	Text.print("   <B3>");
 	optBacktrack++;
 	return false;
     }
