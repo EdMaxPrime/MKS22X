@@ -296,11 +296,7 @@ public class KnightBoard {
 		System.out.println(a);
 	    }
 	    }*/
-	KnightBoard b = new KnightBoard(10, 4);
+	KnightBoard b = new KnightBoard(6, 6);
 	b.animate();
-	/*int[][] b = a.getMoves(0, 2);
-	System.out.println(arr2str(b));
-	a.sortByOutgoing(b);
-	System.out.println(arr2str(b));*/
     }
 }
