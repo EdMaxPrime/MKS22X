@@ -272,6 +272,54 @@ public class KnightBoard {
 	return str.substring(0, str.length()-2) + "]";
     }
 
+    private static void doArgs(String[] args) {
+	boolean anim = false, print = false, regular = false;
+	int rowMin = 4, rowMax = 5, colMin = 4, colMax = 5;
+	boolean doneRows = false;
+	for(String s : args) {
+	    if(s.equals("-anim")) anim = true;
+	    else if(s.equals("-print")) print = true;
+	    else if(s.equals("-both")) regular = true;
+	    else if(Character.isDigit(s.charAt(0))) {
+	        String[] nums = s.split("-");
+		int[] dim = new int[nums.length];
+		try {
+		    dim[0] = Integer.parseInt(nums[0]);
+		    dim[1] = Integer.parseInt(nums[1]);
+		} catch(Exception e) {}
+		if(doneRows) {
+		    colMin = dim[0];
+		    if(dim.length > 1) colMax = dim[1];
+		    else colMax = colMin+1;
+		} else {
+		    rowMin = dim[0];
+		    if(dim.length > 1) rowMax = dim[1];
+		    else rowMax = rowMin+1;
+		    doneRows = true;
+		}
+	    }
+	}
+	KnightBoard a;
+	long timeReg, timeOpt;
+	for(int rows = rowMin; rows <= rowMax; rows++) {
+	    for(int cols = colMin; cols <= colMax; cols++) {
+		a = new KnightBoard(rows, cols);
+		if(anim) a.animate();
+		else {
+		    timeReg = System.currentTimeMillis();
+		    if(rows < 8 && cols < 8 && regular) a.solve();
+		    timeReg = System.currentTimeMillis() - timeReg;
+		    a.clear();
+		    timeOpt = System.currentTimeMillis();
+		    a.solve2();
+		    timeOpt = System.currentTimeMillis() - timeOpt;
+		    System.out.printf("%dx%d board: reg %-4d,%8d\t\topt %dms, %d%n", rows, cols, timeReg, a.regBacktrack, timeOpt, a.optBacktrack);
+		    if(print) System.out.println(a);
+		}
+	    }
+	}
+    }
+
     public static void main(String[] args) {
 	/*KnightBoard a = new KnightBoard(8, 9);
 	System.out.println(a);
@@ -296,7 +344,8 @@ public class KnightBoard {
 		System.out.println(a);
 	    }
 	    }*/
-	KnightBoard b = new KnightBoard(6, 6);
-	b.animate();
+	//KnightBoard b = new KnightBoard(6, 6);
+	//b.animate();
+	doArgs(args);
     }
 }
