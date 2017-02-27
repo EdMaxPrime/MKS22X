@@ -273,13 +273,14 @@ public class KnightBoard {
     }
 
     private static void doArgs(String[] args) {
-	boolean anim = false, print = false, regular = false;
+	boolean anim = false, print = false, regular = false, square = false;
 	int rowMin = 4, rowMax = 5, colMin = 4, colMax = 5;
 	boolean doneRows = false;
 	for(String s : args) {
 	    if(s.equals("-anim")) anim = true;
 	    else if(s.equals("-print")) print = true;
 	    else if(s.equals("-both")) regular = true;
+	    else if(s.equals("-square")) square = true;
 	    else if(Character.isDigit(s.charAt(0))) {
 	        String[] nums = s.split("-");
 		int[] dim = new int[nums.length];
@@ -313,6 +314,7 @@ public class KnightBoard {
 	}
 	for(int rows = rowMin; rows <= rowMax; rows++) {
 	    for(int cols = colMin; cols <= colMax; cols++) {
+		if(square) cols = rows;
 		a = new KnightBoard(rows, cols);
 		if(anim) a.animate();
 		else {
@@ -326,6 +328,7 @@ public class KnightBoard {
 		    System.out.printf("%dx%d board: reg %-4d,%8d\t\topt %dms, %d%n", rows, cols, timeReg, a.regBacktrack, timeOpt, a.optBacktrack);
 		    if(print) System.out.println(a);
 		}
+		if(square) break;
 	    }
 	}
     }
