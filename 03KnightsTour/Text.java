@@ -84,7 +84,7 @@ public class Text{
     }
 
     public static void print(String markup) {
-	System.out.printf(markup);
+	System.out.printf(esc(markup));
     }
 
     /**
