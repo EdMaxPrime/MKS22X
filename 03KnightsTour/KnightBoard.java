@@ -107,7 +107,7 @@ public class KnightBoard {
 	    else System.out.print(Text.print("<N"+y+">"));
 	}
 	stamp(row, col, 0);
-	System.out.print("   <B3>");
+	System.out.print(Text.print("   <B3>"));
 	optBacktrack++;
 	return false;
     }
@@ -296,7 +296,7 @@ public class KnightBoard {
 		System.out.println(a);
 	    }
 	    }*/
-	KnightBoard b = new KnightBoard(7, 8);
+	KnightBoard b = new KnightBoard(10, 4);
 	b.animate();
 	/*int[][] b = a.getMoves(0, 2);
 	System.out.println(arr2str(b));
