@@ -74,7 +74,7 @@ public class KnightBoard {
 
     private boolean solveBetter(int row, int col, int move) {
 	stamp(row, col, move);
-	if(move == rows*col) return true;
+	if(move == rows*cols) return true;
 	int[][] moves = getMoves(row, col);
 	sortByOutgoing(moves); //but here we sort them
 	for(int m = 0; m < moves.length; m++) {
