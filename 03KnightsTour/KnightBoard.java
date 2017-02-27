@@ -29,6 +29,21 @@ public class KnightBoard {
 	}
     }
 
+    public void animate() {
+	for(int r = 0; r <= rows/2; r++) {
+	    for(int c = 0; c <= cols/2; c++) {
+		System.out.print(Text.print("<X>\033[2J" + this.toString() + "<P"+(rows-r)+" B"+(4*(cols-c))+">"));
+		boolean didItWork = animateHelper(r, c, 1);
+		if(didItWork) {
+		    System.out.print(Text.print("<N30 B30>\n===\n"));
+		    System.out.println(this);
+		    return;
+		}
+		this.clear();
+	    }
+	}
+    }
+
     /* Plan:
        given row, col, move
        if move == last --> true
@@ -63,6 +78,34 @@ public class KnightBoard {
 	    if(success) return true;
 	}
 	stamp(row, col, 0);
+	optBacktrack++;
+	return false;
+    }
+
+    private boolean animateHelper(int row, int col, int move) {
+	stamp(row, col, move);
+	System.out.print(Text.print("---<B3>" + pad(move+"", ' ', 3) + "<B3>"));
+	Text.wait(1000);
+	if(move == rows*cols) return true;
+	int[][] moves = getMoves(row, col);
+	sortByOutgoing(moves); //but here we sort them
+	for(int m = 0; m < moves.length; m++) {
+	    int x = 3 * (moves[m][1] - col);
+	    if(x < 0) System.out.print(Text.print("<B"+(-x)+">"));
+	    else System.out.print(Text.print("<F"+x+">"));
+	    int y = moves[m][0] - row;
+	    if(y < 0) System.out.print(Text.print("<P"+(-y)+">"));
+	    else System.out.print(Text.print("<N"+y+">"));
+	    boolean success = animateHelper(moves[m][0], moves[m][1], move+1);
+	    if(success) return true;
+	    x = -x; y = -y;
+	    if(x < 0) System.out.print(Text.print("<B"+(-x)+">"));
+	    else System.out.print(Text.print("<F"+x+">"));
+	    if(y < 0) System.out.print(Text.print("<P"+(-y)+">"));
+	    else System.out.print(Text.print("<N"+y+">"));
+	}
+	stamp(row, col, 0);
+	System.out.print("   <B3>");
 	optBacktrack++;
 	return false;
     }
@@ -237,8 +280,8 @@ public class KnightBoard {
 	System.out.println("Took: " + timeA + " ms");*/
 	KnightBoard a;
 	long timeReg, timeOpt;
-	for(int rows = 10; rows < 11; rows++) {
-	    for(int cols = 4; cols < 12; cols++) {
+	/*for(int rows = 10; rows < 11; rows++) {
+	    for(int cols = 4; cols < 5; cols++) {
 		a = new KnightBoard(rows, cols);
 		timeReg = System.currentTimeMillis();
 		//if(rows < 8 && cols < 8) a.solve();
@@ -248,8 +291,11 @@ public class KnightBoard {
 		a.solve2();
 		timeOpt = System.currentTimeMillis() - timeOpt;
 		System.out.printf("%dx%d board: reg %-4d,%8d\t\topt %dms, %d%n", rows, cols, timeReg, a.regBacktrack, timeOpt, a.optBacktrack);
+		System.out.println(a);
 	    }
-	}
+	    }*/
+	KnightBoard b = new KnightBoard(7, 8);
+	b.animate();
 	/*int[][] b = a.getMoves(0, 2);
 	System.out.println(arr2str(b));
 	a.sortByOutgoing(b);

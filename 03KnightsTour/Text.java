@@ -69,7 +69,7 @@ public class Text{
 
 
     //And don't forget you can easily delay the printing if needed:
-    private static void wait(int millis){
+    public static void wait(int millis){
         try {
             Thread.sleep(millis);
         }
