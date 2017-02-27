@@ -12,6 +12,7 @@ public class KnightBoard {
     }
     
     public void solve() {
+	this.clear();
 	for(int r = 0; r < rows/2 + 1; r++) {
 	    for(int c = 0; c < cols/2 + 1; c++) {
 		boolean didItWork = solveHelper(r, c, 1);
@@ -22,6 +23,7 @@ public class KnightBoard {
     }
 
     public void solve2() {
+	this.clear();
 	for(int r = 0; r <= rows/2; r++) {
 	    for(int c = 0; c <= rows/2; c++) {
 	        boolean didItWork = solveBetter(r, c, 1);
@@ -291,12 +293,12 @@ public class KnightBoard {
 		if(doneRows) {
 		    colMin = dim[0];
 		    if(dim.length > 1) colMax = dim[1];
-		    else colMax = colMin+1;
+		    else colMax = colMin;
 		    doneCols = true;
 		} else {
 		    rowMin = dim[0];
 		    if(dim.length > 1) rowMax = dim[1];
-		    else rowMax = rowMin+1;
+		    else rowMax = rowMin;
 		    doneRows = true;
 		}
 	    }
@@ -323,6 +325,7 @@ public class KnightBoard {
 		a = new KnightBoard(rows, cols);
 		if(anim) a.animate();
 		else {
+		    a.clear();
 		    timeReg = System.currentTimeMillis();
 		    if(rows < 8 && cols < 8 && regular) a.solve();
 		    timeReg = System.currentTimeMillis() - timeReg;
