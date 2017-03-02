@@ -33,7 +33,16 @@ public class Maze {
 
     private boolean solve(int row, int col) {return false;}
 
+    public String toString() {
+	String str = "";
+	for(char[] line : maze) {
+	    str += new String(line) + "\n";
+	}
+	return str;
+    }
+
     public static void main(String[] args) {
-	Maze a = new Maze("data1.txt");
+	Maze a = new Maze("data1.dat");
+	System.out.println(a);
     }
 }
