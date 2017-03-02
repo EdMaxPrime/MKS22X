@@ -29,9 +29,23 @@ public class Maze {
 
     public void clearTerminal() {}
 
-    public boolean solve() {return false;}
+    public boolean solve() {
+	int startR = 0, startC = 0;
+	for(int r = 0; r < maze.length; r++) {
+	    for(int c = 0; c < maze[r].length; c++) {
+		if(maze[r][c] == 'S') {
+		    startR = r;
+		    startC = c;
+		    maze[r][c] = '@';
+		    return solve(r, c);
+		}
+	    }
+	}
+	return false; //there was no Start
+    }
 
     /* Plan:
+       if its not on the board --> false
        if its a wall --> false
        if its an E --> true
        if its already visited --> false
