@@ -55,7 +55,13 @@ public class Maze {
 	 if they all return false, set your spot ot visited and --> false
 	 if one returns true, --> true
      */
-    private boolean solve(int row, int col) {return false;}
+    private boolean solve(int row, int col) {
+	return false;
+    }
+
+    private boolean inMaze(int row, int col) {
+	return (row >= 0 && row < maze.length) && (col >= 0 && col < maze[0].length);
+    }
 
     public String toString() {
 	String str = "";
