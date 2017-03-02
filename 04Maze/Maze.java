@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Maze {
     private char[][] maze;
@@ -9,9 +10,15 @@ public class Maze {
     public Maze(String filename) {
 	try {
 	    Scanner in = new Scanner(new File(filename));
+	    ArrayList<String> file = new ArrayList<String>();
 	    while(in.hasNextLine()) {
-		char[] line = in.nextLine().toCharArray();
+		file.add(in.nextLine());
 	    }
+	    maze = new char[file.size()][];
+	    for(int l = 0; l < maze.length; l++) {
+		maze[l] = file.get(l).toCharArray();
+	    }
+	    animate = false;
 	} catch(FileNotFoundException e) {
 	    System.out.println('"'+filename+"\" not found");
 	    System.exit(0);
