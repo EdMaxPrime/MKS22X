@@ -31,6 +31,16 @@ public class Maze {
 
     public boolean solve() {return false;}
 
+    /* Plan:
+       if its a wall --> false
+       if its an E --> true
+       if its already visited --> false
+       if its part of the path --> false
+       else
+         split off in four directions
+	 if they all return false, set your spot ot visited and --> false
+	 if one returns true, --> true
+     */
     private boolean solve(int row, int col) {return false;}
 
     public String toString() {
