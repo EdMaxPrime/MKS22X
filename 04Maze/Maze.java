@@ -51,12 +51,18 @@ public class Maze {
        if its already visited --> false
        if its part of the path --> false
        else
+         mark HERE as #path
          split off in four directions
-	 if they all return false, set your spot ot visited and --> false
+	 if they all return false, set HERE to #visited and --> false
 	 if one returns true, --> true
      */
     private boolean solve(int row, int col) {
-	return false;
+	if(!inMaze(row, col) || maze[row][col] != ' ') return false; //if HERE is valid
+	if(maze[row][col] == 'E') return true; //reached the end
+        maze[row][col] = '@'; //HERE=#path
+	boolean attempts = solve(row-1, col) || solve(row, col+1) || solve(row+1, col) || solve(row, col-1); //split off
+	if(!attempts) maze[row][col] = '.'; //HERE=#visited
+	return attempts;
     }
 
     private boolean inMaze(int row, int col) {
