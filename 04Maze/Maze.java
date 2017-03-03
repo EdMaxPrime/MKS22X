@@ -36,7 +36,7 @@ public class Maze {
 		if(maze[r][c] == 'S') {
 		    startR = r;
 		    startC = c;
-		    maze[r][c] = '@';
+		    maze[r][c] = ' ';
 		    return solve(r, c);
 		}
 	    }
@@ -59,12 +59,11 @@ public class Maze {
 	   --> true
      */
     private boolean solve(int row, int col) {
-	if(!inMaze(row, col) || maze[row][col] != ' ') return false; //if HERE is valid
+	if(!inMaze(row, col) || (maze[row][col] != ' ' && maze[row][col] != 'E')) return false; //if HERE is valid
 	if(maze[row][col] == 'E') return true; //reached the end
         maze[row][col] = '@'; //HERE=#path
 	boolean attempts = solve(row-1, col) || solve(row, col+1) || solve(row+1, col) || solve(row, col-1); //split off
 	if(!attempts) maze[row][col] = '.'; //HERE=#visited
-	else          maze[row][col] = '@'; //HERE=#path
 	return attempts;
     }
 
@@ -83,7 +82,7 @@ public class Maze {
     public static void main(String[] args) {
 	Maze a = new Maze("data1.dat");
 	System.out.println(a);
-	a.solve();
+	System.out.println(a.solve());
 	System.out.println(a);
     }
 }
