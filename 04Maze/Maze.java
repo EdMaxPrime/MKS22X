@@ -54,7 +54,9 @@ public class Maze {
          mark HERE as #path
          split off in four directions
 	 if they all return false, set HERE to #visited and --> false
-	 if one returns true, --> true
+	 if one returns true, 
+	   set HERE to #path
+	   --> true
      */
     private boolean solve(int row, int col) {
 	if(!inMaze(row, col) || maze[row][col] != ' ') return false; //if HERE is valid
@@ -62,6 +64,7 @@ public class Maze {
         maze[row][col] = '@'; //HERE=#path
 	boolean attempts = solve(row-1, col) || solve(row, col+1) || solve(row+1, col) || solve(row, col-1); //split off
 	if(!attempts) maze[row][col] = '.'; //HERE=#visited
+	else          maze[row][col] = '@'; //HERE=#path
 	return attempts;
     }
 
@@ -79,6 +82,8 @@ public class Maze {
 
     public static void main(String[] args) {
 	Maze a = new Maze("data1.dat");
+	System.out.println(a);
+	a.solve();
 	System.out.println(a);
     }
 }
