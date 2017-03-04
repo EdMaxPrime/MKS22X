@@ -9,10 +9,14 @@ public class Generator {
 	rows = height;
 	cols = width;
     }
-    
+
+    /**
+       Uses Eller's algorithm to create a maze in linear time.
+     */
     public void generate(int seed) {
         rng = new Random(seed);
-	
+	reset();
+	for(int row = 0; row < rows; row++) {}
     }
 
     private void reset() {
@@ -35,6 +39,38 @@ public class Generator {
 	    south = false;
 	    east = false;
 	    west = false;
+	}
+	public void absorb(Cell neighbor, char dir) {
+	    if(!sameFamily(neighbor)) {
+		neighbor.set.joinFamily(this.set.getFamily());
+	    }
+	    switch(dir) {
+	    case 'N':
+		north = true;
+		neighbor.south = true;
+		break;
+	    case 'E':
+		east = true;
+		neighbor.west = true;
+		break;
+	    case 'S':
+		south = true;
+		neighbor.north = true;
+		break;
+	    case 'W':
+		west = true;
+		neighbor.east = true;
+		break;
+	    }
+	}
+	public boolean sameFamily(Cell other) {
+	    return other.set.getFamily().equals(this.set.getFamily());
+	}
+	public boolean connected(Cell neighbor) {
+	    return (north && neighbor.south) || //above
+		(east && neighbor.west) ||      //left
+		(south && neighbor.north) ||    //below
+		(west && neighbor.east);        //right
 	}
     }
 
