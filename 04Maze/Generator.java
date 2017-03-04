@@ -25,6 +25,21 @@ public class Generator {
 	}
     }
 
+    public String dump() {
+	String str = "";
+	char[][] chars = new char[rows*3][cols*3];
+	for(int r = 0; r < maze.length; r++) {}
+	return str;
+    }
+
+    private void overwrite(char[][] orig, char[][] _new, int row, int col) {
+	for(int r = 0; r < _new.length; r++) {
+	    for(int c = 0; c < _new[r].length; c++) {
+		orig[row+r][col+c] = _new[r][c];
+	    }
+	}
+    }
+
     private void reset() {
 	maze = new Cell[rows][cols];
 	int id = 0;
@@ -77,6 +92,22 @@ public class Generator {
 		(east && neighbor.west) ||      //left
 		(south && neighbor.north) ||    //below
 		(west && neighbor.east);        //right
+	}
+	public char[][] toChar() {
+	    char[][] grid = {
+		{' ', ' ', ' '},
+		{' ', ' ', ' '},
+		{' ', ' ', ' '}
+	    };
+	    if(north || west) grid[0][0] = '#';
+	    if(north || east) grid[0][2] = '#';
+	    if(south || west) grid[2][0] = '#';
+	    if(south || east) grid[2][2] = '#';
+	    if(north) grid[0][1] = '#';
+	    if(east)  grid[1][2] = '#';
+	    if(south) grid[2][1] = '#';
+	    if(west)  grid[1][0] = '#';
+	    return grid;
 	}
     }
 
