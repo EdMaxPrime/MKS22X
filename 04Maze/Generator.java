@@ -28,7 +28,15 @@ public class Generator {
     public String dump() {
 	String str = "";
 	char[][] chars = new char[rows*3][cols*3];
-	for(int r = 0; r < maze.length; r++) {}
+	for(int r = 0; r < rows; r++) {
+	    for(int c = 0; c < cols; c++) {
+		overwrite(chars, maze[r][c].toChar(), r*3, c*3);
+	    }
+	}
+	for(int r = 0; r < rows; r++) {
+	    str += (new String(chars[r])) + "\n";
+	}
+	str = str.substring(0, str.length()-1);
 	return str;
     }
 
@@ -131,5 +139,11 @@ public class Generator {
 	public boolean equals(Set other) {
 	    return other.id == this.id;
 	}
+    }
+
+    public static void main(String[] args) {
+	Generator g = new Generator(1, 1);
+	g.generate(0);
+	System.out.println(g.dump());
     }
 }
