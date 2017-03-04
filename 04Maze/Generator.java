@@ -33,7 +33,7 @@ public class Generator {
 		overwrite(chars, maze[r][c].toChar(), r*3, c*3);
 	    }
 	}
-	for(int r = 0; r < rows; r++) {
+	for(int r = 0; r < rows*3; r++) {
 	    str += (new String(chars[r])) + "\n";
 	}
 	str = str.substring(0, str.length()-1);
@@ -114,18 +114,18 @@ public class Generator {
 	}
 	public char[][] toChar() {
 	    char[][] grid = {
-		{' ', ' ', ' '},
-		{' ', ' ', ' '},
-		{' ', ' ', ' '}
+		{'#', '#', '#'},
+		{'#', ' ', '#'},
+		{'#', '#', '#'}
 	    };
-	    if(north || west) grid[0][0] = '#';
-	    if(north || east) grid[0][2] = '#';
-	    if(south || west) grid[2][0] = '#';
-	    if(south || east) grid[2][2] = '#';
-	    if(north) grid[0][1] = '#';
-	    if(east)  grid[1][2] = '#';
-	    if(south) grid[2][1] = '#';
-	    if(west)  grid[1][0] = '#';
+	    if(north || west) grid[0][0] = ' ';
+	    if(north || east) grid[0][2] = ' ';
+	    if(south || west) grid[2][0] = ' ';
+	    if(south || east) grid[2][2] = ' ';
+	    if(north) grid[0][1] = ' ';
+	    if(east)  grid[1][2] = ' ';
+	    if(south) grid[2][1] = ' ';
+	    if(west)  grid[1][0] = ' ';
 	    return grid;
 	}
 	public String toString() {
