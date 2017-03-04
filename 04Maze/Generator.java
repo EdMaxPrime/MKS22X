@@ -1,5 +1,18 @@
+import java.util.Random;
+
 public class Generator {
-    public Generator(int width, int height) {}
+    private int rows, cols;
+    boolean border;
+    Random rng;
+    public Generator(int width, int height) {
+	rows = height;
+	cols = width;
+    }
+    
+    public void generate(int seed) {
+        rng = new Random(seed);
+	
+    }
 
     private class Cell {
 	private boolean north, south, east, west;
