@@ -80,7 +80,7 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-	Maze a = new Maze("data1.dat");
+	Maze a = new Maze("data/01.dat");
 	System.out.println(a);
 	System.out.println(a.solve());
 	System.out.println(a);
