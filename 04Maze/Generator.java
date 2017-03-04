@@ -16,7 +16,13 @@ public class Generator {
     public void generate(int seed) {
         rng = new Random(seed);
 	reset();
-	for(int row = 0; row < rows; row++) {}
+	for(int row = 0; row < rows; row++) {
+	    for(int col = 1; col < cols; col++) {
+		if(rng.nextBoolean() && !maze[row][col].connected(maze[row][col-1])) {
+		    maze[row][col].absorb(maze[row][col-1], 'W');
+		}
+	    }
+	}
     }
 
     private void reset() {
