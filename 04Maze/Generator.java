@@ -59,6 +59,17 @@ public class Generator {
 	}
     }
 
+    public String toString() {
+	String str = "";
+	for(Cell[] line : maze) {
+	    for(Cell c : line) {
+		str += String.format("%3s", c.toString());
+	    }
+	    str += "\n";
+	}
+	return str;
+    }
+
     private class Cell {
 	private boolean north, south, east, west;
 	private Set set;
@@ -117,6 +128,9 @@ public class Generator {
 	    if(west)  grid[1][0] = '#';
 	    return grid;
 	}
+	public String toString() {
+	    return set.getFamily().getID() + "";
+	}
     }
 
     private class Set {
@@ -139,11 +153,13 @@ public class Generator {
 	public boolean equals(Set other) {
 	    return other.id == this.id;
 	}
+	public int getID() {return id;}
     }
 
     public static void main(String[] args) {
-	Generator g = new Generator(1, 1);
+	Generator g = new Generator(10, 1);
 	g.generate(0);
 	System.out.println(g.dump());
+	System.out.println(g);
     }
 }
