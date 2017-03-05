@@ -37,16 +37,16 @@ public class Generator {
 
     public String dump() {
 	String str = "";
-	char[][] chars = new char[rows*3][cols*3];
+	char[][] chars = new char[rows*2][cols*2];
 	for(int r = 0; r < rows; r++) {
 	    for(int c = 0; c < cols; c++) {
-		overwrite(chars, maze[r][c].toChar(), r*3, c*3);
+		overwrite(chars, maze[r][c].toChar(), r*2, c*2);
 	    }
 	}
-	for(int r = 0; r < rows*3; r++) {
-	    str += (new String(chars[r])) + "\n";
+	for(int r = 0; r < rows*2; r++) {
+	    str += (new String(chars[r])) + "#\n";
 	}
-	str = str.substring(0, str.length()-1); //get rid of last newline
+	str += (new String(new char[cols*2+1]).replace("\0", "#"));
 	return str;
     }
 
@@ -124,17 +124,16 @@ public class Generator {
 	}
 	public char[][] toChar() {
 	    char[][] grid = {
-		{'#', '#', '#'},
-		{'#', ' ', '#'},
-		{'#', '#', '#'}
+		{'#', '#'},
+		{'#', ' '},
 	    };
 	    //if(north || west) grid[0][0] = ' ';
 	    //if(north || east) grid[0][2] = ' ';
 	    //if(south || west) grid[2][0] = ' ';
 	    //if(south || east) grid[2][2] = ' ';
 	    if(north) grid[0][1] = ' ';
-	    if(east)  grid[1][2] = ' ';
-	    if(south) grid[2][1] = ' ';
+	    //if(east)  grid[1][2] = ' ';
+	    //if(south) grid[2][1] = ' ';
 	    if(west)  grid[1][0] = ' ';
 	    return grid;
 	}
