@@ -11,25 +11,31 @@ public class Generator {
 	cols = width;
     }
 
+    public void generate() {
+	rng = new Random();
+	generate(rng.nextInt());
+    }
+
     /**
        Uses Eller's algorithm to create a maze in linear time.
      */
     public void generate(int seed) {
         rng = new Random(seed);
+	System.out.println(seed);
 	reset();
 	String extended;
 	for(int row = 0; row < rows; row++) {
 	    extended = "";
 	    //connect cells horizontally
-	    for(int col = 1; col < cols; col++) {
-		if(rng.nextBoolean() && !maze[row][col].connected(maze[row][col-1])) {
+	    for(int col = 0; col < cols; col++) {
+		if(col > 0 && rng.nextBoolean() && !maze[row][col].connected(maze[row][col-1])) {
 		    maze[row][col].absorb(maze[row][col-1], 'W');
 		}
 		if(extended.indexOf(""+maze[row][col]) == -1) {
 		    extended += " "+maze[row][col];
-		    if(row < rows-1) {
+		    if(row < rows-1) { //connect vertically
 			maze[row][col].absorb(maze[row+1][col], 'S');
-		    } else {
+		    } else if(col > 0) { //connext bottom row
 			maze[row][col].absorb(maze[row][col-1], 'W');
 		    }
 		}
@@ -37,6 +43,11 @@ public class Generator {
 	}
     }
 
+    /**
+       Turns the maze into a visual format. Walls are #, rows
+       separated by newlines(\n). Spaces represent corridors.
+       You MUST run generate() first
+     */
     public String dump() {
 	String str = "";
 	char[][] chars = new char[rows*2][cols*2];
@@ -52,6 +63,10 @@ public class Generator {
 	return str;
     }
 
+    /**
+       Writes the contents of the second array onto the first array
+       at the specified location.
+     */
     private void overwrite(char[][] orig, char[][] _new, int row, int col) {
 	for(int r = 0; r < _new.length; r++) {
 	    for(int c = 0; c < _new[r].length; c++) {
@@ -60,6 +75,9 @@ public class Generator {
 	}
     }
 
+    /**
+       Clears the maze.
+     */
     private void reset() {
 	maze = new Cell[rows][cols];
 	int id = 0;
@@ -71,6 +89,11 @@ public class Generator {
 	}
     }
 
+    /**
+       DO NOT use this for maze solvers. This is a debug tool
+       to see which cells are part of what set.
+       @return  the set ID of each cell
+     */
     public String toString() {
 	String str = "";
 	for(Cell[] line : maze) {
@@ -129,13 +152,7 @@ public class Generator {
 		{'#', '#'},
 		{'#', ' '},
 	    };
-	    //if(north || west) grid[0][0] = ' ';
-	    //if(north || east) grid[0][2] = ' ';
-	    //if(south || west) grid[2][0] = ' ';
-	    //if(south || east) grid[2][2] = ' ';
 	    if(north) grid[0][1] = ' ';
-	    //if(east)  grid[1][2] = ' ';
-	    //if(south) grid[2][1] = ' ';
 	    if(west)  grid[1][0] = ' ';
 	    return grid;
 	}
@@ -169,7 +186,7 @@ public class Generator {
 
     public static void main(String[] args) {
 	Generator g = new Generator(10, 6);
-	g.generate(2);
+	g.generate();
 	System.out.println(g.dump());
 	System.out.println(g);
     }
