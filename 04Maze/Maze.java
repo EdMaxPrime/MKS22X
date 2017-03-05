@@ -29,17 +29,22 @@ public class Maze {
 	animate = b;
     }
 
-    public void clearTerminal() {}
+    public void clearTerminal() {
+	Text.print("<X H>");
+    }
 
     public boolean solve() {
 	int startR = 0, startC = 0;
 	for(int r = 0; r < maze.length; r++) {
 	    for(int c = 0; c < maze[r].length; c++) {
 		if(maze[r][c] == 'S') {
-		    startR = r;
-		    startC = c;
 		    maze[r][c] = ' ';
-		    return solve(r, c);
+		    if(animate) {
+			clearTerminal();
+			return animate(r, c);
+		    } else {
+			return solve(r, c);
+		    }
 		}
 	    }
 	}
@@ -69,6 +74,31 @@ public class Maze {
 	return attempts;
     }
 
+    private boolean animate(int row, int col) {
+	Text.wait(100);
+	if(!inMaze(row, col) || (maze[row][col] != ' ' && maze[row][col] != 'E')) {
+	    return false; //HERE is invalid
+	}
+	if(maze[row][col] == 'E') return true; //reached the end
+	maze[row][col] = '@'; //HERE = #path
+	System.out.print(Text.go(row+1, col+1)+"@");
+	boolean attempts = false;
+	if(!animate(row-1, col)) {
+	    System.out.print(Text.go(row+1, col+1));
+	    if(!animate(row, col+1)) {
+		System.out.print(Text.go(row+1, col+1));
+		if(!animate(row+1, col)) {
+		    System.out.print(Text.go(row+1, col+1));
+		    if(!animate(row, col-1)) {
+			System.out.print(Text.go(row+1, col+1) + ".");
+			return false;
+		    }
+		}
+	    }
+	}
+	return true;
+    }
+
     private boolean inMaze(int row, int col) {
 	return (row >= 0 && row < maze.length) && (col >= 0 && col < maze[0].length);
     }
@@ -83,6 +113,7 @@ public class Maze {
 
     public static void main(String[] args) {
 	Maze a = new Maze("data/03.dat");
+	a.setAnimate(true);
 	System.out.println(a);
 	System.out.println(a.solve());
 	System.out.println(a);
