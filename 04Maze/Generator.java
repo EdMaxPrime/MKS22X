@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Generator {
     private int rows, cols;
@@ -16,10 +17,19 @@ public class Generator {
     public void generate(int seed) {
         rng = new Random(seed);
 	reset();
+	String extended;
 	for(int row = 0; row < rows; row++) {
+	    extended = "";
+	    //connect cells horizontally
 	    for(int col = 1; col < cols; col++) {
 		if(rng.nextBoolean() && !maze[row][col].connected(maze[row][col-1])) {
 		    maze[row][col].absorb(maze[row][col-1], 'W');
+		}
+		if(extended.indexOf(""+maze[row][col]) == -1) {
+		    extended += " "+maze[row][col];
+		    if(row < rows-1) {
+			maze[row][col].absorb(maze[row+1][col], 'S');
+		    }
 		}
 	    }
 	}
@@ -71,7 +81,7 @@ public class Generator {
     }
 
     private class Cell {
-	private boolean north, south, east, west;
+	public boolean north, south, east, west;
 	private Set set;
 	public Cell(Set s) {
 	    set = s;
@@ -157,7 +167,7 @@ public class Generator {
     }
 
     public static void main(String[] args) {
-	Generator g = new Generator(10, 1);
+	Generator g = new Generator(10, 6);
 	g.generate(0);
 	System.out.println(g.dump());
 	System.out.println(g);
