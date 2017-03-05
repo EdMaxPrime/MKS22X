@@ -25,7 +25,9 @@ public class Maze {
 	}
     }
 
-    public void setAnimate(boolean b) {}
+    public void setAnimate(boolean b) {
+	animate = b;
+    }
 
     public void clearTerminal() {}
 
@@ -80,7 +82,7 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-	Maze a = new Maze("data/01.dat");
+	Maze a = new Maze("data/03.dat");
 	System.out.println(a);
 	System.out.println(a.solve());
 	System.out.println(a);
