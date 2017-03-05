@@ -96,6 +96,7 @@ public class Maze {
 		}
 	    }
 	}
+	System.out.print("E" + Text.go(maze.length+1, 1));
 	return true;
     }
 
@@ -112,10 +113,10 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-	Maze a = new Maze("data/03.dat");
+	Maze a = new Maze("data/02.dat");
 	a.setAnimate(true);
 	System.out.println(a);
 	System.out.println(a.solve());
-	System.out.println(a);
+	System.out.println("\n"+a);
     }
 }
