@@ -93,6 +93,7 @@ public class Text{
        Here are some of the supported ones:
        <ul><li>R - resets everything</li>
        <li>X - clears the screen</li>
+       <li>H - goes to the top left corner</li>
        <li>b - bold</li>
        <li>u - underline</li>
        <li>l - undoes bold</li>
@@ -130,6 +131,7 @@ public class Text{
     private static String parseMarkup(String code) {
 	if(code.equals("R")) return RESET;
 	if(code.equals("X")) return CLEAR_SCREEN;
+	if(code.equals("H")) return go(1,1);
 	if(code.equals("u")) return color(UNDERLINE);
 	if(code.equals("i")) return color(ITALICS);
 	if(code.equals("b")) return color(DARK);
