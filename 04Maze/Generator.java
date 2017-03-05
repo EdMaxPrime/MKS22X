@@ -152,7 +152,7 @@ public class Generator {
 	    parent = null;
 	}
 	public void joinFamily(Set family) {
-	    parent = family;
+	    getFamily().parent = family;
 	}
 	public boolean independent() {
 	    return parent == null;
@@ -169,7 +169,7 @@ public class Generator {
 
     public static void main(String[] args) {
 	Generator g = new Generator(10, 6);
-	g.generate(0);
+	g.generate(2);
 	System.out.println(g.dump());
 	System.out.println(g);
     }
