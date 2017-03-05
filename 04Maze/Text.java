@@ -29,7 +29,7 @@ public class Text{
 
     //terminal specific character to move the cursor to a location
     //top left is 1,1
-    private static String go(int x,int y){
+    public static String go(int x,int y){
         return ("\033[" + x + ";" + y + "H");
     }
     private static String up(int amount) {
