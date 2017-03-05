@@ -29,6 +29,8 @@ public class Generator {
 		    extended += " "+maze[row][col];
 		    if(row < rows-1) {
 			maze[row][col].absorb(maze[row+1][col], 'S');
+		    } else {
+			maze[row][col].absorb(maze[row][col-1], 'W');
 		    }
 		}
 	    }
