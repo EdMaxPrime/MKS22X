@@ -6,9 +6,10 @@ hit the highest number in the 3x3, and then press by D
 
 N instructions
 E is final sea level
-find V
+find V(volume)
 
-next lines are array
+first line is R C E N
+next lines are array of elevations
 next lines are instructions
 
 calculate V with inches (one square six by six foot)
@@ -49,8 +50,7 @@ public class Cool{
 	    }
 	}
 	parray(farm);
-	System.out.println(compute());
-	
+	System.out.println(computeVolume());
 	return 0;
     }
     public void parray(int[][] a){
@@ -78,7 +78,7 @@ public class Cool{
 	    }
 	}
     }
-    public int compute(){
+    public int computeVolume(){
 	int howmuchwater = 0;
 	for (int i = 0; i < farm.length; i++){
 	    for (int j = 0; j < farm[0].length; j++){
