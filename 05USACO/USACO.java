@@ -24,7 +24,9 @@ public class USACO {
 
     public static void main (String[] args) throws FileNotFoundException {
 	//testing stuff
-	testBronze();
+	//testBronze();
+	USACO d = new USACO();
+	d.silver("ctravel/ctravel.1.in");
     }
     public static void testBronze() throws FileNotFoundException {
 	USACO c = new USACO();
@@ -95,5 +97,29 @@ public class USACO {
 	    }
 	}
 	return howmuchwater;
+    }
+
+    /*~~~SILVER PROBLEM~~~*/
+    public int silver(String filename) throws FileNotFoundException {
+	Scanner in = new Scanner(new File(filename));
+	int rows = in.nextInt(), cols = in.nextInt(), time = in.nextInt();
+	int[][] pasture = new int[rows][cols];
+	in.nextLine(); //got to the next line
+	int row = 0;
+	while(row < rows) {
+	    String line = in.nextLine();
+	    System.out.println(line);
+	    for(int c = 0; c < cols; c++) {
+		if(line.charAt(c) == '.') pasture[row][c] = 0; //free
+		else if(line.charAt(c) == '*') pasture[row][c] = -1; //tree
+	    }
+	    row++;
+	}
+	int startRow = in.nextInt(),
+	    startCol = in.nextInt(),
+	    endRow = in.nextInt(),
+	    endCol = in.nextInt();
+	parray(pasture);
+	return 0;
     }
  }
