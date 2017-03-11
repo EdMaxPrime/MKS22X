@@ -45,7 +45,7 @@ public class USACO {
 		instructions[r-rows] = new int[] {
 		    in.nextInt(), in.nextInt(), in.nextInt()
 		};
-		stomp(instructions[r-rows][0], instructions[r-rows][1], instructions[r-rows][2]);
+		stomp(instructions[r-rows][0]-1, instructions[r-rows][1]-1, instructions[r-rows][2]);
 		r++;
 	    }
 	}
@@ -65,13 +65,14 @@ public class USACO {
     }
     public void stomp(int row, int col, int amount) {
 	int highest = farm[row][col];
+	System.out.printf("STOMPING  (%d, %d) by %d%n", row, col, amount);
 	for (int i = row; i < row+3; i++){
 	    for (int j = col; j < col+3; j++){
 		if (farm[i][j] > highest){highest = farm[i][j];}
 	    }
 	}
 	if (highest - amount < 0){highest = amount;}
-	System.out.println("XDDDD" + highest);
+	System.out.println("Highest:   " + highest);
        	for (int i = row; i < row+3; i++){
 	    for (int j = col; j < col+3; j++){
 	        if (farm[i][j]>highest-amount){farm[i][j] = highest-amount;}
