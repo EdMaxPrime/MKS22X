@@ -29,7 +29,7 @@ public class USACO {
     public static void testBronze() throws FileNotFoundException {
 	USACO c = new USACO();
 	Scanner answer;
-	for(int i = 1; i < 2; i++) {
+	for(int i = 1; i < 10; i++) {
 	    int myAnswer = c.bronze("makelake/makelake."+i+".in");
 	    answer = new Scanner(new File("makelake/makelake."+i+".out"));
 	    int realAnswer = answer.nextInt();
