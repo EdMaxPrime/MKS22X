@@ -58,9 +58,7 @@ public class USACO {
 		r++;
 	    }
 	}
-	parray(farm);
-	System.out.println(computeVolume());
-	return 0;
+	return computeVolume();
     }
     public void parray(int[][] a){
 	String retstr = "";
@@ -80,7 +78,7 @@ public class USACO {
 	    }
 	}
 	if (highest - amount < 0){highest = amount;}
-	System.out.println("Highest:   " + highest);
+	//System.out.println("Highest:   " + highest);
        	for (int i = row; i < row+3; i++){
 	    for (int j = col; j < col+3; j++){
 	        if (farm[i][j]>highest-amount){farm[i][j] = highest-amount;}
