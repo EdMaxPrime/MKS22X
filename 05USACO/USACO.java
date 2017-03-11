@@ -18,14 +18,14 @@ calculate V with inches (one square six by six foot)
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-public class Cool{
+public class USACO {
     private int[][] farm;
     private int sealevel;
 
     public static void main (String[] args) throws FileNotFoundException {
 	//testing stuff
-	Cool c = new Cool();
-	c.bronze("good.txt");
+	USACO c = new USACO();
+	c.bronze("makelake/makelake.1.in");
     }
     public int bronze(String filename)throws FileNotFoundException{
 	Scanner in = new Scanner(new File(filename));
