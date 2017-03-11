@@ -24,8 +24,17 @@ public class USACO {
 
     public static void main (String[] args) throws FileNotFoundException {
 	//testing stuff
+	testBronze();
+    }
+    public static void testBronze() throws FileNotFoundException {
 	USACO c = new USACO();
-	c.bronze("makelake/makelake.1.in");
+	Scanner answer;
+	for(int i = 1; i < 2; i++) {
+	    int myAnswer = c.bronze("makelake/makelake."+i+".in");
+	    answer = new Scanner(new File("makelake/makelake."+i+".out"));
+	    int realAnswer = answer.nextInt();
+	    System.out.printf("[%d] Got %d for %d which is "+(myAnswer==realAnswer)+"%n", i, myAnswer, realAnswer);
+	}
     }
     public int bronze(String filename)throws FileNotFoundException{
 	Scanner in = new Scanner(new File(filename));
@@ -65,7 +74,6 @@ public class USACO {
     }
     public void stomp(int row, int col, int amount) {
 	int highest = farm[row][col];
-	System.out.printf("STOMPING  (%d, %d) by %d%n", row, col, amount);
 	for (int i = row; i < row+3; i++){
 	    for (int j = col; j < col+3; j++){
 		if (farm[i][j] > highest){highest = farm[i][j];}
