@@ -5,6 +5,8 @@ public class Quiz2Redux {
 
     public static ArrayList<String> combinations(String s) {
 	ArrayList<String> words = new ArrayList<String>();
+	pieces(words, "", s);
+	Collections.sort(words);
 	return words;
     }
 
