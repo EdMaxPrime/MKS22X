@@ -115,12 +115,17 @@ public class USACO {
 	    }
 	    row++;
 	}
-	int startRow = in.nextInt(),
-	    startCol = in.nextInt(),
-	    endRow = in.nextInt(),
-	    endCol = in.nextInt();
+	int startRow = in.nextInt()-1,
+	    startCol = in.nextInt()-1,
+	    endRow = in.nextInt()-1,
+	    endCol = in.nextInt()-1;
+	pasture[startRow][startCol] = 1;
 	parray(pasture);
-	return 0;
+	for(int step = 0; step < 1; step++) {
+	    moveCow(pasture);
+	}
+	//parray(pasture);
+	return pasture[endRow][endCol];
     }
     private void moveCow(int[][] pasture) {
 	String newValues = "";
@@ -135,14 +140,20 @@ public class USACO {
 		    //add 0 to string
 		    newValues += " 0";
 		}
+		else {
+		    newValues += " -1";
+		}
 	    }
+	    newValues += "\n";
 	}
+	System.out.println("Peak:\n" + newValues);
 	Scanner scanner = new Scanner(newValues);
 	for(int r = 0; r < pasture.length; r++) {
 	    for(int c = 0; c < pasture[r].length; c++) {
 	        if(scanner.hasNextInt()) pasture[r][c] = scanner.nextInt();
 	    }
 	}
+	parray(pasture);
     }
     /**
        Returns the sum of the adjacent four naighbors of a cell
