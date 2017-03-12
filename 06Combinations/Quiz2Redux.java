@@ -28,4 +28,23 @@ public class Quiz2Redux {
 	    pieces(words, remainder, orig.substring(1));
 	}
     }
+
+    public static void main(String[] args) {
+	if(args.length > 0) { //parameter was provided
+	    ArrayList<String> words = combinations(args[0]);
+	    int len = args[0].length();
+	    boolean odd = true;
+	    for(String s : words) {
+		if(s.length() == 0) s = "\"\"";
+		if(odd) {
+		    System.out.printf(" %"+len+"s ", s);
+		} else {
+		    System.out.printf(" %"+len+"s%n", s);
+		}
+		odd = !odd;
+	    }
+	} else {
+	    main(new String[] {"cat", "dog"});
+	}
+    }
 }
