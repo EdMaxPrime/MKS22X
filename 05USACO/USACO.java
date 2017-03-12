@@ -166,13 +166,13 @@ public class USACO {
      */
     private int sum4Neighbors(int row, int col, int[][] data) {
 	int sum = 0;
-	if(row - 1 > 0 && data[row-1][col] > -1) //above
+	if(row - 1 >= 0 && data[row-1][col] > -1) //above
 	    sum += data[row-1][col];
 	if(col+1 < data[row].length && data[row][col+1] > -1) //left
 	    sum += data[row][col+1];
 	if(row+1 < data.length && data[row+1][col] > -1) //below
 	    sum += data[row+1][col];
-	if(col-1 > 0 && data[row][col-1] > -1) //right
+	if(col-1 >= 0 && data[row][col-1] > -1) //right
 	    sum += data[row][col-1];
 	return sum;
     }
