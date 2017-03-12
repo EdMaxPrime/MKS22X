@@ -24,7 +24,7 @@ public class USACO {
 
     public static void main (String[] args) throws FileNotFoundException {
 	//testing stuff
-	//testBronze();
+	testBronze();
 	testSilver();
     }
     public static void testBronze() throws FileNotFoundException {
@@ -89,7 +89,6 @@ public class USACO {
 	    }
 	}
 	if (highest - amount < 0){highest = amount;}
-	//System.out.println("Highest:   " + highest);
        	for (int i = row; i < row+3; i++){
 	    for (int j = col; j < col+3; j++){
 	        if (farm[i][j]>highest-amount){farm[i][j] = highest-amount;}
@@ -117,7 +116,6 @@ public class USACO {
 	int row = 0;
 	while(row < rows) {
 	    String line = in.nextLine();
-	    //System.out.println(line);
 	    for(int c = 0; c < cols; c++) {
 		if(line.charAt(c) == '.') pasture[row][c] = 0; //free
 		else if(line.charAt(c) == '*') pasture[row][c] = -1; //tree
@@ -129,11 +127,9 @@ public class USACO {
 	    endRow = in.nextInt()-1,
 	    endCol = in.nextInt()-1;
 	pasture[startRow][startCol] = 1;
-	//parray(pasture);
 	for(int step = 0; step < time; step++) {
 	    moveCow(pasture);
 	}
-	//parray(pasture);
 	return pasture[endRow][endCol];
     }
     private void moveCow(int[][] pasture) {
@@ -155,14 +151,12 @@ public class USACO {
 	    }
 	    newValues += "\n";
 	}
-	//System.out.println("Peak:\n" + newValues);
 	Scanner scanner = new Scanner(newValues);
 	for(int r = 0; r < pasture.length; r++) {
 	    for(int c = 0; c < pasture[r].length; c++) {
 	        if(scanner.hasNextInt()) pasture[r][c] = scanner.nextInt();
 	    }
 	}
-	//parray(pasture);
     }
     /**
        Returns the sum of the adjacent four naighbors of a cell
