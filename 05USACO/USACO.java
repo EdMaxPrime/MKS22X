@@ -25,8 +25,7 @@ public class USACO {
     public static void main (String[] args) throws FileNotFoundException {
 	//testing stuff
 	//testBronze();
-	USACO d = new USACO();
-	d.silver("ctravel/ctravel.1.in");
+	testSilver();
     }
     public static void testBronze() throws FileNotFoundException {
 	USACO c = new USACO();
@@ -34,6 +33,16 @@ public class USACO {
 	for(int i = 1; i < 10; i++) {
 	    int myAnswer = c.bronze("makelake/makelake."+i+".in");
 	    answer = new Scanner(new File("makelake/makelake."+i+".out"));
+	    int realAnswer = answer.nextInt();
+	    System.out.printf("[%d] Got %d for %d which is "+(myAnswer==realAnswer)+"%n", i, myAnswer, realAnswer);
+	}
+    }
+    public static void testSilver() throws FileNotFoundException {
+	USACO e = new USACO();
+	Scanner answer;
+	for(int i = 1; i <= 10; i++) {
+	    int myAnswer = e.silver("ctravel/ctravel."+i+".in");
+	    answer = new Scanner(new File("ctravel/ctravel."+i+".out"));
 	    int realAnswer = answer.nextInt();
 	    System.out.printf("[%d] Got %d for %d which is "+(myAnswer==realAnswer)+"%n", i, myAnswer, realAnswer);
 	}
@@ -108,7 +117,7 @@ public class USACO {
 	int row = 0;
 	while(row < rows) {
 	    String line = in.nextLine();
-	    System.out.println(line);
+	    //System.out.println(line);
 	    for(int c = 0; c < cols; c++) {
 		if(line.charAt(c) == '.') pasture[row][c] = 0; //free
 		else if(line.charAt(c) == '*') pasture[row][c] = -1; //tree
@@ -120,8 +129,8 @@ public class USACO {
 	    endRow = in.nextInt()-1,
 	    endCol = in.nextInt()-1;
 	pasture[startRow][startCol] = 1;
-	parray(pasture);
-	for(int step = 0; step < 1; step++) {
+	//parray(pasture);
+	for(int step = 0; step < time; step++) {
 	    moveCow(pasture);
 	}
 	//parray(pasture);
@@ -146,14 +155,14 @@ public class USACO {
 	    }
 	    newValues += "\n";
 	}
-	System.out.println("Peak:\n" + newValues);
+	//System.out.println("Peak:\n" + newValues);
 	Scanner scanner = new Scanner(newValues);
 	for(int r = 0; r < pasture.length; r++) {
 	    for(int c = 0; c < pasture[r].length; c++) {
 	        if(scanner.hasNextInt()) pasture[r][c] = scanner.nextInt();
 	    }
 	}
-	parray(pasture);
+	//parray(pasture);
     }
     /**
        Returns the sum of the adjacent four naighbors of a cell
