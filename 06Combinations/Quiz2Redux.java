@@ -33,15 +33,16 @@ public class Quiz2Redux {
 	if(args.length > 0) { //parameter was provided
 	    ArrayList<String> words = combinations(args[0]);
 	    int len = args[0].length();
-	    boolean odd = true;
+	    int cols = ((len < 10)? 4 : 2), current = 0;
 	    for(String s : words) {
 		if(s.length() == 0) s = "\"\"";
-		if(odd) {
+		if(current < cols-1) {
 		    System.out.printf(" %"+len+"s ", s);
+		    current++;
 		} else {
 		    System.out.printf(" %"+len+"s%n", s);
+		    current = 0;
 		}
-		odd = !odd;
 	    }
 	} else {
 	    main(new String[] {"cat", "dog"});
