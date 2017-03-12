@@ -122,4 +122,24 @@ public class USACO {
 	parray(pasture);
 	return 0;
     }
+    private void moveCow(int[][] pasture) {
+	String newValues = "";
+	for(int r = 0; r < pasture.length; r++) {
+	    for(int c = 0; c < pasture[r].length; c++) {
+		if(pasture[r][c] == 0) {
+		    //make it sum of surrounding squares (ignore trees)
+		    //add it to string
+		}
+		else if(pasture[r][c] > 0) {
+		    //add 0 to string
+		}
+	    }
+	}
+	Scanner scanner = new Scanner(newValues);
+	for(int r = 0; r < pasture.length; r++) {
+	    for(int c = 0; c < pasture[r].length; c++) {
+	        if(scanner.hasNextInt()) pasture[r][c] = scanner.nextInt();
+	    }
+	}
+    }
  }
