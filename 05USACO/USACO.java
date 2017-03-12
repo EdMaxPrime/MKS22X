@@ -129,9 +129,11 @@ public class USACO {
 		if(pasture[r][c] == 0) {
 		    //make it sum of surrounding squares (ignore trees)
 		    //add it to string
+		    newValues += " " + sum4Neighbors(r, c, pasture);
 		}
 		else if(pasture[r][c] > 0) {
 		    //add 0 to string
+		    newValues += " 0";
 		}
 	    }
 	}
@@ -141,5 +143,26 @@ public class USACO {
 	        if(scanner.hasNextInt()) pasture[r][c] = scanner.nextInt();
 	    }
 	}
+    }
+    /**
+       Returns the sum of the adjacent four naighbors of a cell
+       in a 2d array, provided that they are all positive integers.
+       @param row    the row of the middle cell
+       @param col    the column of the middle cell
+       @param data   the array of integers
+       @return       the nonnegative sum of the four adjacent positive
+                     integers.
+     */
+    private int sum4Neighbors(int row, int col, int[][] data) {
+	int sum = 0;
+	if(row - 1 > 0 && data[row-1][col] > -1) //above
+	    sum += data[row-1][col];
+	if(col+1 < data[row].length && data[row][col+1] > -1) //left
+	    sum += data[row][col+1];
+	if(row+1 < data.length && data[row+1][col] > -1) //below
+	    sum += data[row+1][col];
+	if(col-1 > 0 && data[row][col-1] > -1) //right
+	    sum += data[row][col-1];
+	return sum;
     }
  }
