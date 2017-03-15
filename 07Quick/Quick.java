@@ -13,6 +13,7 @@ public class Quick {
 	System.out.println(pivot);
 	int rightmost = end, leftmost = start;
 	for(int i = start; i <= end; i++) {
+	    String compare = " larger";
 	    if(data[i] < pivot) {
 		//swap with leftmost
 		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[leftmost], leftmost, data[i], i);
@@ -21,16 +22,18 @@ public class Quick {
 		data[rightmost] = temp;
 		rightmost--;
 		i--;
+		compare = "smaller";
 	    } else {
 		//swap with rightmost\
 		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[rightmost], rightmost, data[i], i);
+		if(data[i] == pivot) compare = "   same";
 		int temp = data[i];
 		data[i] = data[leftmost];
 		data[leftmost] = data[i];
 		leftmost++;
 		i--;
 	    }
-	    printArr(data);
+	    printArr(compare + ":\t%a", data);
 	}
 	return leftmost; //index of the pivot
     }
