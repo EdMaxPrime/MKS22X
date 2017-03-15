@@ -2,26 +2,35 @@ import java.util.Random;
 
 public class Quick {
     public static void main(String[] args) {
-	//
+	int[] a = {0, 3, 5, 7, 6};
+	printArr("Start: %a", a);
+	System.out.printf("Returned %d%n",  part(a, 0, a.length-1));
+	printArr("And now: %a", a);
     }
 
     public static int part(int[] data, int start, int end) {
 	int pivot = data[(new Random()).nextInt(end - start + 1) + start];
+	System.out.println(pivot);
 	int rightmost = end, leftmost = start;
 	for(int i = start; i <= end; i++) {
 	    if(data[i] < pivot) {
 		//swap with leftmost
-		int temp = data[i];
-		data[i] = data[leftmost];
-		data[leftmost] = temp;
-		leftmost++;
-	    } else {
-		//swap with rightmost
+		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[leftmost], leftmost, data[i], i);
 		int temp = data[i];
 		data[i] = data[rightmost];
-		data[rightmost] = data[i];
+		data[rightmost] = temp;
 		rightmost--;
+		i--;
+	    } else {
+		//swap with rightmost\
+		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[rightmost], rightmost, data[i], i);
+		int temp = data[i];
+		data[i] = data[leftmost];
+		data[leftmost] = data[i];
+		leftmost++;
+		i--;
 	    }
+	    printArr(data);
 	}
 	return leftmost; //index of the pivot
     }
