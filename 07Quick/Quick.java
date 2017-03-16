@@ -9,6 +9,11 @@ public class Quick {
     }
 
     public static int part(int[] data, int start, int end) {
+	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
+	
+    }
+
+    public static int partFake(int[] data, int start, int end) {
 	int pivot = data[(new Random()).nextInt(end - start + 1) + start];
 	System.out.println(pivot);
 	int rightmost = end, leftmost = start;
