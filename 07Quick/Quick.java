@@ -10,6 +10,19 @@ public class Quick {
 	}
     }
 
+    /**
+       Returns the <i>k</i>th smallest value of <i>array</i>
+     */
+    public static int quickselect(int[] array, int k) {
+	int start = 0, end = array.length-1, result;
+	do {
+	    result = part(array, start, end);
+	    if(result < k)      start = result;
+	    else if(result > k) end = result;
+	} while(result != k);
+	return array[k];
+    }
+
     public static int part(int[] data, int start, int end) {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	swap(data, end, pivotIndex);
@@ -35,36 +48,6 @@ public class Quick {
 	int temp = array[indexA];
 	array[indexA] = array[indexB];
 	array[indexB] = temp;
-    }
-
-    public static int partFake(int[] data, int start, int end) {
-	int pivot = data[(new Random()).nextInt(end - start + 1) + start];
-	System.out.println(pivot);
-	int rightmost = end, leftmost = start;
-	for(int i = start; i <= end; i++) {
-	    String compare = " larger";
-	    if(data[i] < pivot) {
-		//swap with leftmost
-		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[leftmost], leftmost, data[i], i);
-		int temp = data[i];
-		data[i] = data[rightmost];
-		data[rightmost] = temp;
-		rightmost--;
-		i--;
-		compare = "smaller";
-	    } else {
-		//swap with rightmost\
-		//System.out.printf("Swapped %d[%d] with %d[%d]%n", data[rightmost], rightmost, data[i], i);
-		if(data[i] == pivot) compare = "   same";
-		int temp = data[i];
-		data[i] = data[leftmost];
-		data[leftmost] = data[i];
-		leftmost++;
-		i--;
-	    }
-	    printArr(compare + ":\t%a", data);
-	}
-	return leftmost; //index of the pivot
     }
 
     public static String arr2str(int[] arr) {
