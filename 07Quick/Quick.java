@@ -8,6 +8,10 @@ public class Quick {
 	    System.out.printf("Returned %d%n",  part(a, 0, a.length-1));
 	    printArr("And now: %a", a);
 	}
+	int[] b = {0, 20, 40, 30, 10};
+	for(int i = 0; i < b.length; i++) {
+	    System.out.printf("for k=%d, --> %d%n", i, quickselect(b, i));
+	}
     }
 
     /**
