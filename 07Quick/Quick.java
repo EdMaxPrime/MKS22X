@@ -12,6 +12,10 @@ public class Quick {
 	for(int i = 0; i < b.length; i++) {
 	    System.out.printf("for k=%d, --> %d%n", i, quickselect(b, i));
 	}
+	for(int test = 0; test < 5; test++) {
+	    int[] c = randomArray(10);
+	    System.out.printf("%s 3rd is %d%n", arr2str(c), quickselect(c, 3));
+	}
     }
 
     /**
@@ -39,7 +43,7 @@ public class Quick {
 		i++;
 	    }
 	}
-	System.out.println("Sorting around " + pivot);
+	//System.out.println("Sorting around " + pivot);
 	if(data[end] < data[wall]) swap(data, wall, end);
 	else wall++;
 	return wall;
@@ -52,6 +56,17 @@ public class Quick {
 	int temp = array[indexA];
 	array[indexA] = array[indexB];
 	array[indexB] = temp;
+    }
+
+    public static int[] randomArray(int len) {
+	Random rng = new Random();
+	if(len < 0) len = (int)(Math.abs(rng.nextInt()));
+	int[] array = new int[len];
+	while(len > 0) {
+	    array[len - 1] = rng.nextInt(100);
+	    len--;
+	}
+	return array;
     }
 
     public static String arr2str(int[] arr) {
