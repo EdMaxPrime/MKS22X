@@ -2,10 +2,12 @@ import java.util.Random;
 
 public class Quick {
     public static void main(String[] args) {
-	int[] a = {0, 10, 20, 30, 40};
-	printArr("Start: %a", a);
-	System.out.printf("Returned %d%n",  part(a, 0, a.length-1));
-	printArr("And now: %a", a);
+	for(int test = 0; test < 6; test++) {
+	    int[] a = {0, 10, 20, 30, 40};
+	    printArr("Start: %a", a);
+	    System.out.printf("Returned %d%n",  part(a, 0, a.length-1));
+	    printArr("And now: %a", a);
+	}
     }
 
     public static int part(int[] data, int start, int end) {
@@ -21,7 +23,8 @@ public class Quick {
 	    }
 	}
 	System.out.println("Sorting around " + pivot);
-	swap(data, wall, end);
+	if(data[end] < data[wall]) swap(data, wall, end);
+	else wall++;
 	return wall;
     }
 
