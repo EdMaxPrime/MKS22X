@@ -35,10 +35,11 @@ public class Quick {
 	for(int test = 0; test < 5; test++) {
 	    int[] g = randomArray(5);
 	    int[] sorted = new int[g.length];
+	    System.out.printf("%22s -->", arr2str(g));
 	    for(int k = 0; k < g.length; k++) {
 		sorted[k] = quickselect(copy(g), k);
 	    }
-	    System.out.printf("%22s --> %22s%n", arr2str(g), arr2str(sorted));
+	    System.out.printf(" %22s%n", arr2str(sorted));
 	}
     }
 
