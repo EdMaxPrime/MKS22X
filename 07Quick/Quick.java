@@ -3,6 +3,8 @@ import java.util.Random;
 public class Quick {
     public static void main(String[] args) {
 	//used for tests
+	System.out.printf("%10s====A====%n", "");
+	int[] a = {};
     }
 
     public static int quickselect(int[] array, int k) {
@@ -56,6 +58,8 @@ public class Quick {
 		//we are in the unknown zone, must validate again
 	    }
 	}
+	low--;
+	swap(array, start, low);
 	return new int[] {low, high};
     }
 
