@@ -6,7 +6,7 @@ public class Quick {
 	System.out.printf("%10s====A====%n", "");
 	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(a);
-	printArr("Returned %a", partition(a, 0, a.length-1, 2));
+	printArr("Returned %a", partition(a, 0, a.length-1, 3));
 	printArr(a);
     }
 
@@ -47,19 +47,24 @@ public class Quick {
 	int low = start, high = end;
 	swap(array, start, pi);
 	for(int i = start+1; i < high; ) {
+	    String tri = i + ") ";
 	    if(array[i] < pivot) {
 		swap(array, i, low);
 		low++;
 		i++; //we are in the equal section, dont need to validate
+		tri += "< ";
 	    }
 	    else if(array[i] == pivot) {
 		i++; //we are in the equal section, dont need to validate
+		tri += "= ";
 	    }
 	    else {
 		swap(array, i, high);
 		high--;
 		//we are in the unknown zone, must validate again
+		tri += "> ";
 	    }
+	    printArr(tri + "%a", array);
 	}
 	low--;
 	swap(array, start, low);
