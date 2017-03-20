@@ -16,6 +16,12 @@ public class Quick {
 	    int[] c = randomArray(10);
 	    System.out.printf("%s 3rd is %d%n", arr2str(c), quickselect(c, 3));
 	}
+	System.out.println();
+	int[] d = {9, 3, 7, 0, 1, 5};
+	for(int test = 0; test < 1; test++) {
+	    part(d, 0, d.length-1, 5);
+	}
+	printArr("\n%a", d);
     }
 
     /**
@@ -46,6 +52,23 @@ public class Quick {
 	//System.out.println("Sorting around " + pivot);
 	if(data[end] < data[wall]) swap(data, wall, end);
 	else wall++;
+	return wall;
+    }
+
+    public static int part(int[] data, int start, int end, int pivotIndex) {
+	swap(data, end, pivotIndex);
+	int pivot = data[end], wall = end - 1;
+	for(int i = 0; i < wall; ) {
+	    if(data[i] >= pivot) {
+		swap(data, i, wall);
+		wall--;
+	    } else {
+		i++;
+	    }
+	}
+	if(data[end] < data[wall]) swap(data, wall, end);
+	else {wall++; swap(data, wall, end);}
+	System.out.println(wall);
 	return wall;
     }
 
