@@ -23,6 +23,9 @@ public class Quick {
 	}
 	printArr("%a", d);
 	*/
+	int[] e = {7, 0, 6, 9, 2, 6};
+	System.out.println("Ended as " + partition(e, 0, e.length-1));
+	printArr(e);
     }
 
     /**
@@ -76,19 +79,25 @@ public class Quick {
     public static int partition(int[] data, int start, int end) {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	swap(data, end, pivotIndex);
-	int pivot = data[end], wall = end - 1;
-	for(int i = 0; i < wall; ) {
-	    if(data[i] >= pivot) {
-		swap(data, i, wall);
-		wall--;
-	    } else {
+	int pivot = data[end], greater = end - 1, equal = end - 1;
+	for(int i = 0; i <= equal; ) {
+	    if(data[i] == pivot) {
+		swap(data, i, equal);
+		equal--;
+	    }
+	    else if(data[i] > pivot) {
+		swap(data, i, greater);
+		greater--;
+		equal--;
+	    }
+	    else {
 		i++;
 	    }
 	}
-	//System.out.println("Sorting around " + pivot);
-	if(data[end] < data[wall]) swap(data, wall, end);
-	else wall++;
-	return wall;
+	System.out.printf("Sorting around %d with e=%d and g=%d%n",pivot,equal,greater);
+	greater++;
+	swap(data, greater, end);
+	return equal;
     }
 
     /**
