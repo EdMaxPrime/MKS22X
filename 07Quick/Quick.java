@@ -4,7 +4,10 @@ public class Quick {
     public static void main(String[] args) {
 	//used for tests
 	System.out.printf("%10s====A====%n", "");
-	int[] a = {};
+	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
+	printArr(a);
+	printArr("Returned %a", partition(a, 0, a.length-1, 2));
+	printArr(a);
     }
 
     public static int quickselect(int[] array, int k) {
