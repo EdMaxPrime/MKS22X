@@ -39,7 +39,24 @@ public class Quick {
      */
     public static int[] partition(int[] array, int start, int end, int pi) {
 	int pivot = array[pi];
-	return new int[0];
+	int low = start, high = end;
+	swap(array, start, pi);
+	for(int i = start+1; i < high; ) {
+	    if(array[i] < pivot) {
+		swap(array, i, low);
+		low++;
+		i++; //we are in the equal section, dont need to validate
+	    }
+	    else if(array[i] == pivot) {
+		i++; //we are in the equal section, dont need to validate
+	    }
+	    else {
+		swap(array, i, high);
+		high--;
+		//we are in the unknown zone, must validate again
+	    }
+	}
+	return new int[] {low, high};
     }
 
     /**
