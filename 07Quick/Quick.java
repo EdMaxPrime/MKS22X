@@ -13,15 +13,16 @@ public class Quick {
 	    System.out.printf("for k=%d, --> %d%n", i, quickselect(b, i));
 	}
 	for(int test = 0; test < 5; test++) {
-	    int[] c = randomArray(10);
+	    int[] c = randomArray(5);
 	    System.out.printf("%s 3rd is %d%n", arr2str(c), quickselect(c, 3));
 	}
-	System.out.println();
+	/*System.out.println();
 	int[] d = {9, 3, 7, 0, 1, 5};
 	for(int test = 0; test < 1; test++) {
 	    part(d, 0, d.length-1, 5);
 	}
-	printArr("\n%a", d);
+	printArr("%a", d);
+	*/
     }
 
     /**
