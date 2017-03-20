@@ -23,9 +23,19 @@ public class Quick {
 	}
 	printArr("%a", d);
 	*/
+	System.out.println();
 	int[] e = {7, 0, 6, 9, 2, 6};
 	System.out.println("Ended as " + partition(e, 0, e.length-1));
 	printArr(e);
+	System.out.println();
+	int[] f = {1, 1, 0, 1, 1, 1, 1, 1};
+	System.out.println("Ended as " + partition(f, 0, f.length-1));
+	printArr(f);
+	System.out.println();
+	for(int test = 0; test < 5; test++) {
+	    int[] f = randomArray(5);
+	    //System.out.printf("%s");
+	}
     }
 
     /**
