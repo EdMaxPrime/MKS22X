@@ -16,6 +16,33 @@ public class Quick {
     }
 
     /**
+       Wrapper for partition, uses a random index as the pivot
+       @see partition
+     */
+    public static int[] partition(int[] array, int start, int end) {
+	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
+	return partition(array, start, end, pivotIndex);
+    }
+
+    /**
+       Partitions an array into three sections based on a pivot value
+       within the array. The first section of the array will contain
+       all elements less than the pivot, the second section will have
+       all elements equal to the pivot, and the last will contain all
+       elements greater than the pivot. Returns the boundaries of these
+       sections.
+       @param end  the end of the range to be modified, inclusive.
+       @param pi   the index of the element to be used as a pivot
+       @return     an array of length two. The first element is the
+                   leftmost boundary of middle section, second element
+		   is the rightmost boundary of the middle section.
+     */
+    public static int[] partition(int[] array, int start, int end, int pi) {
+	int pivot = array[pi];
+	return new int[0];
+    }
+
+    /**
        Yuck
      */
     private static void swap(int[] array, int indexA, int indexB) {
