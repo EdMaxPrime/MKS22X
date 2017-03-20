@@ -33,18 +33,32 @@ public class Quick {
 	printArr(f);
 	System.out.println();
 	for(int test = 0; test < 5; test++) {
-	    int[] f = randomArray(5);
-	    //System.out.printf("%s");
+	    int[] g = randomArray(5);
+	    int[] sorted = new int[g.length];
+	    for(int k = 0; k < g.length; k++) {
+		sorted[k] = quickselect(copy(g), k);
+	    }
+	    System.out.printf("%22s --> %22s%n", arr2str(g), arr2str(sorted));
 	}
     }
 
     /**
        Returns the <i>k</i>th smallest value of <i>array</i>
      */
-    public static int quickselect(int[] array, int k) {
+    public static int quickselect_old(int[] array, int k) {
 	int start = 0, end = array.length-1, result;
 	do {
 	    result = part(array, start, end);
+	    if(result < k)      start = result;
+	    else if(result > k) end = result;
+	} while(result != k);
+	return array[k];
+    }
+
+    public static int quickselect(int[] array, int k) {
+	int start = 0, end = array.length-1, result;
+	do {
+	    result = partition(array, start, end);
 	    if(result < k)      start = result;
 	    else if(result > k) end = result;
 	} while(result != k);
@@ -90,7 +104,7 @@ public class Quick {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	swap(data, end, pivotIndex);
 	int pivot = data[end], greater = end - 1, equal = end - 1;
-	System.out.print("Sorting around " + pivot);
+	//System.out.print("Sorting around " + pivot);
 	for(int i = 0; i <= equal; ) {
 	    if(data[i] == pivot) {
 		swap(data, i, equal);
@@ -105,7 +119,7 @@ public class Quick {
 		i++;
 	    }
 	}
-	System.out.printf(" with e=%d and g=%d%n",equal,greater);
+	//System.out.printf(" with e=%d and g=%d%n",equal,greater);
 	greater++;
 	swap(data, greater, end);
 	return (equal + greater + 2) / 2;
@@ -145,5 +159,13 @@ public class Quick {
 
     public static void printArr(String message, int[] arr) {
 	System.out.println(message.replaceFirst("%a", arr2str(arr)));
+    }
+
+    public static int[] copy(int[] array) {
+	int[] copy = new int[array.length];
+	for(int i = 0; i < array.length; i++) {
+	    copy[i] = array[i];
+	}
+	return copy;
     }
 }
