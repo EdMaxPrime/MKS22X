@@ -10,11 +10,11 @@ public class Quick {
 	}
 	int[] b = {0, 20, 40, 30, 10};
 	for(int i = 0; i < b.length; i++) {
-	    System.out.printf("for k=%d, --> %d%n", i, quickselect(b, i));
+	    System.out.printf("for k=%d, --> %d%n", i, quickselect_old(b, i));
 	}
 	for(int test = 0; test < 5; test++) {
 	    int[] c = randomArray(5);
-	    System.out.printf("%s 3rd is %d%n", arr2str(c), quickselect(c, 3));
+	    System.out.printf("%s 3rd is %d%n", arr2str(c), quickselect_old(c, 3));
 	}
 	/*System.out.println();
 	int[] d = {9, 3, 7, 0, 1, 5};
@@ -31,7 +31,7 @@ public class Quick {
 	int[] f = {1, 1, 0, 1, 1, 1, 1, 1};
 	System.out.println("Ended as " + partition(f, 0, f.length-1));
 	printArr(f);
-	System.out.println();
+	/*System.out.println();
 	for(int test = 0; test < 5; test++) {
 	    int[] g = randomArray(5);
 	    int[] sorted = new int[g.length];
@@ -41,6 +41,11 @@ public class Quick {
 	    }
 	    System.out.printf(" %22s%n", arr2str(sorted));
 	}
+	*/
+	System.out.println();
+	int[] h = {99, 32, 69, 69, 55};
+	System.out.println("Ended as " + partition(h, 0, h.length-1));
+	printArr(h);
     }
 
     /**
@@ -60,8 +65,8 @@ public class Quick {
 	int start = 0, end = array.length-1, result;
 	do {
 	    result = partition(array, start, end);
-	    if(result < k)      start = result;
-	    else if(result > k) end = result;
+	    if(result < k)      start = result + 1;
+	    else if(result > k) end = result - 1;
 	} while(result != k);
 	return array[k];
     }
@@ -105,7 +110,7 @@ public class Quick {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	swap(data, end, pivotIndex);
 	int pivot = data[end], greater = end - 1, equal = end - 1;
-	//System.out.print("Sorting around " + pivot);
+	System.out.print("Sorting around " + pivot);
 	for(int i = 0; i <= equal; ) {
 	    if(data[i] == pivot) {
 		swap(data, i, equal);
@@ -120,7 +125,7 @@ public class Quick {
 		i++;
 	    }
 	}
-	//System.out.printf(" with e=%d and g=%d%n",equal,greater);
+	System.out.printf(" with e=%d and g=%d%n",equal,greater);
 	greater++;
 	swap(data, greater, end);
 	return (equal + greater + 2) / 2;
