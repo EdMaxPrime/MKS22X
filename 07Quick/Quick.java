@@ -73,6 +73,24 @@ public class Quick {
 	return wall;
     }
 
+    public static int partition(int[] data, int start, int end) {
+	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
+	swap(data, end, pivotIndex);
+	int pivot = data[end], wall = end - 1;
+	for(int i = 0; i < wall; ) {
+	    if(data[i] >= pivot) {
+		swap(data, i, wall);
+		wall--;
+	    } else {
+		i++;
+	    }
+	}
+	//System.out.println("Sorting around " + pivot);
+	if(data[end] < data[wall]) swap(data, wall, end);
+	else wall++;
+	return wall;
+    }
+
     /**
        Yuck
      */
