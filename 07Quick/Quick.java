@@ -80,6 +80,7 @@ public class Quick {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	swap(data, end, pivotIndex);
 	int pivot = data[end], greater = end - 1, equal = end - 1;
+	System.out.print("Sorting around " + pivot);
 	for(int i = 0; i <= equal; ) {
 	    if(data[i] == pivot) {
 		swap(data, i, equal);
@@ -94,7 +95,7 @@ public class Quick {
 		i++;
 	    }
 	}
-	System.out.printf("Sorting around %d with e=%d and g=%d%n",pivot,equal,greater);
+	System.out.printf(" with e=%d and g=%d%n",equal,greater);
 	greater++;
 	swap(data, greater, end);
 	return equal;
