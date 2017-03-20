@@ -98,7 +98,7 @@ public class Quick {
 	System.out.printf(" with e=%d and g=%d%n",equal,greater);
 	greater++;
 	swap(data, greater, end);
-	return equal;
+	return (equal + greater + 2) / 2;
     }
 
     /**
