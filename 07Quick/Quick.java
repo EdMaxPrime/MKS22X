@@ -6,7 +6,7 @@ public class Quick {
 	System.out.printf("%10s====A====%n", "");
 	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(a);
-	printArr("Returned %a", partition(a, 0, a.length-1, 1));
+	printArr("Returned %a", partition(a, 0, a.length-1, 2));
 	printArr(a);
     }
 
