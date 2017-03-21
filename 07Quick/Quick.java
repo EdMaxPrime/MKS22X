@@ -48,7 +48,7 @@ public class Quick {
 	swap(array, start, pi);
 	System.out.print((start+1)+") ? ");
 	printTriFlag(array, low, high, start+1);
-	for(int i = start+1; i < high; ) {
+	for(int i = start+1; i <= high; ) {
 	    String tri = i + ") ";
 	    if(array[i] < pivot) {
 		swap(array, i, low);
@@ -69,7 +69,6 @@ public class Quick {
 	    System.out.print(tri);
 	    printTriFlag(array, low, high, i);
 	}
-	high--;
 	if(low > 0) {swap(array, start, low-1);}
 	return new int[] {low, high};
     }
