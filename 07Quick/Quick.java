@@ -136,4 +136,23 @@ public class Quick {
 	}
 	return copy;
     }
+
+    public static void printTriFlag(int[] a, int low, int hi, int curr) {
+	String str = "[";
+	for(int i = 0; i < a.length; i++) {
+	    String elem = ""+a[i];
+	    if(i == low) {
+		elem = elem + "\033[34m";
+	    }
+	    if(i == hi) {
+		elem = elem + "\033[32m";
+	    }
+	    if(i == curr) {
+		elem = elem + "\033[4m";
+	    }
+	    elem += "\033[0m";
+	    if(i != a.length-1) elem += ", ";
+	}
+	System.out.println(str + "]");
+    }
 }
