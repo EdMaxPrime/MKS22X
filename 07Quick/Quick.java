@@ -1,13 +1,16 @@
 import java.util.Random;
 
 public class Quick {
+    public static boolean debug;
     public static void main(String[] args) {
 	//used for tests
+	debug = true;
 	System.out.printf("%10s====A====%n", "");
 	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(a);
 	printArr("Returned %a", partition(a, 0, a.length-1, 2));
 	printArr(a);
+	debug = false;
     }
 
     public static int quickselect(int[] array, int k) {
@@ -46,8 +49,10 @@ public class Quick {
 	int pivot = array[pi];
 	int low = start, high = end;
 	swap(array, start, pi);
-	System.out.print((start+1)+") ? ");
-	printTriFlag(array, low, high, start+1);
+	if(debug) {
+	    System.out.print((start+1)+") ? ");
+	    printTriFlag(array, low, high, start+1);
+	}
 	for(int i = start+1; i <= high; ) {
 	    String tri = i + ") ";
 	    if(array[i] < pivot) {
@@ -66,8 +71,10 @@ public class Quick {
 		//we are in the unknown zone, must validate again
 		tri += "> ";
 	    }
-	    System.out.print(tri);
-	    printTriFlag(array, low, high, i);
+	    if(debug) {
+		System.out.print(tri);
+		printTriFlag(array, low, high, i);
+	    }
 	}
 	if(low > 0) {swap(array, start, low-1);}
 	return new int[] {low, high};
