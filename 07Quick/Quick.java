@@ -14,12 +14,13 @@ public class Quick {
     }
 
     public static int quickselect(int[] array, int k) {
-	int start = 0, end = array.length-1, result;
+	int start = 0, end = array.length-1;
+	Range result;
 	do {
-	    result = 0;//partition(array, start, end);
-	    if(result < k)      start = result + 1;
-	    else if(result > k) end = result - 1;
-	} while(result != k);
+	    result = partition(array, start, end);
+	    if(result.toTheRightOf(k))    start = result.e + 1;
+	    else if(result.toTheLeftOf(k)) end = result.s - 1;
+	} while(!result.includes(k));
 	return array[k];
     }
 
@@ -186,6 +187,12 @@ public class Quick {
 	}
 	public boolean includes(int i) {
 	    return (i >= s && i <= e);
+	}
+	public boolean toTheRightOf(int i) {
+	    return i < s;
+	}
+	public boolean toTheLeftOf(int i) {
+	    return e < i;
 	}
 	public String toString() {
 	    return "[" + s + ", " + e + "]";
