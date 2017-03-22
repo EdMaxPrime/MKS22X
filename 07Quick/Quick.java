@@ -11,6 +11,11 @@ public class Quick {
 	System.out.println("Returned " + partition(a, 0, a.length-1, 2));
 	printArr(a);
 	debug = false;
+	System.out.printf("%10s====B====%n", "");
+	int[] b = {1, 0, 3, 2, 3, 4, 2, 3};
+	printArr(b);
+	System.out.println("Returned " + quickselect(b, 0));
+	printArr(b);
     }
 
     public static int quickselect(int[] array, int k) {
@@ -18,8 +23,8 @@ public class Quick {
 	Range result;
 	do {
 	    result = partition(array, start, end);
-	    if(result.toTheRightOf(k))    start = result.e + 1;
-	    else if(result.toTheLeftOf(k)) end = result.s - 1;
+	    if(result.toTheRightOf(k))     end = result.s - 1;
+	    else if(result.toTheLeftOf(k)) start = result.e + 1;
 	} while(!result.includes(k));
 	return array[k];
     }
