@@ -8,7 +8,7 @@ public class Quick {
 	System.out.printf("%10s====A====%n", "");
 	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(a);
-	printArr("Returned %a", partition(a, 0, a.length-1, 2));
+	System.out.println("Returned " + partition(a, 0, a.length-1, 2));
 	printArr(a);
 	debug = false;
     }
@@ -27,7 +27,7 @@ public class Quick {
        Wrapper for partition, uses a random index as the pivot
        @see partition
      */
-    public static int[] partition(int[] array, int start, int end) {
+    public static Range partition(int[] array, int start, int end) {
 	int pivotIndex = (new Random()).nextInt(end - start + 1) + start;
 	return partition(array, start, end, pivotIndex);
     }
@@ -45,7 +45,7 @@ public class Quick {
                    leftmost boundary of middle section, second element
 		   is the rightmost boundary of the middle section.
      */
-    public static int[] partition(int[] array, int start, int end, int pi) {
+    public static Range partition(int[] array, int start, int end, int pi) {
 	int pivot = array[pi];
 	int low = start, high = end;
 	swap(array, start, pi);
@@ -77,7 +77,7 @@ public class Quick {
 	    }
 	}
 	if(low > 0) {swap(array, start, low-1);}
-	return new int[] {low, high};
+	return new Range(low, high);
     }
 
     /**
@@ -176,5 +176,19 @@ public class Quick {
 	    str += elem;
 	}
 	System.out.println(str + "]");
+    }
+
+    private static class Range {
+	public int s, e;
+	public Range(int s, int e) {
+	    this.s = s;
+	    this.e = e;
+	}
+	public boolean includes(int i) {
+	    return (i >= s && i <= e);
+	}
+	public String toString() {
+	    return "[" + s + ", " + e + "]";
+	}
     }
 }
