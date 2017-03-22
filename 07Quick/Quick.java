@@ -139,6 +139,18 @@ public class Quick {
 	return copy;
     }
 
+    /**
+       Prints an array according to what it would look like in
+       a Dutch Flag arrangement. Expects a boundary for the first
+       section and for the higher section. Both are exclusive of
+       their sections but inclusive of the middle section. The low
+       divider is printed in blue, the currently selected element
+       is underlined, and the high divider is printed in green.
+       @param a     the array of integers
+       @param low   the low section divider
+       @param hi    the high section divider
+       @param curr  the currently selected element
+     */
     public static void printTriFlag(int[] a, int low, int hi, int curr) {
 	String str = "[";
 	for(int i = 0; i < a.length; i++) {
