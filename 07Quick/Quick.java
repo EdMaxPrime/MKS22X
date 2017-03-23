@@ -24,6 +24,22 @@ public class Quick {
 	printArr(c);
 	quicksort(c);
 	printArr(c);
+	System.out.printf("%10s====D====%n", "");
+	int[] d = randomArray(100);
+	for(int test = 0; test < 20; test++) {
+	    int[] d_copy = copy(d);
+	    Range r = partition(d_copy, 0, d_copy.length-1, test*5);
+	    for(int i = 0; i < d_copy.length; i++) {
+		if((i < r.s && d_copy[i] >= d_copy[r.s]) ||
+		   (r.includes(i) && d_copy[i] != d_copy[r.s]) ||
+		   (i > r.e && d_copy[i] <= d_copy[r.s])) {
+		    System.out.print(" F");
+		    continue;
+		}
+	    }
+	    System.out.print(" T");
+	}
+	System.out.println();
     }
 
     public static void quicksort(int[] array) {
