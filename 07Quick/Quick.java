@@ -21,6 +21,18 @@ public class Quick {
 	}
     }
 
+    public static void quicksort(int[] array) {
+	quicksortHelp(array, 0, array.length-1);
+    }
+
+    public static void quicksortHelp(int[] array, int start, int end) {
+	if(start < end) {
+	    Range result = partition(array, start, end);
+	    quicksortHelp(array, start, result.s-1);
+	    quicksortHelp(array, result.e+1, end);
+	}
+    }
+
     public static int quickselect(int[] array, int k) {
 	int start = 0, end = array.length-1;
 	Range result;
