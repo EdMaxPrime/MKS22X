@@ -19,6 +19,11 @@ public class Quick {
 	    System.out.println("The " + i + "th is " + quickselect(b2, i));
 	    printArr(b2);
 	}
+	System.out.printf("%10s====C====%n", "");
+	int[] c = {0, 90, 40, 20, 80, 30, 10, 70, 50, 60};
+	printArr(c);
+	quicksort(c);
+	printArr(c);
     }
 
     public static void quicksort(int[] array) {
@@ -26,6 +31,7 @@ public class Quick {
     }
 
     public static void quicksortHelp(int[] array, int start, int end) {
+	System.out.println("Gonna do "+start+" to "+end+" "+arr2str(array));
 	if(start < end) {
 	    Range result = partition(array, start, end);
 	    quicksortHelp(array, start, result.s-1);
