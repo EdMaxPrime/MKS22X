@@ -19,12 +19,12 @@ public class Quick {
 	    System.out.println("The " + i + "th is " + quickselect(b2, i));
 	    printArr(b2);
 	}
-	System.out.printf("%10s====C====%n", "");
+	System.out.printf("%10s====C====%n", ""); //test quicksort
 	int[] c = {0, 90, 40, 20, 80, 30, 10, 70, 50, 60};
 	printArr(c);
 	quicksort(c);
 	printArr(c);
-	System.out.printf("%10s====D====%n", "");
+	System.out.printf("%10s====D====%n", ""); //test partition en mass
 	int[] d = randomArray(100);
 	for(int test = 0; test < 20; test++) {
 	    int[] d_copy = copy(d);
@@ -40,9 +40,8 @@ public class Quick {
 	    System.out.print(" T");
 	}
 	System.out.println();
-	System.out.printf("%10s====E====%n", "");
+	System.out.printf("%10s====E====%n", ""); //test ranges
 	int[] e = {0, 10, 30, 40, 40, 50, 60, 70, 80, 90};
-	debug = true;
 	partition(e, 2, 6, 2);
 	printArr(e);
     }
@@ -54,7 +53,6 @@ public class Quick {
     public static void quicksortHelp(int[] array, int start, int end) {
 	if(start < end) {
 	    Range result = partition(array, start, end);
-	    System.out.println("Gor "+result+" in "+start+":"+end+" "+arr2str(array));
 	    quicksortHelp(array, start, result.s-1);
 	    quicksortHelp(array, result.e+1, end);
 	}
@@ -65,7 +63,7 @@ public class Quick {
 	Range result;
 	do {
 	    result = partition(array, start, end);
-	    System.out.println("Got " + result + " in " + new Range(start,end) + arr2str(array));
+	    //System.out.println("Got " + result + " in " + new Range(start,end) + arr2str(array));
 	    if(result.toTheRightOf(k))     end = result.s - 1;
 	    else if(result.toTheLeftOf(k)) start = result.e + 1;
 	} while(!result.includes(k));
