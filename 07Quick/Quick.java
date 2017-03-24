@@ -40,7 +40,7 @@ public class Quick {
 	    System.out.print(" T");
 	}
 	System.out.println();
-	System.out.printf("%10s====E====%n", ""); //test ranges
+	System.out.printf("%10s====E====%n", ""); //test ranged partition
 	int[] e = {0, 10, 30, 40, 40, 50, 60, 70, 80, 90};
 	partition(e, 2, 6, 2);
 	printArr(e);
