@@ -40,6 +40,11 @@ public class Quick {
 	    System.out.print(" T");
 	}
 	System.out.println();
+	System.out.printf("%10s====E====%n", "");
+	int[] e = {0, 10, 30, 40, 40, 50, 60, 70, 80, 90};
+	debug = true;
+	partition(e, 2, 6, 2);
+	printArr(e);
     }
 
     public static void quicksort(int[] array) {
@@ -47,9 +52,9 @@ public class Quick {
     }
 
     public static void quicksortHelp(int[] array, int start, int end) {
-	System.out.println("Gonna do "+start+" to "+end+" "+arr2str(array));
 	if(start < end) {
 	    Range result = partition(array, start, end);
+	    System.out.println("Gor "+result+" in "+start+":"+end+" "+arr2str(array));
 	    quicksortHelp(array, start, result.s-1);
 	    quicksortHelp(array, result.e+1, end);
 	}
@@ -120,7 +125,7 @@ public class Quick {
 		printTriFlag(array, low, high, i);
 	    }
 	}
-	if(low > 0) {swap(array, start, low-1);}
+	if(low > start) {swap(array, start, low-1);}
 	return new Range(low, high);
     }
 
