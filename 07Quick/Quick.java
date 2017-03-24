@@ -50,6 +50,7 @@ public class Quick {
 	int[] f_ordered = new int[f.length];
 	int[] f_sorted = copy(f);
 	quicksort(f_sorted);
+	System.out.print("[");
 	for(int i = 0; i < f.length; i++) {
 	    f_ordered[i] = quickselect(copy(f), i);
 	    System.out.printf("%2d", f_ordered[i]);
@@ -60,10 +61,17 @@ public class Quick {
 	System.out.println();
     }
 
+    /**
+       Sorts an array in O( N*log(N) ) time
+     */
     public static void quicksort(int[] array) {
 	quicksortHelp(array, 0, array.length-1);
     }
 
+    /**
+       Helper method for quicksort that takes care of a
+       portion of the array. Expects inclusive indices.
+     */
     public static void quicksortHelp(int[] array, int start, int end) {
 	if(start < end) {
 	    Range result = partition(array, start, end);
@@ -72,6 +80,13 @@ public class Quick {
 	}
     }
 
+    /**
+       Finds the kth smallest element in the array
+       @param array  the array to look in; array will be modified
+       @param k      the index which will contain the kth smallest
+                     nonunique element
+       @return       the kth smallest element (not the index)
+     */
     public static int quickselect(int[] array, int k) {
 	int start = 0, end = array.length-1;
 	Range result;
@@ -167,6 +182,13 @@ public class Quick {
 	return array;
     }
 
+    /**
+       Makes an array of random positive integers less than 100
+       with some of them duplicated.
+       @param len  if len is &lt; 0, array will be of random length,
+                   otherwise the array will be of len length
+       @return     the array
+     */
     public static int[] randomArrayDuplicates(int len) {
 	Random rng = new Random();
 	if(len < 0) len = (int)(Math.abs(rng.nextInt()));
@@ -182,7 +204,19 @@ public class Quick {
 	    repeat--;
 	    len--;
 	}
+	shuffle(array);
 	return array;
+    }
+
+    /**
+       Shuffles an array by swapping elements randomly
+       @param array  the array to be randomized
+     */
+    public static void shuffle(int[] array) {
+	Random rng = new Random();
+	for(int i = 0; i < array.length; i++) {
+	    swap(array, i, rng.nextInt(array.length));
+	}
     }
 
     /**
@@ -259,6 +293,11 @@ public class Quick {
 
     private static class Range {
 	public int s, e;
+	/**
+	   Creates a Range object from s to e INCLUSIVE
+	   @param s  the starting index
+	   @param e  the end index
+	 */
 	public Range(int s, int e) {
 	    this.s = s;
 	    this.e = e;
@@ -266,9 +305,15 @@ public class Quick {
 	public boolean includes(int i) {
 	    return (i >= s && i <= e);
 	}
+	/**
+	   Returns true if the integer is less than this range
+	 */
 	public boolean toTheRightOf(int i) {
 	    return i < s;
 	}
+	/**
+	   Returns false if the integer is greater than this range
+	 */
 	public boolean toTheLeftOf(int i) {
 	    return e < i;
 	}
