@@ -5,13 +5,13 @@ public class Quick {
     public static void main(String[] args) {
 	//used for tests
 	debug = true;
-	System.out.printf("%10s====A====%n", "");
+	System.out.printf("%10s====A====%n", ""); //test partition
 	int[] a = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(a);
 	System.out.println("Returned " + partition(a, 0, a.length-1, 2));
 	printArr(a);
 	debug = false;
-	System.out.printf("%10s====B====%n", "");
+	System.out.printf("%10s====B====%n", ""); //test quickselect
 	int[] b = {1, 0, 3, 2, 3, 4, 2, 3};
 	printArr(b);
 	for(int i = 0; i < 4; i++) {
@@ -44,6 +44,20 @@ public class Quick {
 	int[] e = {0, 10, 30, 40, 40, 50, 60, 70, 80, 90};
 	partition(e, 2, 6, 2);
 	printArr(e);
+	System.out.printf("%10s====F====%n", ""); //test quickselect more
+	int[] f = randomArrayDuplicates(20);
+	printArr(f);
+	int[] f_ordered = new int[f.length];
+	int[] f_sorted = copy(f);
+	quicksort(f_sorted);
+	for(int i = 0; i < f.length; i++) {
+	    f_ordered[i] = quickselect(copy(f), i);
+	    System.out.printf("%2d", f_ordered[i]);
+	    if(f_ordered[i] != f_sorted[i]) System.out.print("!");
+	    else System.out.print(",");
+	    System.out.print(" ");
+	}
+	System.out.println();
     }
 
     public static void quicksort(int[] array) {
@@ -148,6 +162,24 @@ public class Quick {
 	int[] array = new int[len];
 	while(len > 0) {
 	    array[len - 1] = rng.nextInt(100);
+	    len--;
+	}
+	return array;
+    }
+
+    public static int[] randomArrayDuplicates(int len) {
+	Random rng = new Random();
+	if(len < 0) len = (int)(Math.abs(rng.nextInt()));
+	int[] array = new int[len];
+	int repeat = 0;
+	while(len > 0) {
+	    if(repeat == 0) {
+		repeat = 1 + rng.nextInt(5);
+		array[len - 1] = rng.nextInt(100);
+	    } else {
+		array[len - 1] = array[len];
+	    }
+	    repeat--;
 	    len--;
 	}
 	return array;
