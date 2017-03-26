@@ -21,9 +21,19 @@ public class Merge {
 	    mergesort(c[i]);
 	    printArr(c[i]);
 	}
+	System.out.printf("%10s=== Small Arrays ===%n", "");
+	int[][] d = {
+	    {1, 2, 3, 4}, {-9, 0, 9}, {7, 6, 5, 4}, {2, 0, 9, 1, 8, 7}
+	};
+	for(int i = 0; i < d.length; i++) {
+	    System.out.print(arr2str(d[i])+" --> ");
+	    mergesort(d[i]);
+	    printArr(d[i]);
+	}
     }
 
     public static void mergesort(int[] array) {
+	/*
 	//base case: length of 1, return array
 	if(array.length <= 1) return;
 	//sort left half
@@ -34,6 +44,21 @@ public class Merge {
 	mergesort(right);
 	//merge the two halves
 	merge(0, left, right, array);
+	*/
+	mergeHelp(array, 0, array.length);
+    }
+
+    private static void mergeHelp(int[] array, int start, int end) {
+	//base case: length of 1, return array
+	if(end-start <= 1) return;
+	//sort left half
+	mergeHelp(array, start, start+(end-start)/2);
+	//sort right half
+	mergeHelp(array, start+(end-start)/2, end);
+	//merge the two halves
+	int[] left =  slice(array, start, start+(end-start)/2);
+	int[] right = slice(array, start+(end-start)/2, end);
+	merge(start, left, right, array);
     }
 
     public static void merge(int start, int[] a, int[] b, int[] dest) {
