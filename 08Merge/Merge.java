@@ -6,6 +6,7 @@ public class Merge {
 	System.out.printf("%10s=== Merge ===%n", "");
 	int[] a = new int[10];
 	merge(0, new int[] {0, 1, 3, 5, 5}, new int[] {2, 4, 4, 6, 8}, a);
+	printArr(a);
     }
 
     public static void mergesort(int[] array) {
