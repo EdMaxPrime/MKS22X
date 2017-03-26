@@ -30,6 +30,19 @@ public class Merge {
 	    mergesort(d[i]);
 	    printArr(d[i]);
 	}
+	System.out.printf("%10s=== Big Arrays ===%n", "");
+	int e_counter = 80, e_size = 100000;
+	while(e_counter > 0) {
+	    int[] e = randomArray(e_size); //yuge
+	    mergesort(e);
+	    if(isSorted(e)) System.out.printf("T ");
+	    else System.out.printf("F ");
+	    if((e_counter-1) % 20 == 0) {
+		System.out.println();
+		e_size *= 2;
+	    }
+	    e_counter--;
+	}
     }
 
     public static void mergesort(int[] array) {
@@ -94,6 +107,19 @@ public class Merge {
 	    slice[i - start] = original[i];
 	}
 	return slice;
+    }
+
+    /**
+       Tests if an array is sorted.
+       @param array  the array to be tested
+       @return       true if the array is sorted
+                     in ascending order, else false.
+     */
+    public static boolean isSorted(int[] array) {
+	for(int i = 1; i < array.length; i++) {
+	    if(array[i] < array[i-1]) return false;
+	}
+	return true;
     }
 
     /**
