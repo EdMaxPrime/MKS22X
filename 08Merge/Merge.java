@@ -7,6 +7,11 @@ public class Merge {
 	int[] a = new int[10];
 	merge(0, new int[] {0, 1, 3, 5, 5}, new int[] {2, 4, 4, 6, 8}, a);
 	printArr(a);
+	System.out.printf("%10s=== Slice  ===%n", "");
+	int[] b = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	printArr(slice(b, 0, 2));
+	printArr(slice(b, 2, 7));
+	printArr(slice(b, 7, 10));
     }
 
     public static void mergesort(int[] array) {
@@ -41,6 +46,14 @@ public class Merge {
 		start++;
 	    }
 	}
+    }
+
+    public static int[] slice(int[] original, int start, int end) {
+	int[] slice = new int[end - start];
+	for(int i = start; i < end; i++) {
+	    slice[i - start] = original[i];
+	}
+	return slice;
     }
 
     /**
