@@ -12,13 +12,28 @@ public class Merge {
 	printArr(slice(b, 0, 2));
 	printArr(slice(b, 2, 7));
 	printArr(slice(b, 7, 10));
+	System.out.printf("%10s=== Base Case  ===%n", "");
+	int[][] c = {
+	    {}, {1}, {1, 2}, {4, 3}
+	};
+	for(int i = 0; i < c.length; i++) {
+	    System.out.print(arr2str(c[i])+" --> ");
+	    mergesort(c[i]);
+	    printArr(c[i]);
+	}
     }
 
     public static void mergesort(int[] array) {
 	//base case: length of 1, return array
+	if(array.length <= 1) return;
 	//sort left half
+	int[] left =  slice(array, 0, array.length/2);
+	mergesort(left);
 	//sort right half
+	int[] right = slice(array, array.length/2, array.length);
+	mergesort(right);
 	//merge the two halves
+	merge(0, left, right, array);
     }
 
     public static void merge(int start, int[] a, int[] b, int[] dest) {
