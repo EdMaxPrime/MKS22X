@@ -19,6 +19,12 @@ public class MyLinkedList {
 		start.prev = new LNode(data, null, start);
 		start = start.prev;
 	    }
+	    else {
+	        LNode before = getNode(index - 1),
+		      after  = before.next;
+		before.next = new LNode(data, before, after);
+		after.prev = before.next;
+	    }
 	    size++;
 	}
     }
@@ -66,6 +72,9 @@ public class MyLinkedList {
 	a.add(1);
 	System.out.println(a);
 	a.add(0, -1);
+	System.out.println(a);
+	a.add(1, 2);
+	a.add(1, 3);
 	System.out.println(a);
     }
 }
