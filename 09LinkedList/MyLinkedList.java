@@ -19,6 +19,10 @@ public class MyLinkedList {
 		start.prev = new LNode(data, null, start);
 		start = start.prev;
 	    }
+	    else if(index == size) {
+		LNode last = getNode(-1);
+		last.next = new LNode(data, last, null);
+	    }
 	    else {
 	        LNode before = getNode(index - 1),
 		      after  = before.next;
@@ -30,6 +34,7 @@ public class MyLinkedList {
     }
 
     private LNode getNode(int index) {
+	if(index < 0) index += size; //backwards indexing
 	LNode current = start;
 	while(index > 0) {
 	    current = current.next;
@@ -75,6 +80,9 @@ public class MyLinkedList {
 	System.out.println(a);
 	a.add(1, 2);
 	a.add(1, 3);
+	System.out.println(a);
+	a.add(4);
+	a.add(5);
 	System.out.println(a);
     }
 }
