@@ -48,6 +48,20 @@ public class MyLinkedList {
 	return old;
     }
 
+    public int remove(int index) throws IndexOutOfBoundsException {
+	if(index < 0 || index >= size)
+	    throw new IndexOutOfBoundsException("Can't remove from "+index);
+	System.out.printf("Last: %d%n", getNode(-1).value);
+	LNode affected = getNode(index);
+	LNode before = affected.prev, after = affected.next;
+	if(index > 0) before.next = after;
+	else          start = after;
+	if(index < size-1) after.prev = before;
+	else               last = before;
+	size--;
+	return affected.value;
+    }
+
     public int get(int index) throws IndexOutOfBoundsException{
 	if(index < 0 || index >= size)
 	    throw new IndexOutOfBoundsException("Invalid index "+index);
@@ -115,6 +129,9 @@ public class MyLinkedList {
 	System.out.println(a);
 	System.out.printf("2nd is %d%n", a.get(1));
 	a.set(0, 0);
+	System.out.println(a);
+	a.remove(0);
+	a.remove(a.size()-1);
 	System.out.println(a);
     }
 }
