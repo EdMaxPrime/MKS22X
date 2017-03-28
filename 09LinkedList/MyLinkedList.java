@@ -51,7 +51,6 @@ public class MyLinkedList {
     public int remove(int index) throws IndexOutOfBoundsException {
 	if(index < 0 || index >= size)
 	    throw new IndexOutOfBoundsException("Can't remove from "+index);
-	System.out.printf("Last: %d%n", getNode(-1).value);
 	LNode affected = getNode(index);
 	LNode before = affected.prev, after = affected.next;
 	if(index > 0) before.next = after;
