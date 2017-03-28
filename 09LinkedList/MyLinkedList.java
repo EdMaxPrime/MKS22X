@@ -78,7 +78,7 @@ public class MyLinkedList {
 	    }
 	} else {
 	    current = last;
-	    while(index < size) {
+	    while(index < size-1) {
 		current = current.prev;
 		index++;
 	    }
@@ -130,7 +130,7 @@ public class MyLinkedList {
 	System.out.printf("2nd is %d%n", a.get(1));
 	a.set(0, 0);
 	System.out.println(a);
-	a.remove(0);
+	a.remove(a.size()-1);
 	a.remove(0);
 	System.out.println(a);
     }
