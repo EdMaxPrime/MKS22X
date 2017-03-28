@@ -7,6 +7,17 @@ public class MyLinkedList {
 	size = 0;
     }
 
+    public void add(int data) {
+	add(size, data);
+    }
+
+    public void add(int index, int data) {
+	if(index >= 0 && index <= size) {
+	    if(size == 0)
+		start = new LNode(data, null, null);
+	}
+    }
+
     private LNode getNode(int index) {
 	LNode current = start;
 	while(index > 0) {
@@ -46,6 +57,8 @@ public class MyLinkedList {
 
     public static void main(String[] args) {
 	MyLinkedList a = new MyLinkedList();
+	System.out.println(a);
+	a.add(1);
 	System.out.println(a);
     }
 }
