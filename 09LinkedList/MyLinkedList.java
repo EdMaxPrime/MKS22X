@@ -33,6 +33,12 @@ public class MyLinkedList {
 	}
     }
 
+    public int get(int index) throws IndexOutOfBoundsException{
+	if(index < 0 || index >= size)
+	    throw new IndexOutOfBoundsException("Invalid index "+index);
+        return getNode(index).value;
+    }
+
     private LNode getNode(int index) {
 	if(index < 0) index += size; //backwards indexing
 	LNode current = start;
@@ -84,5 +90,6 @@ public class MyLinkedList {
 	a.add(4);
 	a.add(5);
 	System.out.println(a);
+	System.out.printf("2nd is %d%n", a.get(1));
     }
 }
