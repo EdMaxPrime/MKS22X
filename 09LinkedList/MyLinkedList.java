@@ -85,6 +85,23 @@ public class MyLinkedList {
 	return current;
     }
 
+    public int indexOf(int element) {
+	if(size == 1)
+	    return ((start.value == element)? 0 : -1);
+	LNode forward = start, backward = last;
+	int index = 0;
+	while(index < size/2) {
+	    if(forward.value == element) return index;
+	    else if(backward.value == element) return size-index-1;
+	    else {
+		backward = backward.prev;
+		forward  = forward.next;
+		index++;
+	    }
+	}
+	return -1;
+    }
+
     public int size() {return size;}
 
     public String toString() {
@@ -132,5 +149,6 @@ public class MyLinkedList {
 	a.remove(a.size()-1);
 	a.remove(0);
 	System.out.println(a);
+	System.out.printf("5@%d, 3@%d, 4@%d%n", a.indexOf(5), a.indexOf(3), a.indexOf(4));
     }
 }
