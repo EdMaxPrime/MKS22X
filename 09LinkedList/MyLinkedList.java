@@ -36,6 +36,12 @@ public class MyLinkedList {
 	}
     }
 
+    public void set(int index, int value) throws IndexOutOfBoundsException {
+	if(index < 0 || index >= size)
+	    throw new IndexOutOfBoundsException("Invalid index "+index);
+	getNode(index).value = value;
+    }
+
     public int get(int index) throws IndexOutOfBoundsException{
 	if(index < 0 || index >= size)
 	    throw new IndexOutOfBoundsException("Invalid index "+index);
@@ -102,5 +108,7 @@ public class MyLinkedList {
 	a.add(5);
 	System.out.println(a);
 	System.out.printf("2nd is %d%n", a.get(1));
+	a.set(0, 0);
+	System.out.println(a);
     }
 }
