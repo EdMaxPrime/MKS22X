@@ -8,7 +8,13 @@ public class MyLinkedList {
     }
     
     private class LNode {
-	
+	public LNode next, prev;
+	public int value;
+	public LNode(int data, LNode n, LNode p) {
+	    value = data;
+	    next = n;
+	    prev = p;
+	}
     }
 
     public static void main(String[] args) {
