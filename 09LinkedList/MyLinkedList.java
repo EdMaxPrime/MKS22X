@@ -131,7 +131,7 @@ public class MyLinkedList {
 	a.set(0, 0);
 	System.out.println(a);
 	a.remove(0);
-	a.remove(a.size()-1);
+	a.remove(0);
 	System.out.println(a);
     }
 }
