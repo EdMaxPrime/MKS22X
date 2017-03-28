@@ -8,8 +8,9 @@ public class MyLinkedList {
 	size = 0;
     }
 
-    public void add(int data) {
+    public boolean add(int data) {
 	add(size, data);
+	return true;
     }
 
     public void add(int index, int data) {
