@@ -15,6 +15,11 @@ public class MyLinkedList {
 	if(index >= 0 && index <= size) {
 	    if(size == 0)
 		start = new LNode(data, null, null);
+	    else if(index == 0) {
+		start.prev = new LNode(data, null, start);
+		start = start.prev;
+	    }
+	    size++;
 	}
     }
 
@@ -48,7 +53,7 @@ public class MyLinkedList {
     private class LNode {
 	public LNode next, prev;
 	public int value;
-	public LNode(int data, LNode n, LNode p) {
+	public LNode(int data, LNode p, LNode n) {
 	    value = data;
 	    next = n;
 	    prev = p;
@@ -59,6 +64,8 @@ public class MyLinkedList {
 	MyLinkedList a = new MyLinkedList();
 	System.out.println(a);
 	a.add(1);
+	System.out.println(a);
+	a.add(0, -1);
 	System.out.println(a);
     }
 }
