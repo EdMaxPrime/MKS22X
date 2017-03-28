@@ -39,15 +39,6 @@ public class MyLinkedList {
 	}
     }
 
-    public int set(int index, int value) throws IndexOutOfBoundsException {
-	if(index < 0 || index >= size)
-	    throw new IndexOutOfBoundsException("Invalid index "+index);
-	LNode affected = getNode(index);
-	int old = affected.value;
-	affected.value = value;
-	return old;
-    }
-
     public int remove(int index) throws IndexOutOfBoundsException {
 	if(index < 0 || index >= size)
 	    throw new IndexOutOfBoundsException("Can't remove from "+index);
@@ -59,6 +50,15 @@ public class MyLinkedList {
 	else               last = before;
 	size--;
 	return affected.value;
+    }
+
+    public int set(int index, int value) throws IndexOutOfBoundsException {
+	if(index < 0 || index >= size)
+	    throw new IndexOutOfBoundsException("Invalid index "+index);
+	LNode affected = getNode(index);
+	int old = affected.value;
+	affected.value = value;
+	return old;
     }
 
     public int get(int index) throws IndexOutOfBoundsException{
