@@ -1,9 +1,10 @@
 public class MyLinkedList {
-    private LNode start;
+    private LNode start, last;
     private int size;
 
     public MyLinkedList() {
 	start = null;
+	last = null;
 	size = 0;
     }
 
@@ -13,15 +14,17 @@ public class MyLinkedList {
 
     public void add(int index, int data) {
 	if(index >= 0 && index <= size) {
-	    if(size == 0)
+	    if(size == 0) {
 		start = new LNode(data, null, null);
+	        last = start;
+	    }
 	    else if(index == 0) {
 		start.prev = new LNode(data, null, start);
 		start = start.prev;
 	    }
 	    else if(index == size) {
-		LNode last = getNode(-1);
 		last.next = new LNode(data, last, null);
+		last = last.next;
 	    }
 	    else {
 	        LNode before = getNode(index - 1),
