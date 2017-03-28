@@ -13,7 +13,7 @@ public class MyLinkedList {
 	return true;
     }
 
-    public void add(int index, int data) {
+    public void add(int index, int data) throws IndexOutOfBoundsException {
 	if(index >= 0 && index <= size) {
 	    if(size == 0) {
 		start = new LNode(data, null, null);
@@ -34,6 +34,8 @@ public class MyLinkedList {
 		after.prev = before.next;
 	    }
 	    size++;
+	} else {
+	    throw new IndexOutOfBoundsException("Cannot add to "+index);
 	}
     }
 
