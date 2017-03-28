@@ -39,10 +39,13 @@ public class MyLinkedList {
 	}
     }
 
-    public void set(int index, int value) throws IndexOutOfBoundsException {
+    public int set(int index, int value) throws IndexOutOfBoundsException {
 	if(index < 0 || index >= size)
 	    throw new IndexOutOfBoundsException("Invalid index "+index);
-	getNode(index).value = value;
+	LNode affected = getNode(index);
+	int old = affected.value;
+	affected.value = value;
+	return old;
     }
 
     public int get(int index) throws IndexOutOfBoundsException{
