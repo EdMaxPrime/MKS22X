@@ -74,8 +74,13 @@ public class Merge {
 	merge(start, left, right, array);
     }
 
-    public static void merge2(int start, int div, int end, int[] src, int[] dest) {
-	
+    public static void merge2(int start, int div, int end, int[] arr) {
+	int a = start, b = div, index = start;
+	//loop while neither array-slice is empty
+	while(a < div && b < end) {
+	    //if A <= B and on left side, swap A and B, B++
+	    if(arr[a] <= arr[b]) {}
+	}
     }
 
     public static void merge(int start, int[] a, int[] b, int[] dest) {
