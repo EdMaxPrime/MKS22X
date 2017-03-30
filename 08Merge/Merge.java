@@ -74,6 +74,10 @@ public class Merge {
 	merge(start, left, right, array);
     }
 
+    public static void merge2(int start, int div, int end, int[] src, int[] dest) {
+	
+    }
+
     public static void merge(int start, int[] a, int[] b, int[] dest) {
 	int a_counter = 0, b_counter = 0;
 	while(a_counter < a.length && b_counter < b.length) {
