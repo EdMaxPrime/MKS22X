@@ -3,6 +3,10 @@ import java.util.Random;
 public class Merge {
     public static void main(String[] args) {
 	//tests
+	int[] z = {0, 2, 8, 1, 9};
+	merge2(0, 3, 4, z);
+	printArr("Final: %a", z);
+	/*
 	System.out.printf("%10s=== Merge ===%n", "");
 	int[] a = new int[10];
 	merge(0, new int[] {0, 1, 3, 5, 5}, new int[] {2, 4, 4, 6, 8}, a);
@@ -43,6 +47,7 @@ public class Merge {
 	    }
 	    e_counter--;
 	}
+	*/
     }
 
     public static void mergesort(int[] array) {
@@ -75,11 +80,21 @@ public class Merge {
     }
 
     public static void merge2(int start, int div, int end, int[] arr) {
-	int a = start, b = div, index = start;
-	//loop while neither array-slice is empty
-	while(a < div && b < end) {
-	    //if A <= B and on left side, swap A and B, B++
-	    if(arr[a] <= arr[b]) {}
+        int low = start, high = div;
+	String status = "";
+	for(int i = start; i <= end; i++) {
+	    status = "";
+	    if(arr[low] <= arr[i]) {
+		swap(arr, low, i);
+		low++;
+		status = arr[i]+" < "+arr[low-1]+" L";
+	    }
+	    if(arr[high] <= arr[i]) {
+		swap(arr, high, i);
+		high++;
+		status = arr[i]+" < "+arr[high-1]+" H";
+	    }
+	    printArr("%a "+status, arr);
 	}
     }
 
