@@ -66,6 +66,10 @@ public class Merge {
 	mergeHelp(array, 0, array.length);
     }
 
+    /**
+       Recursive mergesort of an array from start(inclusive)
+       to end(exclusive).
+     */
     private static void mergeHelp(int[] array, int start, int end) {
 	//base case: length of 1, return array
 	if(end-start <= 1) return;
@@ -80,22 +84,8 @@ public class Merge {
     }
 
     public static void merge2(int start, int div, int end, int[] arr) {
-        int low = start, high = div;
-	String status = "";
-	for(int i = start; i <= end; i++) {
-	    status = "";
-	    if(arr[low] <= arr[i]) {
-		swap(arr, low, i);
-		low++;
-		status = arr[i]+" < "+arr[low-1]+" L";
-	    }
-	    if(arr[high] <= arr[i]) {
-		swap(arr, high, i);
-		high++;
-		status = arr[i]+" < "+arr[high-1]+" H";
-	    }
-	    printArr("%a "+status, arr);
-	}
+        int a = 0, b = div-start, e = end-start;
+	int[] source = slice(arr, start, end);
     }
 
     public static void merge(int start, int[] a, int[] b, int[] dest) {
@@ -125,6 +115,11 @@ public class Merge {
 	}
     }
 
+    /**
+       Returns a slice of an array from start(inclusive)
+       to end(exclusive) based on the original array, of
+       length end-start (just enough).
+     */
     public static int[] slice(int[] original, int start, int end) {
 	int[] slice = new int[end - start];
 	for(int i = start; i < end; i++) {
