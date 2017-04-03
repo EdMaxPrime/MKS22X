@@ -3,10 +3,6 @@ import java.util.Random;
 public class Merge {
     public static void main(String[] args) {
 	//tests
-	int[] z = {0, 2, 8, -4, 1, 9};
-	merge2(0, 3, z.length, z);
-	printArr("Final: %a", z);
-	/*
 	System.out.printf("%10s=== Merge ===%n", "");
 	int[] a = new int[10];
 	merge(0, new int[] {0, 1, 3, 5, 5}, new int[] {2, 4, 4, 6, 8}, a);
@@ -47,7 +43,6 @@ public class Merge {
 	    }
 	    e_counter--;
 	}
-	*/
     }
 
     public static void mergesort(int[] array) {
@@ -107,6 +102,17 @@ public class Merge {
 	}
     }
 
+    /**
+       Merges two sorted arrays into one destination array,
+       but all the elements are sorted in respect to eachother.
+       Dest should be bigger than or equal to a and b combined.
+       @param start  the index at which elements should be
+                     inserted into dest
+       @param a      a sorted array
+       @param b      a sorted array
+       @param dest   an array whose last index should fit
+                     start + a.length + b.length
+     */
     public static void merge(int start, int[] a, int[] b, int[] dest) {
 	int a_counter = 0, b_counter = 0;
 	while(a_counter < a.length && b_counter < b.length) {
