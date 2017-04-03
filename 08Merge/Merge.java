@@ -3,8 +3,8 @@ import java.util.Random;
 public class Merge {
     public static void main(String[] args) {
 	//tests
-	int[] z = {0, 2, 8, 1, 9};
-	merge2(0, 3, 4, z);
+	int[] z = {0, 2, 8, -4, 1, 9};
+	merge2(0, 3, z.length, z);
 	printArr("Final: %a", z);
 	/*
 	System.out.printf("%10s=== Merge ===%n", "");
@@ -84,8 +84,27 @@ public class Merge {
     }
 
     public static void merge2(int start, int div, int end, int[] arr) {
-        int a = 0, b = div-start, e = end-start;
+        int a = 0, b = div-start, insert = start;
 	int[] source = slice(arr, start, end);
+	div -= start;
+	while(a < div && b < source.length) {
+	    if(source[a] <= source[b]) {
+		arr[insert] = source[a];
+		a++;
+	    } else {
+		arr[insert] = source[b];
+		b++;
+	    }
+	    insert++;
+	}
+	for(; a < div; a++) {
+	    arr[insert] = source[a];
+	    insert++;
+	}
+	for(; b < source.length; b++) {
+	    arr[insert] = source[b];
+	    insert++;
+	}
     }
 
     public static void merge(int start, int[] a, int[] b, int[] dest) {
