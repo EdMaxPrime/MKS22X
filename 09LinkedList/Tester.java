@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Tester {
     public static void main(String[] args) {
-	
+	System.out.println(arr2str(randomArray(getParam(args, 0, 10)), 4));
     }
 
     private static int getParam(String[] args, int index, int _default) {
