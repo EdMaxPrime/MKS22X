@@ -1,4 +1,7 @@
-public class MyLinkedList {
+import java.lang.Iterable;
+import java.util.Iterator;
+
+public class MyLinkedList implements Iterable<Integer> {
     private LNode start, last;
     private int size;
 
@@ -103,6 +106,18 @@ public class MyLinkedList {
     }
 
     public int size() {return size;}
+
+    public Iterator<Integer> iterator() {	
+	return new Iterator<Integer>() {
+	    private LNode node = MyLinkedList.this.getNode(0);
+	    private int index  = 0;
+	    public boolean hasNext() {
+		return index < MyLinkedList.this.size();
+	    }
+	    public Integer next() {return -1;}
+	    public void remove() {}
+	};
+    }
 
     public String toString() {
 	LNode current = start;
