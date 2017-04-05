@@ -17,13 +17,17 @@ public class Tester {
 	int[] c = {83, 81, 7, 6, 5, 4, 3, 2, 1, 0};
 	radixSort(c, 2);
 	System.out.println(arr2str(c, 2));
+	int[] d = randomArray(15, 0, 100);
+	System.out.println(arr2str(d, 2));
+	radixSort(d, 2);
+	System.out.println(arr2str(d, 2));
     }
 
     public static void radixSort(int[] array, int numDigits) {
 	MyLinkedList[] digits = new MyLinkedList[10];
 	int div = 1, mod = 10, insert = 0;
 	while(numDigits > 0) {
-	    System.out.printf("//m=%d;d=%d;n=%d//  ", mod, div, numDigits);
+	    //System.out.printf("//m=%d;d=%d;n=%d//  ", mod, div, numDigits);
 	    for(int d = 0; d < digits.length; d++) {
 		digits[d] = new MyLinkedList();
 	    }
@@ -33,7 +37,7 @@ public class Tester {
 	    }
 	    for(int d = 0; d < digits.length; d++) {
 		for(int i : digits[d]) {
-		    System.out.printf("%d#%d->%d  ", i, d, insert);
+		    //System.out.printf("%d#%d->%d  ", i, d, insert);
 		    array[insert] = i;
 		    insert++;
 		}
@@ -43,7 +47,7 @@ public class Tester {
 	    insert = 0;
 	    numDigits--;
 	}
-	System.out.println();
+	//System.out.println();
     }
 
     private static int getParam(String[] args, int index, int _default) {
