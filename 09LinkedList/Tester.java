@@ -27,10 +27,14 @@ public class Tester {
     }
 
     private static int[] randomArray(int len) {
+	return randomArray(len, -250, 250);
+    }
+
+    private static int[] randomArray(int len, int min, int max) {
 	Random rng = new Random();
 	int[] arr = new int[len];
 	for(int i = 0; i < len; i++) {
-	    arr[i] = rng.nextInt(500)-250;
+	    arr[i] = rng.nextInt(max-min)+min;
 	}
 	return arr;
     }
