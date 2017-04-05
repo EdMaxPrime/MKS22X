@@ -14,6 +14,33 @@ public class Tester {
 	b.add(1);
 	for(int i : b) System.out.print(i + " ");
 	System.out.println();
+	int[] c = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	radixSort(c, 1);
+	System.out.println(arr2str(c, 1));
+    }
+
+    public static void radixSort(int[] array, int numDigits) {
+	MyLinkedList[] digits = new MyLinkedList[10];
+	int div = 1, mod = 10, insert = 0;
+	while(numDigits > 0) {
+	    for(int d = 0; d < digits.length; d++) {
+		digits[d] = new MyLinkedList();
+	    }
+	    for(int i : array) {
+		int digit = (i % mod) / div;
+		digits[digit].add(i);
+	    }
+	    for(int d = 0; d < digits.length; d++) {
+		for(int i : digits[d]) {
+		    array[insert] = i;
+		    insert++;
+		}
+	    }
+	    div *= 10;
+	    mod *= 10;
+	    insert = 0;
+	    numDigits = 0;
+	}
     }
 
     private static int getParam(String[] args, int index, int _default) {
