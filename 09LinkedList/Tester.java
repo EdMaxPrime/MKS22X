@@ -14,7 +14,7 @@ public class Tester {
 	b.add(1);
 	for(int i : b) System.out.print(i + " ");
 	System.out.println();
-	int[] c = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int[] c = {83, 81, 7, 6, 5, 4, 3, 2, 1, 0};
 	radixSort(c, 1);
 	System.out.println(arr2str(c, 1));
     }
@@ -39,7 +39,7 @@ public class Tester {
 	    div *= 10;
 	    mod *= 10;
 	    insert = 0;
-	    numDigits = 0;
+	    numDigits--;
 	}
     }
 
