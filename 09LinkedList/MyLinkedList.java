@@ -114,7 +114,15 @@ public class MyLinkedList implements Iterable<Integer> {
 	    public boolean hasNext() {
 		return index < MyLinkedList.this.size();
 	    }
-	    public Integer next() {return -1;}
+	    public Integer next() {
+		if(hasNext()) {
+		    int toReturn = node.value;
+		    node = node.next;
+		    index++;
+		    return toReturn;
+		}
+		return -1;
+	    }
 	    public void remove() {}
 	};
     }

@@ -1,8 +1,19 @@
 import java.util.Random;
+import java.util.Iterator;
 
 public class Tester {
     public static void main(String[] args) {
 	System.out.println(arr2str(randomArray(getParam(args, 0, 10)), 4));
+	Iterator<Integer> a = new MyLinkedList().iterator();
+	System.out.println("Empty list hasNext() --> "+a.hasNext());
+	MyLinkedList b = new MyLinkedList();
+	b.add(5);
+	b.add(4);
+	b.add(3);
+	b.add(2);
+	b.add(1);
+	for(int i : b) System.out.print(i + " ");
+	System.out.println();
     }
 
     private static int getParam(String[] args, int index, int _default) {
