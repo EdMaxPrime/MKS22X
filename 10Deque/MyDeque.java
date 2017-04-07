@@ -35,6 +35,8 @@ public class MyDeque {
     public static void main(String[] args) {
 	//tests
 	MyDeque a = new MyDeque(5);
+	a.addFirst("a");
+	a.addFirst("z");
 	System.out.println(a.toString(true));
     }
 }
