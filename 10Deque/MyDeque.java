@@ -12,6 +12,16 @@ public class MyDeque {
 	if(front < back) return back - front;
 	return content.length - Math.abs(front - back);
     }
+    public void addFirst(String s) {
+	if(size() >= content.length - 1) {}
+	content[front] = s;
+	front--;
+	if(front < 0) front += content.length;
+    }
+    public String toString() {
+	
+    }
+    public String toString(boolean newLines) {}
 
     public static void main(String[] args) {
 	//tests
