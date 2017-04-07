@@ -4,7 +4,10 @@ public class MyDeque {
     String[] content;
     int front, back;
     public MyDeque() {
-	content = new String[256];
+	this(100);
+    }
+    public MyDeque(int init) {
+	content = new String[init];
 	front = content.length/2;
 	back = front;
     }
@@ -19,11 +22,19 @@ public class MyDeque {
 	if(front < 0) front += content.length;
     }
     public String toString() {
-	
+	return toString(false);
     }
-    public String toString(boolean newLines) {}
+    public String toString(boolean newLines) { //really bad
+	String str = "[";
+	for(String s : content) {
+	    str += s + (newLines? "\n" : ",") + " ";
+	}
+	return str + "]";
+    }
 
     public static void main(String[] args) {
 	//tests
+	MyDeque a = new MyDeque(5);
+	System.out.println(a.toString(true));
     }
 }
