@@ -21,6 +21,10 @@ public class MyDeque {
 	front--;
 	if(front < 0) front += content.length;
     }
+    private void grow() {
+	String[] newstuff = new String[2*content.length];
+	int front2 = newstuff.length/2, back2 = front2;
+    }
     public String toString() {
 	return toString(false);
     }
