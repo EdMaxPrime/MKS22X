@@ -30,6 +30,18 @@ public class MyDeque {
 	String[] newstuff = new String[2*content.length];
 	int front2 = newstuff.length/2, back2 = front2;
     }
+    private boolean wrap() {
+	if(front < 0) {
+	    front = content.length + front; //usually length-1
+	    wrapState = 'F';
+	    return true;
+	} else if(back >= content.length) {
+	    back -= content.length;
+	    wrapState = 'B';
+	    return true;
+	}
+	return false;
+    }
     public String toString() {
 	return toString(false);
     }
@@ -63,6 +75,9 @@ public class MyDeque {
 	else if(cmd.equals("grow?")) {
 	    return ""+shouldIGrow();
 	}
+	else if(cmd.equals("wrap")) {
+	    return ""+wrap()+" F:"+front+" B:"+back;
+	}
 	return "";
     }
 
@@ -72,7 +87,7 @@ public class MyDeque {
 	a.addFirst("a");
 	a.addFirst("z");
 	System.out.println(a.debug("str", 1));
-	System.out.println(a.debug("grow?",0));
+	System.out.println(a.debug("wrap",0));
 	System.out.println(a.toString());
     }
 }
