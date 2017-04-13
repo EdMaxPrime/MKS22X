@@ -17,9 +17,10 @@ public class Driver {
 	try {
 	    in = new Scanner(new File(args[0]));
 	} catch(Exception e) {}
-	String lastOP = "", error = "";
+	String lastOP = "";
 	MyDeque test = new MyDeque();
 	int correct = 0, total = 0;
+	boolean error = false;
 	while(in.hasNextLine()) {
 	    String line = in.nextLine();
 	    String op = line.substring(0, 2);
@@ -35,29 +36,33 @@ public class Driver {
 	    }
 	    else if(op.equals("-F")) {
 		total++;
-		String rem;
-		rem = test.removeFirst();
+		String rem = "error";
+		try {rem = test.removeFirst();}
+		catch(Exception e) {error = true;}
 		if(rem.equals(rest)) correct++;
 		lastOP = op;
 	    }
 	    else if(op.equals("-L")) {
 		total++;
-		String rem;
-		rem = test.removeLast();
+		String rem = "error";
+		try {rem = test.removeLast();}
+		catch(Exception e) {error = true;}
 		if(rem.equals(rest)) correct++;
 		lastOP = op;
 	    }
 	    else if(op.equals("?F")) {
 		total++;
-		String get;
-		get = test.removeFirst();
+		String get = "error";
+		try {get = test.removeFirst();}
+		catch(Exception e) {error = true;}
 		if(get.equals(rest)) correct++;
 		lastOP = op;
 	    }
 	    else if(op.equals("?L")) {
 		total++;
-		String get;
-		get = test.removeLast();
+		String get = "error";
+		try {get = test.removeLast();}
+		catch(Exception e) {error = true;}
 		if(get.equals(rest)) correct++;
 		lastOP = op;
 	    }

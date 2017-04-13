@@ -1,3 +1,7 @@
+?F error
+?L error
+-F error
+-L error
 +F a
 +L b
    c
