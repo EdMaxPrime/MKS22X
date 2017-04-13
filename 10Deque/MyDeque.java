@@ -32,12 +32,20 @@ public class MyDeque {
     }
     private boolean wrap() {
 	if(front < 0) {
-	    front = content.length + front; //usually length-1
+	    front += content.length; //usually length-1
 	    wrapState = 'F';
 	    return true;
 	} else if(back >= content.length) {
 	    back -= content.length;
 	    wrapState = 'B';
+	    return true;
+	} else if(front >= content.length) {
+	    front -= content.length;
+	    wrapState = ' ';
+	    return true;
+	} else if(back < 0) {
+	    back += content.length;
+	    wrapState = ' ';
 	    return true;
 	}
 	return false;
