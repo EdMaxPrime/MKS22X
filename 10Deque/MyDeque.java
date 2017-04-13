@@ -41,6 +41,15 @@ public class MyDeque {
 	wrap();
 	return content[back];
     }
+    public String getFirst() {
+	if(wrapState != 'F') return content[front+1];
+	front++;
+	wrap();
+	String get = content[front];
+	front--;
+	wrap();
+	return get;
+    }
     private boolean shouldIGrow() {
         return (wrapState != ' ' && front == back);
     }
@@ -126,18 +135,15 @@ public class MyDeque {
 	//tests
 	MyDeque a = new MyDeque(5);
 	a.addFirst("a");
+	System.out.println(a.getFirst());
 	a.addFirst("b");
+	System.out.println(a.getFirst());
 	a.addFirst("c");
+	System.out.println(a.getFirst());
 	a.addFirst("d");
-	System.out.println(a.debug("str", 1));
-	a.addLast("z");
         System.out.println(a.debug("str", 1));
-        a.addLast("y");
-	System.out.println(a.debug("str", 1));
-	a.addLast("x");
-	System.out.println(a.debug("str", 1));
-	System.out.println(a.removeLast());
-	System.out.println(a.removeLast());
-	System.out.println(a.removeLast());
+	System.out.println(a.getFirst());
+	a.addFirst("e");
+	System.out.println(a.getFirst());
     }
 }
