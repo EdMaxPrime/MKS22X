@@ -14,7 +14,9 @@ public class MyDeque {
 	wrapState = ' '; //no wrapping
     }
     public int size() {
-	if(front < back) return back - front;
+	//if(front < back) return back - front;
+	//return content.length - Math.abs(front - back);
+	if(wrapState == ' ') return back - front;
 	return content.length - Math.abs(front - back);
     }
     public void addFirst(String s) {
@@ -34,6 +36,14 @@ public class MyDeque {
     private void grow() {
 	String[] newstuff = new String[2*content.length];
 	int front2 = newstuff.length/2, back2 = front2;
+	while(size() > 0) {
+	    newstuff[front2] = removeFirst();
+	    front2--;
+	    System.out.println(size()+" "+debug("str", 1));
+	}
+	front = front2;
+	back = back2;
+	this.content = newstuff;
     }
     private boolean wrap() {
 	if(front < 0) {
@@ -91,6 +101,10 @@ public class MyDeque {
 	else if(cmd.equals("wrap")) {
 	    return ""+wrap()+" F:"+front+" B:"+back;
 	}
+	else if(cmd.equals("grow")) {
+	    grow();
+	    return debug("str", arg);
+	}
 	return "";
     }
 
@@ -98,13 +112,12 @@ public class MyDeque {
 	//tests
 	MyDeque a = new MyDeque(5);
 	a.addFirst("a");
-	a.addFirst("z");
-	a.addFirst("m");
-	a.addFirst("n");
-        System.out.println("removed: "+a.removeFirst());
-	System.out.println("removed: "+a.removeFirst());
+	a.addFirst("b");
+	a.addFirst("c");
+	a.addFirst("d");
+	a.addFirst("e");
 	System.out.println(a.debug("str", 1));
-	System.out.println(a.debug("wrap",0));
+	System.out.println(a.debug("grow",1));
 	System.out.println(a.toString());
     }
 }
