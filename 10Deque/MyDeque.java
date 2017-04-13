@@ -77,7 +77,7 @@ public class MyDeque {
 	    System.out.println(size()+" "+debug("str", 1));
 	}
 	front = front2-1;
-	back = back2;
+	back = back2-1;
 	this.content = newstuff;
 	wrap();
     }
@@ -155,6 +155,8 @@ public class MyDeque {
 	System.out.println(a.getLast());
 	a.addLast("c");
 	a.addLast("d");
+	a.addLast("e");
+	a.addLast("f");
 	//System.out.println(a.getLast());
 	//a.addLast("d");
 	//System.out.println(a.getLast());
