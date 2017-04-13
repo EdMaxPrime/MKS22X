@@ -41,9 +41,10 @@ public class MyDeque {
 	return content[front];
     }
     public String removeLast() {
+	String removed = content[back];
 	back--;
 	wrap();
-	return content[back];
+	return removed;
     }
     public String getFirst() {
 	if(wrapState != 'F') return content[front+1];
@@ -157,11 +158,16 @@ public class MyDeque {
 	a.addLast("d");
 	a.addLast("e");
 	a.addLast("f");
-	//System.out.println(a.getLast());
-	//a.addLast("d");
-	//System.out.println(a.getLast());
-	//a.addLast("e");
-	//System.out.println(a.getLast());
+	a.addLast("g");
+	System.out.println(a.removeLast());
+	System.out.println(a.removeLast());
+	System.out.println(a.removeLast());
+	System.out.println(a.removeLast());
+	System.out.println(a.getLast());
+	a.addLast("d");
+	System.out.println(a.getLast());
+	a.addLast("e");
+	System.out.println(a.getLast());
         System.out.println(a.debug("str", 1));
     }
 }
