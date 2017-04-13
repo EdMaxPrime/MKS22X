@@ -35,11 +35,11 @@ public class MyDeque {
 	String[] newstuff = new String[2*content.length];
 	int front2 = newstuff.length/2, back2 = front2;
 	while(size() > 0) {
-	    newstuff[front2] = removeFirst();
-	    front2--;
+	    newstuff[back2] = removeFirst();
+	    back2++;
 	    System.out.println(size()+" "+debug("str", 1));
 	}
-	front = front2;
+	front = front2-1;
 	back = back2;
 	this.content = newstuff;
     }
@@ -115,7 +115,9 @@ public class MyDeque {
 	a.addFirst("d");
 	a.addFirst("e");
 	System.out.println(a.debug("str", 1));
-	System.out.println(a.debug("grow",1));
+	a.addFirst("f");
+	System.out.println(a.debug("str", 1));
+	//System.out.println(a.debug("grow",1));
 	System.out.println(a.toString());
     }
 }
