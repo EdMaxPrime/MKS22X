@@ -23,6 +23,11 @@ public class MyDeque {
 	front--;
 	wrap();
     }
+    public String removeFirst() {
+	front++;
+	wrap();
+	return content[front];
+    }
     private boolean shouldIGrow() {
         return (wrapState != ' ' && front == back);
     }
@@ -96,6 +101,8 @@ public class MyDeque {
 	a.addFirst("z");
 	a.addFirst("m");
 	a.addFirst("n");
+        System.out.println("removed: "+a.removeFirst());
+	System.out.println("removed: "+a.removeFirst());
 	System.out.println(a.debug("str", 1));
 	System.out.println(a.debug("wrap",0));
 	System.out.println(a.toString());
