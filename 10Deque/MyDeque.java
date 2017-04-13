@@ -56,14 +56,6 @@ public class MyDeque {
 	return get;
     }
     public String getLast() {
-	/*if(wrapState != 'B') return content[back];
-	back--;
-	wrap();
-	String get = content[front];
-	back++;
-	wrap();
-	return get;
-	*/
 	return content[back];
     }
     private boolean shouldIGrow() {
@@ -146,6 +138,26 @@ public class MyDeque {
 	}
 	return "";
     }
+    /**
+       Returns a string of all the elements in this
+       deque in order from first to last separated
+       by the sep.
+       @param sep  the separator between strings
+       @return     a run of all the strings
+     */
+    public String toString(String sep) {
+	String all = "";
+	MyDeque temp = new MyDeque();
+	while(size() > 0) {
+	    all += this.getLast();
+	    temp.addFirst(this.removeLast());
+	    if(size() > 1) all += sep;
+	}
+	while(temp.size() > 0) {
+	    this.addLast(temp.removeFirst());
+	}
+	return all;
+    }
 
     public static void main(String[] args) {
 	//tests
@@ -159,15 +171,8 @@ public class MyDeque {
 	a.addLast("e");
 	a.addLast("f");
 	a.addLast("g");
-	System.out.println(a.removeLast());
-	System.out.println(a.removeLast());
-	System.out.println(a.removeLast());
-	System.out.println(a.removeLast());
-	System.out.println(a.getLast());
-	a.addLast("d");
-	System.out.println(a.getLast());
-	a.addLast("e");
-	System.out.println(a.getLast());
         System.out.println(a.debug("str", 1));
+	System.out.println(a.toString(" "));
+	System.out.println(a.debug("str", 1));
     }
 }
