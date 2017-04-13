@@ -36,6 +36,11 @@ public class MyDeque {
 	wrap();
 	return content[front];
     }
+    public String removeLast() {
+	back--;
+	wrap();
+	return content[back];
+    }
     private boolean shouldIGrow() {
         return (wrapState != ' ' && front == back);
     }
@@ -131,5 +136,8 @@ public class MyDeque {
 	System.out.println(a.debug("str", 1));
 	a.addLast("x");
 	System.out.println(a.debug("str", 1));
+	System.out.println(a.removeLast());
+	System.out.println(a.removeLast());
+	System.out.println(a.removeLast());
     }
 }
