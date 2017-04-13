@@ -3,6 +3,7 @@ import java.util.Deque;
 public class MyDeque {
     String[] content;
     int front, back;
+    char wrapMode;
     public MyDeque() {
 	this(100);
     }
@@ -10,6 +11,7 @@ public class MyDeque {
 	content = new String[init];
 	front = content.length/2;
 	back = front;
+	wrapMode = ' '; //no wrapping
     }
     public int size() {
 	if(front < back) return back - front;
@@ -63,7 +65,7 @@ public class MyDeque {
 	MyDeque a = new MyDeque(5);
 	a.addFirst("a");
 	a.addFirst("z");
-	System.out.println(a.debug("str", 2));
+	System.out.println(a.debug("str", 1));
 	System.out.println(a.toString());
     }
 }
