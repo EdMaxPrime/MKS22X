@@ -35,12 +35,35 @@ public class MyDeque {
 	}
 	return str + "]";
     }
+    public String debug(String cmd, int arg) {
+	if(cmd.equals("str")) {
+	    String str = "[";
+	    for(int i = 0; i < content.length; i++) {
+		String piece = content[i];
+		if(content[i] == null) piece = "-----";
+		if(piece.length() < arg) piece = String.format("%"+arg+"s", piece);
+		else piece = piece.substring(0, arg);
+		if(front == i) {
+		    str += Text.esc("<cG>"+piece+"<R>");
+		} else if(back == i) {
+		    str += Text.esc("<cB>"+piece+"<R>");
+		} else {
+		    str += piece;
+		}
+		if(i < content.length - 1) str += ", ";
+		else str += "]";
+	    }
+	    return str;
+	}
+	return "";
+    }
 
     public static void main(String[] args) {
 	//tests
 	MyDeque a = new MyDeque(5);
 	a.addFirst("a");
 	a.addFirst("z");
-	System.out.println(a.toString(true));
+	System.out.println(a.debug("str", 2));
+	System.out.println(a.toString());
     }
 }
