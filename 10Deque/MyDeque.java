@@ -25,11 +25,15 @@ public class MyDeque {
     }
     public void addLast(String s) {
 	if(shouldIGrow()) grow();
-	boolean wrapped = (wrapState == 'B');
+	/*boolean wrapped = (wrapState == 'B');
 	if(wrapped)  content[back] = s;
 	back++;
 	wrap();
         if(!wrapped) content[back] = s;
+	*/
+	back++;
+	wrap();
+	content[back] = s;
     }
     public String removeFirst() {
 	front++;
@@ -150,6 +154,7 @@ public class MyDeque {
 	a.addLast("b");
 	System.out.println(a.getLast());
 	a.addLast("c");
+	a.addLast("d");
 	//System.out.println(a.getLast());
 	//a.addLast("d");
 	//System.out.println(a.getLast());
