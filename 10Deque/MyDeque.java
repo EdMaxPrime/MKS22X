@@ -3,7 +3,7 @@ import java.util.Deque;
 public class MyDeque {
     String[] content;
     int front, back;
-    char wrapMode;
+    char wrapState;
     public MyDeque() {
 	this(100);
     }
@@ -11,7 +11,7 @@ public class MyDeque {
 	content = new String[init];
 	front = content.length/2;
 	back = front;
-	wrapMode = ' '; //no wrapping
+	wrapState = ' '; //no wrapping
     }
     public int size() {
 	if(front < back) return back - front;
@@ -22,6 +22,9 @@ public class MyDeque {
 	content[front] = s;
 	front--;
 	if(front < 0) front += content.length;
+    }
+    private boolean shouldIGrow() {
+        return (wrapState != ' ' && front == back);
     }
     private void grow() {
 	String[] newstuff = new String[2*content.length];
@@ -57,6 +60,9 @@ public class MyDeque {
 	    }
 	    return str;
 	}
+	else if(cmd.equals("grow?")) {
+	    return ""+shouldIGrow();
+	}
 	return "";
     }
 
@@ -66,6 +72,7 @@ public class MyDeque {
 	a.addFirst("a");
 	a.addFirst("z");
 	System.out.println(a.debug("str", 1));
+	System.out.println(a.debug("grow?",0));
 	System.out.println(a.toString());
     }
 }
