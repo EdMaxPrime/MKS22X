@@ -14,8 +14,6 @@ public class MyDeque {
 	wrapState = ' '; //no wrapping
     }
     public int size() {
-	//if(front < back) return back - front;
-	//return content.length - Math.abs(front - back);
 	if(wrapState == ' ') return back - front;
 	return content.length - Math.abs(front - back);
     }
