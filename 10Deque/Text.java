@@ -100,7 +100,7 @@ public class Text{
        <li>P# - goes up # lines</li>
        <li>N# - goes down # lines</li>
        <li>B# - goes back # spaces</li>
-       <li>F# - goes forward # lines</li>
+       <li>F# - goes forward # spaces</li>
        <li>c$ - the text turns $ color, where $ is R:red, G:green, B:blue, Y:yellow, M:magenta, C:cyan, W:white, and anythign else is black</li>
        <li>h$ - same as c$, but this affects the highlight color</li>
        </ul>
