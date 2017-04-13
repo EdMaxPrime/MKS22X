@@ -1,4 +1,5 @@
 import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public class MyDeque {
     String[] content;
@@ -18,35 +19,34 @@ public class MyDeque {
 	return content.length - Math.abs(front - back);
     }
     public void addFirst(String s) {
+	if(s == null) throw new NullPointerException("can't add null elements");
 	if(shouldIGrow()) grow();
 	content[front] = s;
 	front--;
 	wrap();
     }
     public void addLast(String s) {
+	if(s == null) throw new NullPointerException("can't add null elements");
 	if(shouldIGrow()) grow();
-	/*boolean wrapped = (wrapState == 'B');
-	if(wrapped)  content[back] = s;
-	back++;
-	wrap();
-        if(!wrapped) content[back] = s;
-	*/
 	back++;
 	wrap();
 	content[back] = s;
     }
     public String removeFirst() {
+	if(size() == 0) throw new NoSuchElementException("can't remove from an empty Deque");
 	front++;
 	wrap();
 	return content[front];
     }
     public String removeLast() {
+	if(size() == 0) throw new NoSuchElementException("can't remove from an empty Deque");
 	String removed = content[back];
 	back--;
 	wrap();
 	return removed;
     }
     public String getFirst() {
+	if(size() == 0) throw new NoSuchElementException("this deque is empty");
 	if(wrapState != 'F' && front < content.length-1) return content[front+1];
 	front++;
 	wrap();
@@ -56,6 +56,7 @@ public class MyDeque {
 	return get;
     }
     public String getLast() {
+	if(size() == 0) throw new NoSuchElementException("this deque is empty");
 	return content[back];
     }
     private boolean shouldIGrow() {

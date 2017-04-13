@@ -35,7 +35,8 @@ public class Driver {
 	    }
 	    else if(op.equals("-F")) {
 		total++;
-		String rem = test.removeFirst();
+		String rem;
+		rem = test.removeFirst();
 		if(rem.equals(rest)) correct++;
 		lastOP = op;
 	    }
