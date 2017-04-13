@@ -47,7 +47,6 @@ public class MyDeque {
 	return removed;
     }
     public String getFirst() {
-	System.out.println("getFirst: "+front);
 	if(wrapState != 'F' && front < content.length-1) return content[front+1];
 	front++;
 	wrap();
@@ -150,10 +149,9 @@ public class MyDeque {
 	String all = "";
 	MyDeque temp = new MyDeque();
 	while(size() > 0) {
-	    System.out.println(all);
 	    all += this.getFirst();
 	    temp.addLast(this.removeFirst());
-	    if(size() > 1) all += sep;
+	    if(size() > 0) all += sep;
 	}
 	while(temp.size() > 0) {
 	    this.addFirst(temp.removeLast());
