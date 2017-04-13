@@ -18,10 +18,10 @@ public class MyDeque {
 	return content.length - Math.abs(front - back);
     }
     public void addFirst(String s) {
-	if(size() >= content.length - 1) {}
+	if(shouldIGrow()) grow();
 	content[front] = s;
 	front--;
-	if(front < 0) front += content.length;
+	wrap();
     }
     private boolean shouldIGrow() {
         return (wrapState != ' ' && front == back);
@@ -86,6 +86,8 @@ public class MyDeque {
 	MyDeque a = new MyDeque(5);
 	a.addFirst("a");
 	a.addFirst("z");
+	a.addFirst("m");
+	a.addFirst("n");
 	System.out.println(a.debug("str", 1));
 	System.out.println(a.debug("wrap",0));
 	System.out.println(a.toString());
