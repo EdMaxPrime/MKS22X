@@ -16,11 +16,11 @@ public class Tester {
 	System.out.println();
 	int[] c = {83, 81, 7, 6, 5, 4, 3, 2, 1, 0};
 	radixSort(c, 2);
-	System.out.println(arr2str(c, 2));
+	System.out.println("sorted:"+arr2str(c, 2));
 	int[] d = randomArray(15, 0, 100);
-	System.out.println(arr2str(d, 2));
+	System.out.println("random:"+arr2str(d, 2));
 	radixSort(d, 2);
-	System.out.println(arr2str(d, 2));
+	System.out.println("sorted:"+arr2str(d, 2));
     }
 
     public static void radixSort(int[] array, int numDigits) {
