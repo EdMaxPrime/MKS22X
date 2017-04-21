@@ -38,8 +38,17 @@ public class Calculator {
 	}
     }
 
+    private static String join(String[] args, String joiner) {
+        String result = "";
+	for(int i = 0; i < args.length; i++) {
+	    result += args[i];
+	    if(i < args.length - 1) result += joiner;
+	}
+	return result;
+    }
+
     public static void main(String[] args) {
-	String code = "5 5 /";
+	String code = join(args, " ");
 	System.out.println(code);
 	System.out.println(Calculator.eval(code));
     }
