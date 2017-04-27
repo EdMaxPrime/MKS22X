@@ -52,4 +52,11 @@ public class ExpressionTree {
 	else
 	    return String.format("(%s %s %s)", getLeft().toString(), getOp(), getRight().toString());
     }
+
+    public static void main(String[] args) {
+	ExpressionTree a = new ExpressionTree(4.0);
+	ExpressionTree b = new ExpressionTree(2.0);
+	ExpressionTree c = new ExpressionTree('+',a,b);
+	System.out.println(c);
+    }
 }
