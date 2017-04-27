@@ -10,7 +10,7 @@ public class ExpressionTree {
 	this.value = value;
 	op = '~';
     }
-    public ExpressionTree(char op,ExpressionTree l, ExpressionTree r){
+    public ExpressionTree(char op, ExpressionTree l, ExpressionTree r){
 	this.op = op;
 	left = l;
 	right = r;
@@ -44,5 +44,12 @@ public class ExpressionTree {
   
     private boolean hasChildren(){
 	return left != null && right != null;
+    }
+
+    public String toString() {
+	if(!hasChildren())
+	    return ""+getValue();
+	else
+	    return String.format("(%s %s %s)", getLeft().toString(), getOp(), getRight().toString());
     }
 }
