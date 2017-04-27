@@ -60,11 +60,26 @@ public class ExpressionTree {
 	    return String.format("%s %s %s", getLeft().toStringPostfix(), getRight().toStringPostfix(), getOp());
     }
 
+    public double evaluate() {
+	if(isValue())
+	    return getValue();
+	else if(getOp() == '+')
+	    return getLeft().evaluate() + getRight().evaluate();
+	else if(getOp() == '-')
+	    return getLeft().evaluate() - getRight().evaluate();
+	else if(getOp() == '*')
+	    return getLeft().evaluate() * getRight().evaluate();
+	else if(getOp() == '/')
+	    return getLeft().evaluate() / getRight().evaluate();
+	return 0.0;
+    }
+
     public static void main(String[] args) {
 	ExpressionTree a = new ExpressionTree(4.0);
 	ExpressionTree b = new ExpressionTree(2.0);
 	ExpressionTree c = new ExpressionTree('+',a,b);
 	System.out.println(c);
 	System.out.println(c.toStringPostfix());
+	System.out.println(c.evaluate());
     }
 }
