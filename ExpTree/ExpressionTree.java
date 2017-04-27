@@ -53,10 +53,18 @@ public class ExpressionTree {
 	    return String.format("(%s %s %s)", getLeft().toString(), getOp(), getRight().toString());
     }
 
+    public String toStringPostfix() {
+	if(isValue())
+	    return ""+getValue();
+	else
+	    return String.format("%s %s %s", getLeft().toStringPostfix(), getRight().toStringPostfix(), getOp());
+    }
+
     public static void main(String[] args) {
 	ExpressionTree a = new ExpressionTree(4.0);
 	ExpressionTree b = new ExpressionTree(2.0);
 	ExpressionTree c = new ExpressionTree('+',a,b);
 	System.out.println(c);
+	System.out.println(c.toStringPostfix());
     }
 }
