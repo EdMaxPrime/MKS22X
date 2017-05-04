@@ -33,6 +33,12 @@ public class MyHeap {
 	return biggest;
     }
 
+    public String peek() {
+	if(size < 1)
+	    throw new NoSuchElementException("Cant peek an empty heap!");
+	return contents[1];
+    }
+
     private void makeSpace() {
 	if(contents.length <= size+1) { //because index#0 isnt used
 	    String[] bigger = new String[contents.length*2];
@@ -170,6 +176,7 @@ public class MyHeap {
 	space.add("e");
 	space.tree();
 	System.out.println("Removed: "+space.remove());
+	System.out.println("Peek: "+space.peek());
 	System.out.println("Removed: "+space.remove());
 	space.tree();
     }
