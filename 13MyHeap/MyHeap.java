@@ -166,7 +166,7 @@ public class MyHeap {
     }
 
     public static void main(String[] args) {
-	MyHeap words = new MyHeap(true);
+	MyHeap words = new MyHeap(false);
 	String[] array = "and please zebra too for although apple banana not but yet so though me kick kahoot dollar if or else yo".split(" ");
 	for(String s : array)
 	    words.add(s);
