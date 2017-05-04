@@ -28,11 +28,20 @@ public class MyHeap {
 	}
     }
 
-    public String toString() {
+    public String toStringDebug() {
 	String str = "[";
 	for(int i = 0; i < contents.length; i++) {
 	    str += contents[i];
 	    if(i < contents.length-1) str += "  ";
+	}
+	return str+"]";
+    }
+
+    public String toString() {
+	String str = "[";
+	for(int i = 1; i <= size; i++) {
+	    str += contents[i];
+	    if(i < size) str += "  ";
 	}
 	return str+"]";
     }
