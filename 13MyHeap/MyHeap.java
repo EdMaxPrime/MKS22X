@@ -76,22 +76,26 @@ public class MyHeap {
 		break;
 	    }
 	    else { //two children
-		int action = 0;
-		if(ordered(child0, child1)) { //child0 needs to be checked first
-		    action = check(index, child1, child0);
-		} else {
-		    action = check(index, child0, child1);
+		if(ordered(index, child0) && ordered(index, child1)) {
+		    break; //everything in its right place
 		}
-		if(action == 0) break; //we're done
-		else if(action == 1) { //move down child0's branch
+		else if(!ordered(index, child0) && ordered(index, child1)) {
 		    swap(index, child0);
 		    index = child0;
 		    child0 = index * 2;
 		    child1 = child0 + 1;
 		}
-		else { //move down child1's branch
+		else if(ordered(index, child0) && !ordered(index, child1)) {
 		    swap(index, child1);
 		    index = child1;
+		    child0 = index * 2;
+		    child1 = child0 + 1;
+		}
+		else {
+		    int which = child0;
+		    if(!ordered(child0, child1)) which = child1;
+		    swap(index, which);
+		    index = which;
 		    child0 = index * 2;
 		    child1 = child0 + 1;
 		}
@@ -171,7 +175,7 @@ public class MyHeap {
 	space.add("e");
 	space.tree();
 	System.out.println("Removed: "+space.remove());
-	//System.out.println("Removed: "+space.remove());
+	System.out.println("Removed: "+space.remove());
 	space.tree();
     }
 }
