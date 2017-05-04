@@ -166,7 +166,7 @@ public class MyHeap {
     }
 
     public static void main(String[] args) {
-	MyHeap space = new MyHeap();
+	MyHeap space = new MyHeap(false);
 	System.out.println(space);
 	space.add("a");
 	space.add("b");
