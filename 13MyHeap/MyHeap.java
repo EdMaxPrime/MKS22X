@@ -76,29 +76,24 @@ public class MyHeap {
 		break;
 	    }
 	    else { //two children
+		int which; //the child with which the parent will swap
 		if(ordered(index, child0) && ordered(index, child1)) {
 		    break; //everything in its right place
 		}
 		else if(!ordered(index, child0) && ordered(index, child1)) {
-		    swap(index, child0);
-		    index = child0;
-		    child0 = index * 2;
-		    child1 = child0 + 1;
+		    which = child0;
 		}
 		else if(ordered(index, child0) && !ordered(index, child1)) {
-		    swap(index, child1);
-		    index = child1;
-		    child0 = index * 2;
-		    child1 = child0 + 1;
+		    which = child1;
 		}
 		else {
-		    int which = child0;
 		    if(!ordered(child0, child1)) which = child1;
-		    swap(index, which);
-		    index = which;
-		    child0 = index * 2;
-		    child1 = child0 + 1;
+		    else which = child0;
 		}
+		swap(index, which);
+		index = which;
+		child0 = index * 2;
+		child1 = child0 + 1;
 	    }
 	}
     }
