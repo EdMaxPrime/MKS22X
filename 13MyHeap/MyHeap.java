@@ -16,6 +16,7 @@ public class MyHeap {
 	makeSpace();
 	contents[1+size] = str;
 	size++;
+	bubbleUp();
     }
 
     private void makeSpace() {
@@ -25,6 +26,25 @@ public class MyHeap {
 		bigger[i] = contents[i];
 	    }
 	    contents = bigger;
+	}
+    }
+
+    /**
+       Puts the last added element in the right position
+     */
+    private void bubbleUp() {
+	int index = size;
+	int parent = index/2;
+	while(index > 1) {
+	    if(dir*contents[index].compareTo(contents[parent]) > 0) {
+		String temp = contents[index];
+		contents[index] = contents[parent];
+		contents[parent] = temp;
+		index = parent;
+		parent /= 2;
+	    } else {
+		break;
+	    }
 	}
     }
 
@@ -49,7 +69,11 @@ public class MyHeap {
     public static void main(String[] args) {
 	MyHeap space = new MyHeap();
 	System.out.println(space);
-	for(int i = 0; i < 20; i++) space.add(""+i);
+	space.add("a");
+	space.add("b");
+	space.add("c");
+	space.add("d");
+	space.add("z");
 	System.out.println(space);
     }
 }
