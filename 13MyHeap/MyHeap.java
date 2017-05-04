@@ -66,12 +66,14 @@ public class MyHeap {
 	return str+"]";
     }
 
-    public String tree() {
-	String tabs = "";
-	int index = 1;
-	while(index <= size) {
-	    System.out.println(tabs+contents[index]);
-	    index++;
+    public void tree() {
+	tree(1, "");
+    }
+    private void tree(int index, String tabs) {
+	if(index <= size) {
+	    System.out.println(tabs + contents[index]);
+	    tree(index*2, tabs+"  ");
+	    tree(index*2 + 1, tabs+"  ");
 	}
     }
 
@@ -83,6 +85,6 @@ public class MyHeap {
 	space.add("c");
 	space.add("d");
 	space.add("z");
-	System.out.println(space);
+	space.tree();
     }
 }
