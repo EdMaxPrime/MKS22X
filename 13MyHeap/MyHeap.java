@@ -166,18 +166,13 @@ public class MyHeap {
     }
 
     public static void main(String[] args) {
-	MyHeap space = new MyHeap(false);
-	System.out.println(space);
-	space.add("a");
-	space.add("b");
-	space.add("c");
-	space.add("d");
-	space.add("z");
-	space.add("e");
-	space.tree();
-	System.out.println("Removed: "+space.remove());
-	System.out.println("Peek: "+space.peek());
-	System.out.println("Removed: "+space.remove());
-	space.tree();
+	MyHeap words = new MyHeap(true);
+	String[] array = "and please zebra too for although apple banana not but yet so though me kick kahoot dollar if or else yo".split(" ");
+	for(String s : array)
+	    words.add(s);
+	words.tree();
+	for(String s : array)
+	    System.out.print(words.remove()+" ");
+	System.out.println(words);
     }
 }
