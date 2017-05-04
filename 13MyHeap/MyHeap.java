@@ -66,6 +66,15 @@ public class MyHeap {
 	return str+"]";
     }
 
+    public String tree() {
+	String tabs = "";
+	int index = 1;
+	while(index <= size) {
+	    System.out.println(tabs+contents[index]);
+	    index++;
+	}
+    }
+
     public static void main(String[] args) {
 	MyHeap space = new MyHeap();
 	System.out.println(space);
