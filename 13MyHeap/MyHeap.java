@@ -68,24 +68,67 @@ public class MyHeap {
     private void bubbleDown() {
 	int index = 1, child0 = index*2, child1 = index*2 + 1;
 	while(index < size) {
-	    if(child0 <= size && dir*contents[index].compareTo(contents[child0]) < 0) {
-		String temp = contents[index];
-                contents[index] = contents[child0];
-	        contents[child0] = temp;
-		index = child0;
-	        child0 = index * 2;
-		child1 = child0 + 1;
+	    if(child0 > size) break; //no children
+	    else if(child1 > size) { //one child
+		if(!ordered(index, child0)) {
+		    swap(index, child0);
+		}
+		break;
 	    }
-	    else if(child1 <= size && dir*contents[index].compareTo(contents[child1]) < 0) {
-		String temp = contents[index];
-                contents[index] = contents[child1];
-	        contents[child1] = temp;
-		index = child1;
-	        child0 = index * 2;
-		child1 = child0 + 1;
+	    else { //two children
+		int action = 0;
+		if(ordered(child0, child1)) { //child0 needs to be checked first
+		    action = check(index, child1, child0);
+		} else {
+		    action = check(index, child0, child1);
+		}
+		if(action == 0) break; //we're done
+		else if(action == 1) { //move down child0's branch
+		    swap(index, child0);
+		    index = child0;
+		    child0 = index * 2;
+		    child1 = child0 + 1;
+		}
+		else { //move down child1's branch
+		    swap(index, child1);
+		    index = child1;
+		    child0 = index * 2;
+		    child1 = child0 + 1;
+		}
 	    }
-	    else break;
 	}
+    }
+
+    /**
+       Swaps the strings at the two indices
+     */
+    private void swap(int index1, int index2) {
+	String temp = contents[index1];
+	contents[index1] = contents[index2];
+	contents[index2] = temp;
+    }
+
+    /**
+       Returns true if the heap's property is maintained
+       between the two elements(either min or max, depends
+       on the value of dir).
+     */
+    private boolean ordered(int parent, int child) {
+	return dir*contents[parent].compareTo(contents[child]) > 0;
+    }
+
+    /**
+       Compares first element to the second and then the third.
+       Returns 0 if everything is in order, 1 if the 2nd element
+       is out of order and 2 is the 3rd element is out of order.
+       @param parent   index of parent
+       @param child1   index of first child to check
+       @param child2   index of second child to check
+     */
+    private int check(int parent, int child1, int child2) {
+	if(!ordered(parent, child1)) return 1;
+	if(!ordered(parent, child2)) return 2;
+	return 0;
     }
 
     public String toStringDebug() {
@@ -128,6 +171,7 @@ public class MyHeap {
 	space.add("e");
 	space.tree();
 	System.out.println("Removed: "+space.remove());
+	//System.out.println("Removed: "+space.remove());
 	space.tree();
     }
 }
