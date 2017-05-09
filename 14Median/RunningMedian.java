@@ -14,10 +14,12 @@ public class RunningMedian {
 
     public double getMedian() {
 	if(l1 == l2) {
-	    if(l1 == 0) return 0; //error?
-	    return (getLess()+getMore()) / 2.0;
+	    if(l1 == 0) return 0; //error: nothing to get median of
+	    return (getLess()+getMore()) / 2.0; //average
 	}
-	return 0; //other cases here
+	else if(l1 > l2) //median is in LESS
+	    return less.peek();
+	return more.peek(); //median is in MORE
     }
 
     private double getLess() {}
