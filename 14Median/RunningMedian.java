@@ -52,7 +52,5 @@ public class RunningMedian {
 	return more.peek(); //median is in MORE
     }
 
-    private double getLess() {}
-
-    private double getMore() {}
+    
 }
