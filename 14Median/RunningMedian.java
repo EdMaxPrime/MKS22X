@@ -52,5 +52,15 @@ public class RunningMedian {
 	return more.peek(); //median is in MORE
     }
 
-    
+    public static void main(String[] args) {
+	RunningMedian lol = new RunningMedian();
+	print(new int[] {});
+    }
+
+    private static void print(int[] nums) {
+	RunningMedian rm = new RunningMedian();
+	for(int i : nums)
+	    rm.add(i);
+	System.out.println(rm.getMedian());
+    }
 }
