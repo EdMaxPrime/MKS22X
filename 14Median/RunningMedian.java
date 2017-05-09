@@ -45,7 +45,7 @@ public class RunningMedian {
     public double getMedian() {
 	if(l1 == l2) {
 	    if(l1 == 0) return 0; //error: nothing to get median of
-	    return (getLess()+getMore()) / 2.0; //average
+	    return (less.peek()+more.peek()) / 2.0; //average
 	}
 	else if(l1 > l2) //median is in LESS
 	    return less.peek();
