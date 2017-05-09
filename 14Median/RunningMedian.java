@@ -57,10 +57,16 @@ public class RunningMedian {
 	print(new int[] {});
     }
 
-    private static void print(int[] nums) {
-	RunningMedian rm = new RunningMedian();
-	for(int i : nums)
+    private static void print(RunningMedian rm, int[] nums) {
+	String line = " median of ";
+	for(int i : nums) {
 	    rm.add(i);
-	System.out.println(rm.getMedian());
+	    line += i + " ";
+	}
+	System.out.println(String.format("% 3.2f", rm.getMedian()) + line);
+    }
+
+    private static void print(int[] nums) {
+	print(new RunningMedian(), nums);
     }
 }
