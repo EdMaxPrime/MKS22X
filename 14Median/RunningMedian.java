@@ -55,6 +55,10 @@ public class RunningMedian {
     public static void main(String[] args) {
 	RunningMedian lol = new RunningMedian();
 	print(new int[] {});
+	print(new int[] {5});
+	print(new int[] {5, 7});
+	print(new int[] {5, 6, 7});
+	print(new int[] {-10, 5, 20});
     }
 
     private static void print(RunningMedian rm, int[] nums) {
