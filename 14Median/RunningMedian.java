@@ -22,7 +22,7 @@ public class RunningMedian {
 	if(number < getMedian()) {
 	    if(l1 <= l2) {
 		less.add(number);
-		l2++;
+		l1++;
 	    } else {
 		more.add(less.remove());
 		l2++;
