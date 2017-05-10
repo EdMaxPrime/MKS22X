@@ -59,6 +59,11 @@ public class RunningMedian {
 	print(new int[] {5, 7});
 	print(new int[] {5, 6, 7});
 	print(new int[] {-10, 5, 20});
+	print(new int[] {70, 60, 50});
+	print(new int[] {19, -15, 13, 12, 18, -12});
+	print(new int[] {16, 2, 8, 4, 128, 32, 64});
+	print(lol, new int[] {16, 26, 6, 46, 36, 86, 66, 76});
+	print(lol, new int[] {15, 25, 35});
     }
 
     private static void print(RunningMedian rm, int[] nums) {
