@@ -1,4 +1,6 @@
-public class Location {
+import java.lang.Comparable;
+
+public class Location implements Comparable<Location> {
     private int row, col;
     private Location previous;
 
@@ -6,5 +8,9 @@ public class Location {
 	row = r;
 	col = c;
 	previous = p;
+    }
+
+    public int compareTo(Location other) {
+	return 0;
     }
 }
