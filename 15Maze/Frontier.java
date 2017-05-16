@@ -4,3 +4,4 @@ public interface Frontier {
     public Node next();
 
     public boolean hasNext();
+}
