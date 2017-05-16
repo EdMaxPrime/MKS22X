@@ -2,12 +2,10 @@ import java.lang.Comparable;
 
 public class Location implements Comparable<Location> {
     private int row, col;
-    private Location previous;
 
-    public Location(int r, int c, Location p) {
+    public Location(int r, int c) {
 	row = r;
 	col = c;
-	previous = p;
     }
 
     public int compareTo(Location other) {
