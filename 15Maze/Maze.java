@@ -7,15 +7,15 @@ public class Maze{
   private static final String HIDE_CURSOR =  "\033[?25l";
   private static final String SHOW_CURSOR =  "\033[?25h";
 
-  Location start,end;
+  public  Node start,end;
   private char[][]maze;
   private int maxRows,maxCols;
 
 
-  public Location getStart(){
+  public Node getStart(){
     return start;
   }
-  public Location getEnd(){
+  public Node getEnd(){
     return end;
   }
 
@@ -81,9 +81,9 @@ public class Maze{
     maxCols = maze[0].length;
 
 
-    end = new Location(endr,endc,null,0,0,false);
     int d = Math.abs(endr -startr) + Math.abs(startc - endc);
-    start = new Location(startr,startc,null,0,d,false);
+    end = new Node(new Location(endr, endc), null, d, 0, false);
+    start = new Node(new Location(startr, startc), null, 0, d, false);
   }
 
   public String toString(int delay){
