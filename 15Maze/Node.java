@@ -1,7 +1,7 @@
 import java.lang.Comparable;
 
 public class Node implements Comparable<Node> {
-    private Location loc;
+    public  Location loc;
     private Node previous;
     private int distToStart;
     private int distToGoal;
@@ -19,5 +19,9 @@ public class Node implements Comparable<Node> {
 	if(astar)
 	    return (distToStart+distToGoal) - (other.distToStart+other.distToGoal);
 	return distToGoal - other.distToGoal;
+    }
+
+    public int distTraveled() {
+	return distToStart;
     }
 }
