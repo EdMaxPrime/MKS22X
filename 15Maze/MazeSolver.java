@@ -27,8 +27,10 @@ public class MazeSolver {
 	    }
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
-		if(more[i] != null)
-		    f.add(more[i]); //also mark as ?
+		if(more[i] != null) {
+		    f.add(more[i]);
+		    board.set(more[i].loc.row(), more[i].loc.col(), '?');
+		}
 	    }
 	    board.set(here.loc.row(), here.loc.col(), '.'); //visited
 	}
