@@ -52,6 +52,9 @@ public class MazeSolver {
 	if(board.get(r, c+1) == ' ') { //right
 	    neighbors[2] = new Node(new Location(r, c+1), center, -1, -1, false);
 	}
+	if(board.get(r+1, c) == ' ') { //top
+	    neighbors[3] = new Node(new Location(r+1, c), center, -1, -1, false);
+	}
 	return neighbors;
     }
 
