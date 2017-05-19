@@ -28,6 +28,7 @@ public class MazeSolver {
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
+		    System.out.println(more[i]);
 		    if(board.end.equals(more[i].loc)) {
 			return; //found the end
 		    }

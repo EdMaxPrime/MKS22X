@@ -16,6 +16,6 @@ public class StackFrontier implements Frontier {
     }
 
     public boolean hasNext() {
-	return frontier.empty();
+	return !frontier.empty();
     }
 }
