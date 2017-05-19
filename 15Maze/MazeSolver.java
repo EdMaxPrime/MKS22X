@@ -14,11 +14,11 @@ public class MazeSolver {
     }
 
     public void solve(int style) {
-	Frontier f;
+	Frontier f = null;
 	if(style == 0) { //DFS
 	    f = new StackFrontier();
 	}
-	f.add(board.getStart());
+	f.add(board.start);
 	while(f.hasNext()) {
 	    Node here = f.next();
 	    char type = board.get(here.loc.row(), here.loc.col());
@@ -47,5 +47,15 @@ public class MazeSolver {
 	    neighbors[0] = new Node(new Location(r, c-1), center, -1, -1, false);
 	}
 	return neighbors;
+    }
+
+    public String toString() {
+	return board.toString();
+    }
+
+    public static void main(String[] args) {
+	MazeSolver m = new MazeSolver("maze1.txt");
+	m.solve(0);
+        System.out.println(m.toString());
     }
 }
