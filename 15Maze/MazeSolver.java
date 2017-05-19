@@ -28,6 +28,9 @@ public class MazeSolver {
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
+		    if(board.end.equals(more[i].loc)) {
+			return; //found the end
+		    }
 		    f.add(more[i]);
 		    board.set(more[i].loc.row(), more[i].loc.col(), '?');
 		}
@@ -42,7 +45,6 @@ public class MazeSolver {
 	int r = center.loc.row(), c = center.loc.col();
 	if(board.get(r, c-1) == ' ') { //left
 	    neighbors[0] = new Node(new Location(r, c-1), center, -1, -1, false);
-	    howMany++;
 	}
 	return neighbors;
     }

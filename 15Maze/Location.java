@@ -8,4 +8,8 @@ public class Location {
 
     public int row() {return row;}
     public int col() {return col;}
+
+    public boolean equals(Location l) {
+	return l.row == row && l.col == col;
+    }
 }
