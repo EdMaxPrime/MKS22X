@@ -46,6 +46,12 @@ public class MazeSolver {
 	if(board.get(r, c-1) == ' ') { //left
 	    neighbors[0] = new Node(new Location(r, c-1), center, -1, -1, false);
 	}
+	if(board.get(r-1, c) == ' ') { //down
+	    neighbors[1] = new Node(new Location(r-1, c), center, -1, -1, false);
+	}
+	if(board.get(r, c+1) == ' ') { //right
+	    neighbors[2] = new Node(new Location(r, c+1), center, -1, -1, false);
+	}
 	return neighbors;
     }
 
@@ -55,6 +61,7 @@ public class MazeSolver {
 
     public static void main(String[] args) {
 	MazeSolver m = new MazeSolver("maze1.txt");
+	System.out.println(m);
 	m.solve(0);
         System.out.println(m.toString());
     }
