@@ -14,23 +14,30 @@ public class MazeSolver {
     }
 
     public void solve(int style) {
+	System.out.println("Goal: "+board.end);
 	Frontier f = null;
 	if(style == 0) { //DFS
 	    f = new StackFrontier();
 	}
 	f.add(board.start);
+	String log = "";
 	while(f.hasNext()) {
 	    Node here = f.next();
 	    char type = board.get(here.loc.row(), here.loc.col());
+	    System.out.println(board.toString(800));
 	    if(type == 'E') {
+		System.out.println("E "+here);
 		return; //we finished
 	    }
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
-		    System.out.println(more[i]);
-		    if(board.end.equals(more[i].loc)) {
+		    //System.out.println(more[i]);
+		    if(board.end.loc.equals(more[i].loc)) {
+		        System.out.println("end:"+more[i]);
 			return; //found the end
+		    } else {
+			log += "\n"+more[i]+"=="+board.end;
 		    }
 		    f.add(more[i]);
 		    board.set(more[i].loc.row(), more[i].loc.col(), '?');
@@ -38,6 +45,8 @@ public class MazeSolver {
 	    }
 	    board.set(here.loc.row(), here.loc.col(), '.'); //visited
 	}
+	System.out.println("\033[0;m finished loop");
+	System.out.println(log);
     }
 
     public Node[] getNeighbors(Node center) {
