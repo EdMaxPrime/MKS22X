@@ -24,4 +24,8 @@ public class Node implements Comparable<Node> {
     public int distTraveled() {
 	return distToStart;
     }
+
+    public String toString() {
+	return "("+loc.row()+", "+loc.col()+")";
+    }
 }
