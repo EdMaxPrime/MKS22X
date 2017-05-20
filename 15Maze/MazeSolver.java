@@ -20,7 +20,8 @@ public class MazeSolver {
 	Node end = null;
 	if(style == 0) { //DFS
 	    f = new StackFrontier();
-	}
+	} else if(style == 1)
+	    f = new QueueFrontier();
 	f.add(board.start);
 	loop: while(f.hasNext()) {
 	    Node here = f.next();
@@ -78,9 +79,9 @@ public class MazeSolver {
     }
 
     public static void main(String[] args) {
-	MazeSolver m = new MazeSolver("maze2.txt");
+	MazeSolver m = new MazeSolver("maze2.txt", true);
 	System.out.println(m);
-	m.solve(0);
+	m.solve(1);
         System.out.println(m.toString());
     }
 }
