@@ -22,12 +22,14 @@ public class MazeSolver {
 	    f = new StackFrontier();
 	} else if(style == 1)
 	    f = new QueueFrontier();
+	else if(style == 2 || style == 3)
+	    f = new PriorityQueue();
 	f.add(board.start);
 	loop: while(f.hasNext()) {
 	    Node here = f.next();
 	    char type = board.get(here.loc.row(), here.loc.col());
 	    if(anim) System.out.println(board.toString(500));
-	    Node[] more = getNeighbors(here);
+	    Node[] more = getNeighbors(here, style==3);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
 		    if(board.end.loc.equals(more[i].loc)) {
@@ -88,9 +90,9 @@ public class MazeSolver {
     }
 
     public static void main(String[] args) {
-	MazeSolver m = new MazeSolver("maze2.txt", !true);
+	MazeSolver m = new MazeSolver("maze2.txt", true);
 	System.out.println(m);
-	m.solve(1);
+	m.solve(3);
         System.out.println(m.toString());
     }
 }
