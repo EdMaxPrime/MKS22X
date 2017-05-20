@@ -1,11 +1,11 @@
 import java.util.NoSuchElementException;
 
 public class MyHeap {
-    String[] contents;
+    Node[] contents;
     int size, dir;
 
     public MyHeap(boolean maxMin) {
-	contents = new String[16];
+	contents = new Node[16];
 	size = 0;
 	dir = maxMin? 1 : -1;
     }
@@ -14,17 +14,17 @@ public class MyHeap {
 	this(true);
     }
 
-    public void add(String str) {
+    public void add(Node n) {
 	makeSpace();
-	contents[1+size] = str;
+	contents[1+size] = n;
 	size++;
 	bubbleUp();
     }
 
-    public String remove() {
+    public Node remove() {
 	if(size < 1)
 	    throw new NoSuchElementException("Cant remove from empty heap!");
-	String biggest = contents[1];
+	Node biggest = contents[1];
 	//move a bottom row element to the root
 	contents[1] = contents[size];
 	size--;
@@ -33,7 +33,7 @@ public class MyHeap {
 	return biggest;
     }
 
-    public String peek() {
+    public Node peek() {
 	if(size < 1)
 	    throw new NoSuchElementException("Cant peek an empty heap!");
 	return contents[1];
@@ -41,7 +41,7 @@ public class MyHeap {
 
     private void makeSpace() {
 	if(contents.length <= size+1) { //because index#0 isnt used
-	    String[] bigger = new String[contents.length*2];
+	    Node[] bigger = new Node[contents.length*2];
 	    for(int i = 1; i < contents.length; i++) {
 		bigger[i] = contents[i];
 	    }
@@ -57,7 +57,7 @@ public class MyHeap {
 	int parent = index/2;
 	while(index > 1) {
 	    if(dir*contents[index].compareTo(contents[parent]) > 0) {
-		String temp = contents[index];
+		Node temp = contents[index];
 		contents[index] = contents[parent];
 		contents[parent] = temp;
 		index = parent;
@@ -108,7 +108,7 @@ public class MyHeap {
        Swaps the strings at the two indices
      */
     private void swap(int index1, int index2) {
-	String temp = contents[index1];
+	Node temp = contents[index1];
 	contents[index1] = contents[index2];
 	contents[index2] = temp;
     }
@@ -165,16 +165,5 @@ public class MyHeap {
 	    tree(index*2, tabs+"  ");
 	    tree(index*2 + 1, tabs+"  ");
 	}
-    }
-
-    public static void main(String[] args) {
-	MyHeap words = new MyHeap(false);
-	String[] array = "and please zebra too for although apple banana not but yet so though me kick kahoot dollar if or else yo".split(" ");
-	for(String s : array)
-	    words.add(s);
-	words.tree();
-	for(String s : array)
-	    System.out.print(words.remove()+" ");
-	System.out.println(words);
     }
 }
