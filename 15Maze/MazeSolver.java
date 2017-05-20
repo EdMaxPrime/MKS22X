@@ -28,23 +28,23 @@ public class MazeSolver {
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
 		    if(board.end.loc.equals(more[i].loc)) {
-			board.set(more[i].loc.row(), more[i].loc.col(), 'E');
+			stamp(more[i], 'E');
 			end = more[i];
 			break; //found the end
 		    }
 		    f.add(more[i]);
-		    board.set(more[i].loc.row(), more[i].loc.col(), '?');
+		    stamp(more[i], '?');
 		}
 	    }
-	    board.set(here.loc.row(), here.loc.col(), '.'); //visited
+	    stamp(here, '.'); //visited
 	}
 	System.out.println("\033[0;m finished loop");
 	if(end != null) {
 	    while(end.getPrevious() != null) {
 		end = end.getPrevious();
-		board.set(end.loc.row(), end.loc.col(), '@');
+		stamp(end, '@');
 	    }
-	    board.set(end.loc.row(), end.loc.col(), 'S');
+	    stamp(end, 'S');
 	}
     }
 
@@ -65,6 +65,10 @@ public class MazeSolver {
 	    neighbors[3] = new Node(new Location(r+1, c), center, -1, -1, false);
 	}
 	return neighbors;
+    }
+
+    private void stamp(Node n, char c) {
+	board.set(n.loc.row(), n.loc.col(), c);
     }
 
     public String toString() {
