@@ -20,17 +20,17 @@ public class MazeSolver {
 	    f = new StackFrontier();
 	}
 	f.add(board.start);
-	while(f.hasNext()) {
+	loop: while(f.hasNext()) {
 	    Node here = f.next();
 	    char type = board.get(here.loc.row(), here.loc.col());
-	    //System.out.println(board.toString(800));
+	    System.out.println(board.toString(500));
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
 		    if(board.end.loc.equals(more[i].loc)) {
 			stamp(more[i], 'E');
 			end = more[i];
-			break; //found the end
+			break loop; //found the end
 		    }
 		    f.add(more[i]);
 		    stamp(more[i], '?');
