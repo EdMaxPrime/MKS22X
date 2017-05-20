@@ -90,9 +90,9 @@ public class MazeSolver {
     }
 
     public static void main(String[] args) {
-	MazeSolver m = new MazeSolver("maze2.txt", true);
+	MazeSolver m = new MazeSolver("maze7.txt", true);
 	System.out.println(m);
-	m.solve(3);
+	m.solve(1);
         System.out.println(m.toString());
     }
 }
