@@ -28,4 +28,6 @@ public class Node implements Comparable<Node> {
     public String toString() {
 	return "("+loc.row()+", "+loc.col()+")";
     }
+
+    public Node getPrevious() {return previous;}
 }
