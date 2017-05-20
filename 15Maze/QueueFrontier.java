@@ -12,7 +12,7 @@ public class QueueFrontier implements Frontier {
     }
 
     public boolean hasNext() {
-	return frontier.size() == 0;
+	return frontier.size() != 0;
     }
 
     public void add(Node n) {
