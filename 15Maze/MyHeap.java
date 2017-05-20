@@ -136,6 +136,8 @@ public class MyHeap {
 	return 0;
     }
 
+    public int size() {return size;}
+
     public String toStringDebug() {
 	String str = "[";
 	for(int i = 0; i < contents.length; i++) {
