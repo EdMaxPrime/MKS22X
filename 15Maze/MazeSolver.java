@@ -76,7 +76,7 @@ public class MazeSolver {
     }
 
     public static void main(String[] args) {
-	MazeSolver m = new MazeSolver("maze1.txt");
+	MazeSolver m = new MazeSolver("maze2.txt");
 	System.out.println(m);
 	m.solve(0);
         System.out.println(m.toString());
