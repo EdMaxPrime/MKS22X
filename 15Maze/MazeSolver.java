@@ -55,19 +55,24 @@ public class MazeSolver {
 	Node[] neighbors = new Node[4];
 	int howMany = 0;
 	int r = center.loc.row(), c = center.loc.col();
+	int covered = center.distTraveled()+1;
 	if(board.get(r, c-1) == ' ') { //left
-	    neighbors[0] = new Node(new Location(r, c-1), center, -1, -1, false);
+	    neighbors[0] = new Node(new Location(r, c-1), center, covered, distanceLeft(r, c-1), false);
 	}
 	if(board.get(r-1, c) == ' ') { //down
-	    neighbors[1] = new Node(new Location(r-1, c), center, -1, -1, false);
+	    neighbors[1] = new Node(new Location(r-1, c), center, covered, distanceLeft(r-1, c), false);
 	}
 	if(board.get(r, c+1) == ' ') { //right
-	    neighbors[2] = new Node(new Location(r, c+1), center, -1, -1, false);
+	    neighbors[2] = new Node(new Location(r, c+1), center, covered, distanceLeft(r, c+1), false);
 	}
 	if(board.get(r+1, c) == ' ') { //top
-	    neighbors[3] = new Node(new Location(r+1, c), center, -1, -1, false);
+	    neighbors[3] = new Node(new Location(r+1, c), center, covered, distanceLeft(r+1, c), false);
 	}
 	return neighbors;
+    }
+
+    private int distanceLeft(int r, int c) {
+	return Math.abs(r - board.end.loc.row()) + Math.abs(c - board.end.loc.col());
     }
 
     private void stamp(Node n, char c) {
