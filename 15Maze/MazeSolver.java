@@ -1,5 +1,6 @@
 public class MazeSolver {
     private Maze board;
+    private boolean anim;
 
     public MazeSolver(String filename) {
 	this(filename, false);
@@ -7,6 +8,7 @@ public class MazeSolver {
 
     public MazeSolver(String filename, boolean animate) {
 	board = new Maze(filename);
+	anim = animate;
     }
 
     public void solve() {
@@ -23,7 +25,7 @@ public class MazeSolver {
 	loop: while(f.hasNext()) {
 	    Node here = f.next();
 	    char type = board.get(here.loc.row(), here.loc.col());
-	    System.out.println(board.toString(500));
+	    if(anim) System.out.println(board.toString(500));
 	    Node[] more = getNeighbors(here);
 	    for(int i = 0; i < 4; i++) {
 		if(more[i] != null) {
