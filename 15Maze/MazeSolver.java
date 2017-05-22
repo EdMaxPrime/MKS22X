@@ -15,6 +15,14 @@ public class MazeSolver {
 	solve(1);
     }
 
+    /**
+       Solves the maze by updating the char array
+       in the Maze board. Use 0 for depth-first
+       search, 1 for breadth-first search, 2 for
+       best-first search and 3 for A*. Only A* and
+       breadth-first will give the shortest path.
+       @param style  the maze-solving technique
+     */
     public void solve(int style) {
 	Frontier f = null;
 	Node end = null;
@@ -43,8 +51,8 @@ public class MazeSolver {
 	    }
 	    stamp(here, '.'); //visited
 	}
-	System.out.println("\033[0;m finished loop");
-	if(end != null) {
+	System.out.print("\033[0;m");
+	if(end != null) { //trace the final path
 	    while(end.getPrevious() != null) {
 		end = end.getPrevious();
 		stamp(end, '@');
@@ -90,7 +98,7 @@ public class MazeSolver {
     }
 
     public static void main(String[] args) {
-	MazeSolver m = new MazeSolver("maze7.txt", true);
+	MazeSolver m = new MazeSolver("maze7.txt");
 	System.out.println(m);
 	m.solve(1);
         System.out.println(m.toString());
