@@ -97,6 +97,10 @@ public class MazeSolver {
 	return board.toString();
     }
 
+    public String toString(int delay) {
+	return board.toString(delay);
+    }
+
     public static void main(String[] args) {
 	MazeSolver m = new MazeSolver("maze7.txt");
 	System.out.println(m);
