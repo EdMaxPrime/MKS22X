@@ -68,7 +68,7 @@ public class MyDeque {
 	while(size() > 0) {
 	    newstuff[back2] = removeFirst();
 	    back2++;
-	    System.out.println(size()+" "+debug("str", 1));
+	    //System.out.println(size()+" "+debug("str", 1));
 	}
 	front = front2-1;
 	back = back2-1;
